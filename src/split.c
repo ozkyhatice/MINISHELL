@@ -33,28 +33,29 @@ int	split_char(t_shell *shell, char *str)
 				i++;
 		else 
 		{
-			split_tokens(str, &i);
+			i = split_tokens(str, i);
 		}		
 		add_parse_node(shell, ft_substr(str, j, i - j));
 	}
 	return (0);
 }
 
-void	split_tokens(char *str, int *i)
+int	split_tokens(char *str, int i)
 {
 	char	q;
 
-	while (str[*i] && !ft_istoken(str[*i]))
+	while (str[i] && !ft_istoken(str[i]))
 	{
-		if (ft_isquote(str[*i]))
+		if (ft_isquote(str[i]))
 		{
-			q = str[*i];
-			*i = *i + 1;
-			while (str[*i] && str[*i] != q)
-				*i = *i + 1;
+			q = str[i];
+			i = i + 1;
+			while (str[i] && str[i] != q)
+				i = i + 1;
 		}
-		*i = *i + 1;
+		i = i + 1;
 	}
+	return (i);
 }
 
 void	split_quote(t_shell *shell)
