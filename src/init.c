@@ -49,15 +49,16 @@ void	start_program(t_shell *shell)
 		// skip_32(shell);
 		// control_bracket(str);
 		split_quote(shell);	
+		syntax_rules(shell);
 		// parsing(shell);
 		// if (!pipe_ctl(shell))segment hatası var
 		//  	imp_pipe(shell);
 		if (ft_strlen(shell->cmd_line) != 0)
 			free(shell->cmd_line);
-		print_parse_node(shell);
+		//print_parse_node(shell);
 		ft_free_nodes(shell);
 		// clear_history();
-		system("leaks minishell");
+		//system("leaks minishell");
 	}
 	
 }

@@ -82,5 +82,7 @@ int	split_char(t_shell *shell, char *str);
 void	split_quote(t_shell *shell);
 int	split_tokens(char *str, int i);
 
+//Syntax
+int    syntax_rules(t_shell *shell);
 
 #endif

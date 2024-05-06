@@ -1,0 +1,13 @@
+ilk node pipe ise
+pipe pipe word kombinasyonu hatalı->ls | | wc
+pipe tan sonra bir şey yoksa->ls |
+
+
+minishell ~ "ls -l" | "|" >
+minishell ~ "ls -l" "|" >
+minishell ~ "ls -l" | "|" 
+minishell ~ "ls -l" | |
+bash: syntax error near unexpected token `|'
+minishell ~ "ls -l" | |
+burasını düzelt
+bir de node larda ayırma kısmında NULL node atıyor ona bak

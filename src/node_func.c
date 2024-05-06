@@ -35,7 +35,7 @@ void print_parse_node(t_shell *shell)
     t_parse_node *current = shell->parse_head; 
     printf("\n");
     while (current != NULL) {
-        printf("%s -> ", current->word);
+        printf("%s %u-> ", current->word, current->type);
         current = current->next;
     }
     printf("\n");
