@@ -30,40 +30,8 @@ void	initalizer(t_shell *shell, char **env)
     shell->env_p = NULL;
 }
 
-
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	if (s2 == NULL)
-		return (1);
-	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
-		i++;
-	return (s1[i] - s2[i]);
-}
-
-int	check_missing_quotes(char *cmd_line)
-{
-	int	quote;
-	int	i;
-
-	quote = 0;
-	i = -1;
-	while (cmd_line[++i])
-	{
-		if (quote == 0 && (cmd_line[i] == 34 || cmd_line[i] == 39))
-			quote = cmd_line[i];
-		else if (quote == cmd_line[i])
-			quote = 0;
-	}
-	return (quote);
-}
-
 void	start_program(t_shell *shell)
 {
-	char *str;
 	while (1)
 	{
 		shell->cmd_line = readline("minishell ~ ");
@@ -78,74 +46,59 @@ void	start_program(t_shell *shell)
 			free(shell->cmd2_line);
 			return ;
 		}
-		cmd_trim(shell);
-		skip_32(shell);
-		control_bracket(str);
-		parsing(shell);
+		// skip_32(shell);
+		// control_bracket(str);
+		split_quote(shell);	
+		// parsing(shell);
 		// if (!pipe_ctl(shell))segment hatası var
 		//  	imp_pipe(shell);
 		if (ft_strlen(shell->cmd_line) != 0)
 			free(shell->cmd_line);
-		// print_parse_node(shell);
-		free(str);
+		print_parse_node(shell);
 		ft_free_nodes(shell);
 		// clear_history();
-		// system("leaks minishell");
+		system("leaks minishell");
 	}
 	
 }
-void	skip_32(t_shell *shell)
-{
-	int len;
-	int i;
-	int j;
-	int space;
-	char *skipped_str;
 
-	len  = ft_strlen(shell->cmd_line);
-	i = 0;
-	j = 0;
-	space = 0;
-	while (shell->cmd_line[i] != '\0')
-	{
-		if (shell->cmd_line[i] == ' ')
-			space++;
-		i++;
-	}
-	skipped_str = (char *)malloc(sizeof(char) * (len - space + 1));
-	i = 0;
-	while (i < (len - space + 1) && (j < len))
-	{
-		if (shell->cmd_line[j] != ' ')
-		{
-			skipped_str[i] = shell->cmd_line[j];
-			i++;
-		}	
-		j++;
-	}
-	skipped_str[i] = '\0'; 
-	shell->skip32 = skipped_str;
-}
+// void	skip_32(t_shell *shell)
+// {
+// 	int len;
+// 	int i;
+// 	int j;
+// 	int space;
+// 	char *skipped_str;
+
+// 	len  = ft_strlen(shell->cmd_line);
+// 	i = 0;
+// 	j = 0;
+// 	space = 0;
+// 	while (shell->cmd_line[i] != '\0')
+// 	{
+// 		if (shell->cmd_line[i] == ' ')
+// 			space++;
+// 		i++;
+// 	}
+// 	skipped_str = (char *)malloc(sizeof(char) * (len - space + 1));
+// 	i = 0;
+// 	while (i < (len - space + 1) && (j < len))
+// 	{
+// 		if (shell->cmd_line[j] != ' ')
+// 		{
+// 			skipped_str[i] = shell->cmd_line[j];
+// 			i++;
+// 		}	
+// 		j++;
+// 	}
+// 	skipped_str[i] = '\0'; 
+// 	shell->skip32 = skipped_str;
+// }
 
 void	imp_pipe(t_shell *shell)
 {
 	//pipe ve heredoc islenecek
 	return ;
-}
-
-void	cmd_trim(t_shell *shell)
-{
-	char	*tmp;
-
-	if (ft_strlen(shell->cmd_line) == 0)
-		return ;
-	else
-	{
-		tmp = ft_strdup(shell->cmd_line);
-		free(shell->cmd_line);
-		shell->cmd_line = ft_strtrim(tmp, " ");
-		free(tmp);
-	}
 }
 
 int	pipe_ctl(t_shell *shell)

@@ -46,7 +46,7 @@ void ft_free_nodes(t_shell *shell)
     t_parse_node *current = shell->parse_head;
     t_parse_node *next;
 
-    while (current != NULL && current->next != NULL)
+    while (current != NULL)
     {
         next = current->next;
         free(current->word);
@@ -56,4 +56,3 @@ void ft_free_nodes(t_shell *shell)
     shell->parse_head = NULL;
     shell->parse_tail = NULL;
 }
-

@@ -11,12 +11,6 @@
 # include <stdio.h>
 # include <readline/history.h>
 
-// enum KeyCodes {
-// 	STRING = 0,
-//     FILE = 1,
-// 	PIPE = 2,
-// };
-
 enum e_token
 {
 	AND,
@@ -56,27 +50,35 @@ typedef struct s_shell{
 
 } t_shell;
 
+
+//check
+int	check_missing_quotes(char *cmd_line);
+
+//is funcs
+int	ft_isspace(char c);
+int	ft_isquote(char c);
+int ft_istoken(char c);
+
+//others
 void	initalizer(t_shell *shell, char **env);
-void	parsing(t_shell *shell);
 void	printwelcome(void);
 void	start_program(t_shell *shell);
-void	cmd_trim(t_shell *shell);
-int	pipe_ctl(t_shell *shell);
-void	imp_pipe(t_shell *shell);
 
-
+//token func
 enum e_token get_token(const char *str);
 enum e_token char_token(const char *str);
-
-
-//son eklenilenler
-int					parse(t_shell *shell);
-void				print_parse_node(t_shell *shell);
-void				add_parse_node(t_shell *shell, char *s);
-static t_parse_node	*create_parse_node(const char *s);
-void				ft_free_nodes(t_shell *shell);
+//token utils
 int same_str(const char *str1, char *str2);
-void control_bracket(const char *str);
-int bracket_counter(const char *str, char c);
-void	skip_32(t_shell *shell);
+int	ft_strcmp(char *s1, char *s2);
+
+//node funcs
+void	add_parse_node(t_shell *shell, char *s);
+void print_parse_node(t_shell *shell);
+void ft_free_nodes(t_shell *shell);
+
+//lexer funcs
+int ft_strtoken(char *str);
+int	split_char(t_shell *shell, char *str);
+void	split_quote(t_shell *shell);
+
 #endif
