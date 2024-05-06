@@ -8,10 +8,10 @@ int ft_strtoken(char *str)
 	while (str[i])
 	{
 		if(ft_istoken(str[i]))
-			return (1);
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 int	split_char(t_shell *shell, char *str)
@@ -23,19 +23,38 @@ int	split_char(t_shell *shell, char *str)
 	j = 0;
 	if(!str)
 		return (0);
-	if (!ft_strtoken(str))
+	if (ft_strtoken(str))
 		return (1);
 	while (str[i])
 	{
-		j = 0;
+		j = i;
 		if (ft_istoken(str[i]))
 			while(str[i] && str[i] == str[j])
 				i++;
 		else 
-			return 0;
+		{
+			split_tokens(str, &i);
+		}		
 		add_parse_node(shell, ft_substr(str, j, i - j));
 	}
 	return (0);
+}
+
+void	split_tokens(char *str, int *i)
+{
+	char	q;
+
+	while (str[*i] && !ft_istoken(str[*i]))
+	{
+		if (ft_isquote(str[*i]))
+		{
+			q = str[*i];
+			*i = *i + 1;
+			while (str[*i] && str[*i] != q)
+				*i = *i + 1;
+		}
+		*i = *i + 1;
+	}
 }
 
 void	split_quote(t_shell *shell)
@@ -65,7 +84,10 @@ void	split_quote(t_shell *shell)
 		}
 		str = ft_substr(shell->cmd_line, first, i - first + 1);
 		if (split_char(shell, str))
+		{
 			add_parse_node(shell, str);
+		}
+		//print_parse_node(shell);
 		free(str);
 	}
 }

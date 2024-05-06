@@ -80,5 +80,7 @@ void ft_free_nodes(t_shell *shell);
 int ft_strtoken(char *str);
 int	split_char(t_shell *shell, char *str);
 void	split_quote(t_shell *shell);
+void	split_tokens(char *str, int *i);
+
 
 #endif
