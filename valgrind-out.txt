@@ -1,0 +1,1514 @@
+==12023== Memcheck, a memory error detector
+==12023== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==12023== Using Valgrind-3.22.0-bd4db67b1d-20231031 and LibVEX; rerun with -h for copyright info
+==12023== Command: ./minishell
+==12023== Parent PID: 12015
+==12023== 
+--12023-- 
+--12023-- Valgrind options:
+--12023--    --leak-check=full
+--12023--    --show-leak-kinds=all
+--12023--    --track-origins=yes
+--12023--    --verbose
+--12023--    --log-file=valgrind-out.txt
+--12023-- Contents of /proc/version:
+--12023--   Linux version 6.8.8-300.fc40.x86_64 (mockbuild@a1c27ac0169843acbe4fe429ed5d0879) (gcc (GCC) 14.0.1 20240411 (Red Hat 14.0.1-0), GNU ld version 2.41-34.fc40) #1 SMP PREEMPT_DYNAMIC Sat Apr 27 17:53:31 UTC 2024
+--12023-- 
+--12023-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed-fma
+--12023-- Page sizes: currently 4096, max supported 4096
+--12023-- Valgrind library directory: /usr/libexec/valgrind
+--12023-- Reading syms from /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell
+--12023-- Reading syms from /usr/lib64/ld-linux-x86-64.so.2
+--12023-- Warning: cross-CU LIMITATION: some inlined fn names
+--12023-- might be shown as UnknownInlinedFun
+--12023-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
+--12023--    object doesn't have a dynamic symbol table
+--12023-- Scheduler: using generic scheduler lock implementation.
+--12023-- Reading suppressions file: /usr/libexec/valgrind/default.supp
+==12023== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-12023-by-abkiraz-on-abfedora
+==12023== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-12023-by-abkiraz-on-abfedora
+==12023== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-12023-by-abkiraz-on-abfedora
+==12023== 
+==12023== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==12023== don't want to do, unless you know exactly what you're doing,
+==12023== or are doing some strange experiment):
+==12023==   /usr/libexec/valgrind/../../bin/vgdb --pid=12023 ...command...
+==12023== 
+==12023== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==12023==   /path/to/gdb ./minishell
+==12023== and then give GDB the following command
+==12023==   target remote | /usr/libexec/valgrind/../../bin/vgdb --pid=12023
+==12023== --pid is optional if only one valgrind process is running
+==12023== 
+==12023== Downloading debug info for /usr/libexec/valgrind/memcheck-amd64-linux...
+--12023--   Considering /home/abkiraz/.cache/debuginfod_client/d7509b81fa398f2464f4037182f24e119e67941e/debuginfo ..
+--12023--   .. CRC is valid
+==12023== Successfully downloaded debug file for /usr/libexec/valgrind/memcheck-amd64-linux
+==12023== Downloading debug info for /home/abkiraz/.cache/debuginfod_client/d7509b81fa398f2464f4037182f24e119e67941e/debuginfo...
+--12023--   Considering /home/abkiraz/.cache/debuginfod_client/0c75703d1d6af8f9d12e8e506b7ee5599f9a9581/debuginfo ..
+--12023--   .. build-id is valid
+==12023== Successfully downloaded debug file for /home/abkiraz/.cache/debuginfod_client/d7509b81fa398f2464f4037182f24e119e67941e/debuginfo
+--12023-- REDIR: 0x40258e0 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c4b0a (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--12023-- REDIR: 0x40242c0 (ld-linux-x86-64.so.2:strcmp) redirected to 0x580c4b24 (vgPlain_amd64_linux_REDIR_FOR_strcmp)
+--12023-- REDIR: 0x4024090 (ld-linux-x86-64.so.2:index) redirected to 0x580c4b3f (vgPlain_amd64_linux_REDIR_FOR_index)
+--12023-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
+--12023-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+==12023== WARNING: new redirection conflicts with existing -- ignoring it
+--12023--     old: 0x040242c0 (strcmp              ) R-> (0000.0) 0x580c4b24 vgPlain_amd64_linux_REDIR_FOR_strcmp
+--12023--     new: 0x040242c0 (strcmp              ) R-> (2016.0) 0x0484c8c0 strcmp
+==12023== WARNING: new redirection conflicts with existing -- ignoring it
+--12023--     old: 0x040258e0 (strlen              ) R-> (0000.0) 0x580c4b0a vgPlain_amd64_linux_REDIR_FOR_strlen
+--12023--     new: 0x040258e0 (strlen              ) R-> (2007.0) 0x0484b7e0 strlen
+--12023-- REDIR: 0x40236f0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4850970 (mempcpy)
+--12023-- Reading syms from /usr/lib64/libreadline.so.8.2
+--12023-- Reading syms from /usr/lib64/libc.so.6
+==12023== Downloading debug info for /usr/lib64/libc.so.6...
+--12023--   Considering /home/abkiraz/.cache/debuginfod_client/b098f1c75a76548bb230d8f551eae07a2aeccf06/debuginfo ..
+--12023--   .. CRC mismatch (computed c686e8fe wanted 93a655dd)
+==12023== Server Error
+--12023-- Reading syms from /usr/lib64/libtinfo.so.6.4
+--12023-- REDIR: 0x4025a80 (ld-linux-x86-64.so.2:strncmp) redirected to 0x484c0f0 (strncmp)
+--12023-- REDIR: 0x4976d50 (libc.so.6:strnlen) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4976de0 (libc.so.6:strpbrk) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4974ee0 (libc.so.6:strcmp) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x498c010 (libc.so.6:wcsnlen) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4973fc0 (libc.so.6:memset) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x498b710 (libc.so.6:wcslen) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x49edc90 (libc.so.6:__memcpy_chk) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4973f30 (libc.so.6:memrchr) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x498bfb0 (libc.so.6:wcsncpy) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4973550 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x498a5a0 (libc.so.6:wcschr) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4974dd0 (libc.so.6:index) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4976e10 (libc.so.6:rindex) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x498a650 (libc.so.6:wcscmp) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x49741e0 (libc.so.6:stpncpy) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4997c80 (libc.so.6:wmemchr) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4976bf0 (libc.so.6:strncmp) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4974240 (libc.so.6:strcasecmp) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4976010 (libc.so.6:strcspn) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x498b4e0 (libc.so.6:wcscpy) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4974d60 (libc.so.6:strcat) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4976af0 (libc.so.6:strncasecmp_l) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4974e50 (libc.so.6:strchrnul) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4973460 (libc.so.6:bcmp) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4975fa0 (libc.so.6:strcpy) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x49742e0 (libc.so.6:strcasecmp_l) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x49769c0 (libc.so.6:strlen) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4976c90 (libc.so.6:strncpy) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4997d00 (libc.so.6:wmemcmp) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x49eddb0 (libc.so.6:__memmove_chk) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+==12023== WARNING: new redirection conflicts with existing -- ignoring it
+--12023--     old: 0x04a31f50 (__memcpy_chk_avx_una) R-> (2030.0) 0x04850a70 __memcpy_chk
+--12023--     new: 0x04a31f50 (__memcpy_chk_avx_una) R-> (2024.0) 0x048503f0 __memmove_chk
+--12023-- REDIR: 0x4974170 (libc.so.6:stpcpy) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4973cf0 (libc.so.6:memmove) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+==12023== Preferring higher priority redirection:
+--12023--     old: 0x04a31f80 (__memcpy_avx_unalign) R-> (2018.0) 0x0484dd50 __memcpy_avx_unaligned_erms
+--12023--     new: 0x04a31f80 (__memcpy_avx_unalign) R-> (2018.1) 0x0484f800 memmove
+--12023-- REDIR: 0x49733e0 (libc.so.6:memchr) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4976fe0 (libc.so.6:strspn) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4973e10 (libc.so.6:mempcpy) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4976a50 (libc.so.6:strncasecmp) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4976b90 (libc.so.6:strncat) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+--12023-- REDIR: 0x4977850 (libc.so.6:strstr) redirected to 0x48371ea (_vgnU_ifunc_wrapper)
+==12023== WARNING: new redirection conflicts with existing -- ignoring it
+--12023--     old: 0x04a31f50 (__memcpy_chk_avx_una) R-> (2030.0) 0x04850a70 __memcpy_chk
+--12023--     new: 0x04a31f50 (__memcpy_chk_avx_una) R-> (2024.0) 0x048503f0 __memmove_chk
+--12023-- REDIR: 0x4a36b70 (libc.so.6:__strrchr_avx2) redirected to 0x484b1c0 (rindex)
+--12023-- REDIR: 0x496f670 (libc.so.6:malloc) redirected to 0x4842799 (malloc)
+==12023== Downloading debug info for /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell...
+==12023== Server query failed: No such file or directory
+--12023-- REDIR: 0x4a34cc0 (libc.so.6:__strlen_avx2) redirected to 0x484b6c0 (strlen)
+--12023-- REDIR: 0x4a35da0 (libc.so.6:__strncmp_avx2) redirected to 0x484bf10 (strncmp)
+--12023-- REDIR: 0x4a31f40 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4850570 (mempcpy)
+--12023-- REDIR: 0x4a34320 (libc.so.6:__strchrnul_avx2) redirected to 0x4850460 (strchrnul)
+--12023-- REDIR: 0x4a31f80 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x484f800 (memmove)
+==12023== Downloading debug info for /usr/lib64/libreadline.so.8.2...
+--12023--   Considering /home/abkiraz/.cache/debuginfod_client/668aafdfb0547f12fcaca29ea07cf25b9bc3e1bf/debuginfo ..
+--12023--   .. CRC is valid
+==12023== Successfully downloaded debug file for /usr/lib64/libreadline.so.8.2
+==12023== Downloading debug info for /home/abkiraz/.cache/debuginfod_client/668aafdfb0547f12fcaca29ea07cf25b9bc3e1bf/debuginfo...
+--12023--   Considering /home/abkiraz/.cache/debuginfod_client/0ac0d931f4698c6d279aadc11dc8d7ffff10ea34/debuginfo ..
+--12023--   .. build-id is valid
+==12023== Successfully downloaded debug file for /home/abkiraz/.cache/debuginfod_client/668aafdfb0547f12fcaca29ea07cf25b9bc3e1bf/debuginfo
+--12023-- REDIR: 0x4a34a70 (libc.so.6:__strcpy_avx2) redirected to 0x484b810 (strcpy)
+--12023-- REDIR: 0x490ed50 (libc.so.6:setenv) redirected to 0x48514b0 (setenv)
+--12023-- REDIR: 0x4a340e0 (libc.so.6:__strchr_avx2) redirected to 0x484b3a0 (index)
+--12023-- REDIR: 0x496ffb0 (libc.so.6:realloc) redirected to 0x4849ff0 (realloc)
+--12023-- REDIR: 0x4a31f50 (libc.so.6:__memcpy_chk_avx_unaligned_erms) redirected to 0x4850a70 (__memcpy_chk)
+--12023-- REDIR: 0x4a34510 (libc.so.6:__strcmp_avx2) redirected to 0x484c7c0 (strcmp)
+==12023== Downloading debug info for /usr/lib64/libtinfo.so.6.4...
+--12023--   Considering /home/abkiraz/.cache/debuginfod_client/62fb6e8586768235f24a48e3a1dc104a27280751/debuginfo ..
+--12023--   .. CRC is valid
+==12023== Successfully downloaded debug file for /usr/lib64/libtinfo.so.6.4
+==12023== Downloading debug info for /home/abkiraz/.cache/debuginfod_client/62fb6e8586768235f24a48e3a1dc104a27280751/debuginfo...
+--12023--   Considering /home/abkiraz/.cache/debuginfod_client/6ae8e3a391fc9738c7cc61f642879df75e6fcc29/debuginfo ..
+--12023--   .. build-id is valid
+==12023== Successfully downloaded debug file for /home/abkiraz/.cache/debuginfod_client/62fb6e8586768235f24a48e3a1dc104a27280751/debuginfo
+--12023-- REDIR: 0x49706c0 (libc.so.6:calloc) redirected to 0x4849dd6 (calloc)
+--12023-- REDIR: 0x4a368a0 (libc.so.6:__strnlen_avx2) redirected to 0x484b660 (strnlen)
+--12023-- REDIR: 0x496fd50 (libc.so.6:free) redirected to 0x4845aba (free)
+--12023-- REDIR: 0x4a32980 (libc.so.6:__memset_avx2_unaligned_erms) redirected to 0x484f6e0 (memset)
+--12023-- REDIR: 0x4a36400 (libc.so.6:__strncpy_avx2) redirected to 0x484b990 (strncpy)
+--12023-- REDIR: 0x4a31580 (libc.so.6:__memchr_avx2) redirected to 0x484c940 (memchr)
+--12023-- REDIR: 0x4a32c30 (libc.so.6:__stpcpy_avx2) redirected to 0x484f030 (stpcpy)
+--12023-- REDIR: 0x4a333c0 (libc.so.6:__strcasecmp_avx2) redirected to 0x484c150 (strcasecmp)
+--12023-- REDIR: 0x4a34e40 (libc.so.6:__strncasecmp_avx2) redirected to 0x484c230 (strncasecmp)
+--12023-- REDIR: 0x4a31820 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x484ef10 (bcmp)
+==12023== Conditional jump or move depends on uninitialised value(s)
+==12023==    at 0x401733: add_parse_node (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401C26: split_quote (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x4014ED: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==  Uninitialised value was created by a heap allocation
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x40163F: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 
+==12023== Process terminating with default action of signal 2 (SIGINT)
+==12023==    at 0x490991B: kill (in /usr/lib64/libc.so.6)
+==12023==    by 0x48A96D8: UnknownInlinedFun (signals.c:290)
+==12023==    by 0x48A96D8: _rl_signal_handler (signals.c:149)
+==12023==    by 0x48AA5AD: rl_getc (input.c:929)
+==12023==    by 0x48A9CFC: rl_read_key (input.c:795)
+==12023==    by 0x488CDD3: readline_internal_char (readline.c:614)
+==12023==    by 0x4896644: UnknownInlinedFun (readline.c:721)
+==12023==    by 0x4896644: UnknownInlinedFun (readline.c:733)
+==12023==    by 0x4896644: readline (readline.c:387)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== HEAP SUMMARY:
+==12023==     in use at exit: 240,176 bytes in 349 blocks
+==12023==   total heap usage: 577 allocs, 228 frees, 254,076 bytes allocated
+==12023== 
+==12023== Searching for pointers to 349 not-freed blocks
+==12023== Checked 250,456 bytes
+==12023== 
+==12023== 8 bytes in 1 blocks are still reachable in loss record 1 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x497605E: strdup (in /usr/lib64/libc.so.6)
+==12023==    by 0x4ACF787: _nc_trim_sgr0 (trim_sgr0.c:242)
+==12023==    by 0x4ACBAD7: tgetent_sp (lib_termcap.c:182)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 8 bytes in 1 blocks are still reachable in loss record 2 of 97
+==12023==    at 0x484A074: realloc (vg_replace_malloc.c:1690)
+==12023==    by 0x48AFDE1: xrealloc (xmalloc.c:70)
+==12023==    by 0x489B15B: expand_prompt (display.c:415)
+==12023==    by 0x489BBDD: rl_expand_prompt (display.c:606)
+==12023==    by 0x4889E53: rl_set_prompt (readline.c:347)
+==12023==    by 0x4896601: readline (readline.c:377)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 9 bytes in 1 blocks are still reachable in loss record 3 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x490EC7D: __add_to_environ (in /usr/lib64/libc.so.6)
+==12023==    by 0x48515E6: setenv (vg_replace_strmem.c:2416)
+==12023==    by 0x48AE59F: sh_set_lines_and_columns (shell.c:133)
+==12023==    by 0x48A8F24: _rl_get_screen_size (terminal.c:337)
+==12023==    by 0x489B750: expand_prompt (display.c:379)
+==12023==    by 0x489BBDD: rl_expand_prompt (display.c:606)
+==12023==    by 0x4889E53: rl_set_prompt (readline.c:347)
+==12023==    by 0x4896601: readline (readline.c:377)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 9 bytes in 1 blocks are still reachable in loss record 4 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x48AA89B: _rl_reset_region_color (terminal.c:842)
+==12023==    by 0x48AADCB: _rl_init_terminal_io (terminal.c:635)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 11 bytes in 1 blocks are still reachable in loss record 5 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x48AA89B: _rl_reset_region_color (terminal.c:842)
+==12023==    by 0x48AADDC: _rl_init_terminal_io (terminal.c:636)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 11 bytes in 2 blocks are still reachable in loss record 6 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x48A5C99: alloc_history_entry (history.c:233)
+==12023==    by 0x48A84F5: add_history (history.c:329)
+==12023==    by 0x40148F: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 12 bytes in 1 blocks are still reachable in loss record 7 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x490EC7D: __add_to_environ (in /usr/lib64/libc.so.6)
+==12023==    by 0x48515E6: setenv (vg_replace_strmem.c:2416)
+==12023==    by 0x48A8F24: _rl_get_screen_size (terminal.c:337)
+==12023==    by 0x489B750: expand_prompt (display.c:379)
+==12023==    by 0x489BBDD: rl_expand_prompt (display.c:606)
+==12023==    by 0x4889E53: rl_set_prompt (readline.c:347)
+==12023==    by 0x4896601: readline (readline.c:377)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 12 bytes in 1 blocks are still reachable in loss record 8 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x497605E: strdup (in /usr/lib64/libc.so.6)
+==12023==    by 0x48FEEAE: _nl_load_locale_from_archive (in /usr/lib64/libc.so.6)
+==12023==    by 0x48FE3D8: _nl_find_locale (in /usr/lib64/libc.so.6)
+==12023==    by 0x4901205: setlocale (in /usr/lib64/libc.so.6)
+==12023==    by 0x48A9244: _rl_init_locale (nls.c:143)
+==12023==    by 0x48A9386: _rl_init_eightbit (nls.c:231)
+==12023==    by 0x4896369: UnknownInlinedFun (readline.c:1292)
+==12023==    by 0x4896369: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 12 bytes in 1 blocks are still reachable in loss record 9 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x497605E: strdup (in /usr/lib64/libc.so.6)
+==12023==    by 0x490123D: setlocale (in /usr/lib64/libc.so.6)
+==12023==    by 0x48A9244: _rl_init_locale (nls.c:143)
+==12023==    by 0x48A9386: _rl_init_eightbit (nls.c:231)
+==12023==    by 0x4896369: UnknownInlinedFun (readline.c:1292)
+==12023==    by 0x4896369: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 12 bytes in 1 blocks are still reachable in loss record 10 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x48A92AA: _rl_init_locale (nls.c:154)
+==12023==    by 0x48A941C: _rl_reset_locale (nls.c:342)
+==12023==    by 0x4896504: rl_initialize (readline.c:1189)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 13 bytes in 1 blocks are still reachable in loss record 11 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889E2F: rl_set_prompt (readline.c:344)
+==12023==    by 0x4896601: readline (readline.c:377)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 13 bytes in 1 blocks are still reachable in loss record 12 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x489CA42: _rl_read_init_file (bind.c:1086)
+==12023==    by 0x4896370: UnknownInlinedFun (readline.c:1295)
+==12023==    by 0x4896370: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 13 bytes in 1 blocks are still reachable in loss record 13 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x489B126: expand_prompt (display.c:410)
+==12023==    by 0x489BBDD: rl_expand_prompt (display.c:606)
+==12023==    by 0x4889E53: rl_set_prompt (readline.c:347)
+==12023==    by 0x4896601: readline (readline.c:377)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 14 bytes in 1 blocks are still reachable in loss record 14 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x497605E: strdup (in /usr/lib64/libc.so.6)
+==12023==    by 0x4ABE171: update_getenv (db_iterator.c:131)
+==12023==    by 0x4AC0F84: UnknownInlinedFun (db_iterator.c:158)
+==12023==    by 0x4AC0F84: UnknownInlinedFun (db_iterator.c:331)
+==12023==    by 0x4AC0F84: _nc_first_db (db_iterator.c:285)
+==12023==    by 0x4ACF2FA: _nc_read_entry2 (read_entry.c:902)
+==12023==    by 0x4ACB2D7: _nc_setup_tinfo (lib_setup.c:626)
+==12023==    by 0x4ACB465: _nc_setupterm (lib_setup.c:916)
+==12023==    by 0x4ACB8F4: tgetent_sp (lib_termcap.c:104)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 14 bytes in 1 blocks are still reachable in loss record 15 of 97
+==12023==    at 0x484A074: realloc (vg_replace_malloc.c:1690)
+==12023==    by 0x4ABF77C: _nc_doalloc (doalloc.c:54)
+==12023==    by 0x4AC8793: UnknownInlinedFun (lib_tparm.c:808)
+==12023==    by 0x4AC8793: _nc_tiparm (lib_tparm.c:1393)
+==12023==    by 0x4ACF6EF: set_attribute_9.isra.0 (trim_sgr0.c:51)
+==12023==    by 0x4ACF779: _nc_trim_sgr0 (trim_sgr0.c:241)
+==12023==    by 0x4ACBAD7: tgetent_sp (lib_termcap.c:182)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 15 bytes in 1 blocks are still reachable in loss record 16 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x497605E: strdup (in /usr/lib64/libc.so.6)
+==12023==    by 0x4ACB4C8: _nc_setupterm (lib_setup.c:955)
+==12023==    by 0x4ACB8F4: tgetent_sp (lib_termcap.c:104)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 16 bytes in 1 blocks are still reachable in loss record 17 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x4896461: UnknownInlinedFun (readline.c:1325)
+==12023==    by 0x4896461: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 20 bytes in 1 blocks are still reachable in loss record 18 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x48998F3: parser_if (bind.c:1263)
+==12023==    by 0x489C54F: UnknownInlinedFun (bind.c:1563)
+==12023==    by 0x489C54F: rl_parse_and_bind (bind.c:1622)
+==12023==    by 0x489C9BB: _rl_read_init_file (bind.c:1119)
+==12023==    by 0x4896370: UnknownInlinedFun (readline.c:1295)
+==12023==    by 0x4896370: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 24 bytes in 1 blocks are still reachable in loss record 19 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x49E0219: tsearch (in /usr/lib64/libc.so.6)
+==12023==    by 0x490ECE8: __add_to_environ (in /usr/lib64/libc.so.6)
+==12023==    by 0x48515E6: setenv (vg_replace_strmem.c:2416)
+==12023==    by 0x48AE59F: sh_set_lines_and_columns (shell.c:133)
+==12023==    by 0x48A8F24: _rl_get_screen_size (terminal.c:337)
+==12023==    by 0x489B750: expand_prompt (display.c:379)
+==12023==    by 0x489BBDD: rl_expand_prompt (display.c:606)
+==12023==    by 0x4889E53: rl_set_prompt (readline.c:347)
+==12023==    by 0x4896601: readline (readline.c:377)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 24 bytes in 1 blocks are still reachable in loss record 20 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x49E01A7: tsearch (in /usr/lib64/libc.so.6)
+==12023==    by 0x490ECE8: __add_to_environ (in /usr/lib64/libc.so.6)
+==12023==    by 0x48515E6: setenv (vg_replace_strmem.c:2416)
+==12023==    by 0x48A8F24: _rl_get_screen_size (terminal.c:337)
+==12023==    by 0x489B750: expand_prompt (display.c:379)
+==12023==    by 0x489BBDD: rl_expand_prompt (display.c:606)
+==12023==    by 0x4889E53: rl_set_prompt (readline.c:347)
+==12023==    by 0x4896601: readline (readline.c:377)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 24 bytes in 1 blocks are still reachable in loss record 21 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x49E0219: tsearch (in /usr/lib64/libc.so.6)
+==12023==    by 0x4AC3707: tparm_setup (lib_tparm.c:660)
+==12023==    by 0x4AC83F7: _nc_tiparm (lib_tparm.c:1340)
+==12023==    by 0x4ACF6EF: set_attribute_9.isra.0 (trim_sgr0.c:51)
+==12023==    by 0x4ACF779: _nc_trim_sgr0 (trim_sgr0.c:241)
+==12023==    by 0x4ACBAD7: tgetent_sp (lib_termcap.c:182)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 24 bytes in 2 blocks are still reachable in loss record 22 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x48A84CF: UnknownInlinedFun (history.c:270)
+==12023==    by 0x48A84CF: add_history (history.c:329)
+==12023==    by 0x40148F: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 26 bytes in 1 blocks are still reachable in loss record 23 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x4AC0907: _nc_home_terminfo (home_terminfo.c:59)
+==12023==    by 0x4AC0F6F: UnknownInlinedFun (db_iterator.c:330)
+==12023==    by 0x4AC0F6F: _nc_first_db (db_iterator.c:285)
+==12023==    by 0x4ACF2FA: _nc_read_entry2 (read_entry.c:902)
+==12023==    by 0x4ACB2D7: _nc_setup_tinfo (lib_setup.c:626)
+==12023==    by 0x4ACB465: _nc_setupterm (lib_setup.c:916)
+==12023==    by 0x4ACB8F4: tgetent_sp (lib_termcap.c:104)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 32 bytes in 1 blocks are still reachable in loss record 24 of 97
+==12023==    at 0x4849E60: calloc (vg_replace_malloc.c:1595)
+==12023==    by 0x498B861: __wcsmbs_load_conv (in /usr/lib64/libc.so.6)
+==12023==    by 0x4989A14: mbrtowc (in /usr/lib64/libc.so.6)
+==12023==    by 0x489DEF1: update_line (display.c:1983)
+==12023==    by 0x48A11D7: rl_redisplay (display.c:1293)
+==12023==    by 0x488B5FD: readline_internal_setup (readline.c:468)
+==12023==    by 0x489662A: UnknownInlinedFun (readline.c:732)
+==12023==    by 0x489662A: readline (readline.c:387)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 40 bytes in 1 blocks are still reachable in loss record 25 of 97
+==12023==    at 0x4849E60: calloc (vg_replace_malloc.c:1595)
+==12023==    by 0x4AC0B33: UnknownInlinedFun (db_iterator.c:367)
+==12023==    by 0x4AC0B33: _nc_first_db (db_iterator.c:285)
+==12023==    by 0x4ACF2FA: _nc_read_entry2 (read_entry.c:902)
+==12023==    by 0x4ACB2D7: _nc_setup_tinfo (lib_setup.c:626)
+==12023==    by 0x4ACB465: _nc_setupterm (lib_setup.c:916)
+==12023==    by 0x4ACB8F4: tgetent_sp (lib_termcap.c:104)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 47 bytes in 1 blocks are still reachable in loss record 26 of 97
+==12023==    at 0x484A074: realloc (vg_replace_malloc.c:1690)
+==12023==    by 0x4ABF77C: _nc_doalloc (doalloc.c:54)
+==12023==    by 0x4ACE5EA: _nc_read_termtype (read_entry.c:438)
+==12023==    by 0x4ACEE41: _nc_read_file_entry (read_entry.c:603)
+==12023==    by 0x4ACF1C6: _nc_read_tic_entry.constprop.0 (read_entry.c:861)
+==12023==    by 0x4ACF320: _nc_read_entry2 (read_entry.c:905)
+==12023==    by 0x4ACB2D7: _nc_setup_tinfo (lib_setup.c:626)
+==12023==    by 0x4ACB465: _nc_setupterm (lib_setup.c:916)
+==12023==    by 0x4ACB8F4: tgetent_sp (lib_termcap.c:104)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023== 
+==12023== 47 bytes in 1 blocks are still reachable in loss record 27 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x4ABEDA0: copy_termtype (alloc_ttype.c:543)
+==12023==    by 0x4ACB497: _nc_setupterm (lib_setup.c:948)
+==12023==    by 0x4ACB8F4: tgetent_sp (lib_termcap.c:104)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 48 bytes in 2 blocks are still reachable in loss record 28 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x48A5C80: alloc_history_entry (history.c:231)
+==12023==    by 0x48A84F5: add_history (history.c:329)
+==12023==    by 0x40148F: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 64 bytes in 1 blocks are still reachable in loss record 29 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x40219E: ft_split (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x4013CD: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 72 bytes in 1 blocks are still reachable in loss record 30 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x40163F: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 78 bytes in 1 blocks are still reachable in loss record 31 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x4ABEEC8: copy_termtype (alloc_ttype.c:590)
+==12023==    by 0x4ACB497: _nc_setupterm (lib_setup.c:948)
+==12023==    by 0x4ACB8F4: tgetent_sp (lib_termcap.c:104)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 87 bytes in 1 blocks are still reachable in loss record 32 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x4AC0A88: UnknownInlinedFun (db_iterator.c:352)
+==12023==    by 0x4AC0A88: _nc_first_db (db_iterator.c:285)
+==12023==    by 0x4ACF2FA: _nc_read_entry2 (read_entry.c:902)
+==12023==    by 0x4ACB2D7: _nc_setup_tinfo (lib_setup.c:626)
+==12023==    by 0x4ACB465: _nc_setupterm (lib_setup.c:916)
+==12023==    by 0x4ACB8F4: tgetent_sp (lib_termcap.c:104)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 93 bytes in 1 blocks are still reachable in loss record 33 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x497605E: strdup (in /usr/lib64/libc.so.6)
+==12023==    by 0x4AC36E5: tparm_setup (lib_tparm.c:659)
+==12023==    by 0x4AC83F7: _nc_tiparm (lib_tparm.c:1340)
+==12023==    by 0x4ACF6EF: set_attribute_9.isra.0 (trim_sgr0.c:51)
+==12023==    by 0x4ACF779: _nc_trim_sgr0 (trim_sgr0.c:241)
+==12023==    by 0x4ACBAD7: tgetent_sp (lib_termcap.c:182)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 94 bytes in 1 blocks are still reachable in loss record 34 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x4AC321F: _nc_tparm_analyze (lib_tparm.c:483)
+==12023==    by 0x4AC35F2: tparm_setup (lib_tparm.c:637)
+==12023==    by 0x4AC83F7: _nc_tiparm (lib_tparm.c:1340)
+==12023==    by 0x4ACF6EF: set_attribute_9.isra.0 (trim_sgr0.c:51)
+==12023==    by 0x4ACF779: _nc_trim_sgr0 (trim_sgr0.c:241)
+==12023==    by 0x4ACBAD7: tgetent_sp (lib_termcap.c:182)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 120 bytes in 1 blocks are still reachable in loss record 35 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48FEE93: _nl_load_locale_from_archive (in /usr/lib64/libc.so.6)
+==12023==    by 0x48FE3D8: _nl_find_locale (in /usr/lib64/libc.so.6)
+==12023==    by 0x4901205: setlocale (in /usr/lib64/libc.so.6)
+==12023==    by 0x48A9244: _rl_init_locale (nls.c:143)
+==12023==    by 0x48A9386: _rl_init_eightbit (nls.c:231)
+==12023==    by 0x4896369: UnknownInlinedFun (readline.c:1292)
+==12023==    by 0x4896369: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 124 bytes in 7 blocks are still reachable in loss record 36 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x40248B: ft_substr (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x402238: ft_split (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x4013CD: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 156 bytes in 1 blocks are still reachable in loss record 37 of 97
+==12023==    at 0x484A074: realloc (vg_replace_malloc.c:1690)
+==12023==    by 0x4ABF77C: _nc_doalloc (doalloc.c:54)
+==12023==    by 0x4ACE608: _nc_read_termtype (read_entry.c:439)
+==12023==    by 0x4ACEE41: _nc_read_file_entry (read_entry.c:603)
+==12023==    by 0x4ACF1C6: _nc_read_tic_entry.constprop.0 (read_entry.c:861)
+==12023==    by 0x4ACF320: _nc_read_entry2 (read_entry.c:905)
+==12023==    by 0x4ACB2D7: _nc_setup_tinfo (lib_setup.c:626)
+==12023==    by 0x4ACB465: _nc_setupterm (lib_setup.c:916)
+==12023==    by 0x4ACB8F4: tgetent_sp (lib_termcap.c:104)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023== 
+==12023== 168 bytes in 1 blocks are still reachable in loss record 38 of 97
+==12023==    at 0x4849E60: calloc (vg_replace_malloc.c:1595)
+==12023==    by 0x4AC365E: tparm_setup (lib_tparm.c:657)
+==12023==    by 0x4AC83F7: _nc_tiparm (lib_tparm.c:1340)
+==12023==    by 0x4ACF6EF: set_attribute_9.isra.0 (trim_sgr0.c:51)
+==12023==    by 0x4ACF779: _nc_trim_sgr0 (trim_sgr0.c:241)
+==12023==    by 0x4ACBAD7: tgetent_sp (lib_termcap.c:182)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 171 bytes in 1 blocks are still reachable in loss record 39 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x4900BF7: new_composite_name (in /usr/lib64/libc.so.6)
+==12023==    by 0x4901265: setlocale (in /usr/lib64/libc.so.6)
+==12023==    by 0x48A9244: _rl_init_locale (nls.c:143)
+==12023==    by 0x48A9386: _rl_init_eightbit (nls.c:231)
+==12023==    by 0x4896369: UnknownInlinedFun (readline.c:1292)
+==12023==    by 0x4896369: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 208 bytes in 1 blocks are still reachable in loss record 40 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48FD614: __gconv_lookup_cache (in /usr/lib64/libc.so.6)
+==12023==    by 0x48F4D6E: __gconv_find_transform (in /usr/lib64/libc.so.6)
+==12023==    by 0x498B973: __wcsmbs_load_conv (in /usr/lib64/libc.so.6)
+==12023==    by 0x4989A14: mbrtowc (in /usr/lib64/libc.so.6)
+==12023==    by 0x489DEF1: update_line (display.c:1983)
+==12023==    by 0x48A11D7: rl_redisplay (display.c:1293)
+==12023==    by 0x488B5FD: readline_internal_setup (readline.c:468)
+==12023==    by 0x489662A: UnknownInlinedFun (readline.c:732)
+==12023==    by 0x489662A: readline (readline.c:387)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 208 bytes in 1 blocks are still reachable in loss record 41 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48FD6F2: __gconv_lookup_cache (in /usr/lib64/libc.so.6)
+==12023==    by 0x48F4D6E: __gconv_find_transform (in /usr/lib64/libc.so.6)
+==12023==    by 0x498B9B3: __wcsmbs_load_conv (in /usr/lib64/libc.so.6)
+==12023==    by 0x4989A14: mbrtowc (in /usr/lib64/libc.so.6)
+==12023==    by 0x489DEF1: update_line (display.c:1983)
+==12023==    by 0x48A11D7: rl_redisplay (display.c:1293)
+==12023==    by 0x488B5FD: readline_internal_setup (readline.c:468)
+==12023==    by 0x489662A: UnknownInlinedFun (readline.c:732)
+==12023==    by 0x489662A: readline (readline.c:387)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 256 bytes in 1 blocks are still reachable in loss record 42 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x48965B6: UnknownInlinedFun (readline.c:1278)
+==12023==    by 0x48965B6: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 608 bytes in 1 blocks are still reachable in loss record 43 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x40131C: copyenv (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x4013F6: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 624 bytes in 1 blocks are still reachable in loss record 44 of 97
+==12023==    at 0x484A074: realloc (vg_replace_malloc.c:1690)
+==12023==    by 0x490EB8F: __add_to_environ (in /usr/lib64/libc.so.6)
+==12023==    by 0x48515E6: setenv (vg_replace_strmem.c:2416)
+==12023==    by 0x48A8F24: _rl_get_screen_size (terminal.c:337)
+==12023==    by 0x489B750: expand_prompt (display.c:379)
+==12023==    by 0x489BBDD: rl_expand_prompt (display.c:606)
+==12023==    by 0x4889E53: rl_set_prompt (readline.c:347)
+==12023==    by 0x4896601: readline (readline.c:377)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 712 bytes in 1 blocks are still reachable in loss record 45 of 97
+==12023==    at 0x4849E60: calloc (vg_replace_malloc.c:1595)
+==12023==    by 0x4ACE8E3: _nc_read_termtype (read_entry.c:533)
+==12023==    by 0x4ACEE41: _nc_read_file_entry (read_entry.c:603)
+==12023==    by 0x4ACF1C6: _nc_read_tic_entry.constprop.0 (read_entry.c:861)
+==12023==    by 0x4ACF320: _nc_read_entry2 (read_entry.c:905)
+==12023==    by 0x4ACB2D7: _nc_setup_tinfo (lib_setup.c:626)
+==12023==    by 0x4ACB465: _nc_setupterm (lib_setup.c:916)
+==12023==    by 0x4ACB8F4: tgetent_sp (lib_termcap.c:104)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 712 bytes in 1 blocks are still reachable in loss record 46 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x4ABEFFD: copy_termtype (alloc_ttype.c:632)
+==12023==    by 0x4ACB497: _nc_setupterm (lib_setup.c:948)
+==12023==    by 0x4ACB8F4: tgetent_sp (lib_termcap.c:104)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 760 bytes in 1 blocks are still reachable in loss record 47 of 97
+==12023==    at 0x4849E60: calloc (vg_replace_malloc.c:1595)
+==12023==    by 0x4ACB40F: _nc_setupterm (lib_setup.c:872)
+==12023==    by 0x4ACB8F4: tgetent_sp (lib_termcap.c:104)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 792 bytes in 1 blocks are still reachable in loss record 48 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48FF43F: _nl_intern_locale_data (in /usr/lib64/libc.so.6)
+==12023==    by 0x48FEF02: _nl_load_locale_from_archive (in /usr/lib64/libc.so.6)
+==12023==    by 0x48FE3D8: _nl_find_locale (in /usr/lib64/libc.so.6)
+==12023==    by 0x4901205: setlocale (in /usr/lib64/libc.so.6)
+==12023==    by 0x48A9244: _rl_init_locale (nls.c:143)
+==12023==    by 0x48A9386: _rl_init_eightbit (nls.c:231)
+==12023==    by 0x4896369: UnknownInlinedFun (readline.c:1292)
+==12023==    by 0x4896369: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 1,024 bytes in 1 blocks are still reachable in loss record 49 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x4949496: _IO_file_doallocate (in /usr/lib64/libc.so.6)
+==12023==    by 0x49586A3: _IO_doallocbuf (in /usr/lib64/libc.so.6)
+==12023==    by 0x49567B7: _IO_file_overflow@@GLIBC_2.2.5 (in /usr/lib64/libc.so.6)
+==12023==    by 0x49572B7: _IO_file_xsputn@@GLIBC_2.2.5 (in /usr/lib64/libc.so.6)
+==12023==    by 0x494BDB9: puts (in /usr/lib64/libc.so.6)
+==12023==    by 0x401866: printwelcome (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401403: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 1,024 bytes in 1 blocks are still reachable in loss record 50 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AFDF7: xrealloc (xmalloc.c:70)
+==12023==    by 0x489870B: realloc_line (display.c:659)
+==12023==    by 0x489880A: init_line_structures (display.c:687)
+==12023==    by 0x48A2176: rl_redisplay (display.c:801)
+==12023==    by 0x488B5FD: readline_internal_setup (readline.c:468)
+==12023==    by 0x489662A: UnknownInlinedFun (readline.c:732)
+==12023==    by 0x489662A: readline (readline.c:387)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 1,024 bytes in 1 blocks are still reachable in loss record 51 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AFDF7: xrealloc (xmalloc.c:70)
+==12023==    by 0x4898722: realloc_line (display.c:660)
+==12023==    by 0x489880A: init_line_structures (display.c:687)
+==12023==    by 0x48A2176: rl_redisplay (display.c:801)
+==12023==    by 0x488B5FD: readline_internal_setup (readline.c:468)
+==12023==    by 0x489662A: UnknownInlinedFun (readline.c:732)
+==12023==    by 0x489662A: readline (readline.c:387)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 1,024 bytes in 1 blocks are still reachable in loss record 52 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AFDF7: xrealloc (xmalloc.c:70)
+==12023==    by 0x4898739: realloc_line (display.c:662)
+==12023==    by 0x489880A: init_line_structures (display.c:687)
+==12023==    by 0x48A2176: rl_redisplay (display.c:801)
+==12023==    by 0x488B5FD: readline_internal_setup (readline.c:468)
+==12023==    by 0x489662A: UnknownInlinedFun (readline.c:732)
+==12023==    by 0x489662A: readline (readline.c:387)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 1,024 bytes in 1 blocks are still reachable in loss record 53 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AFDF7: xrealloc (xmalloc.c:70)
+==12023==    by 0x4898750: realloc_line (display.c:663)
+==12023==    by 0x489880A: init_line_structures (display.c:687)
+==12023==    by 0x48A2176: rl_redisplay (display.c:801)
+==12023==    by 0x488B5FD: readline_internal_setup (readline.c:468)
+==12023==    by 0x489662A: UnknownInlinedFun (readline.c:732)
+==12023==    by 0x489662A: readline (readline.c:387)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 1,024 bytes in 1 blocks are still reachable in loss record 54 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4898865: init_line_structures (display.c:696)
+==12023==    by 0x48A2176: rl_redisplay (display.c:801)
+==12023==    by 0x488B5FD: readline_internal_setup (readline.c:468)
+==12023==    by 0x489662A: UnknownInlinedFun (readline.c:732)
+==12023==    by 0x489662A: readline (readline.c:387)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 1,024 bytes in 1 blocks are still reachable in loss record 55 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4898880: init_line_structures (display.c:699)
+==12023==    by 0x48A2176: rl_redisplay (display.c:801)
+==12023==    by 0x488B5FD: readline_internal_setup (readline.c:468)
+==12023==    by 0x489662A: UnknownInlinedFun (readline.c:732)
+==12023==    by 0x489662A: readline (readline.c:387)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 1,024 bytes in 1 blocks are still reachable in loss record 56 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4898898: init_line_structures (display.c:702)
+==12023==    by 0x48A2176: rl_redisplay (display.c:801)
+==12023==    by 0x488B5FD: readline_internal_setup (readline.c:468)
+==12023==    by 0x489662A: UnknownInlinedFun (readline.c:732)
+==12023==    by 0x489662A: readline (readline.c:387)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 1,024 bytes in 1 blocks are still reachable in loss record 57 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x48988B0: init_line_structures (display.c:703)
+==12023==    by 0x48A2176: rl_redisplay (display.c:801)
+==12023==    by 0x488B5FD: readline_internal_setup (readline.c:468)
+==12023==    by 0x489662A: UnknownInlinedFun (readline.c:732)
+==12023==    by 0x489662A: readline (readline.c:387)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 1,107 bytes in 1 blocks are still reachable in loss record 58 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x4ACE7BC: _nc_read_termtype (read_entry.c:485)
+==12023==    by 0x4ACEE41: _nc_read_file_entry (read_entry.c:603)
+==12023==    by 0x4ACF1C6: _nc_read_tic_entry.constprop.0 (read_entry.c:861)
+==12023==    by 0x4ACF320: _nc_read_entry2 (read_entry.c:905)
+==12023==    by 0x4ACB2D7: _nc_setup_tinfo (lib_setup.c:626)
+==12023==    by 0x4ACB465: _nc_setupterm (lib_setup.c:916)
+==12023==    by 0x4ACB8F4: tgetent_sp (lib_termcap.c:104)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 1,108 bytes in 1 blocks are still reachable in loss record 59 of 97
+==12023==    at 0x4849E60: calloc (vg_replace_malloc.c:1595)
+==12023==    by 0x4ABF1A0: copy_termtype (alloc_ttype.c:669)
+==12023==    by 0x4ACB497: _nc_setupterm (lib_setup.c:948)
+==12023==    by 0x4ACB8F4: tgetent_sp (lib_termcap.c:104)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 1,536 bytes in 1 blocks are still reachable in loss record 60 of 97
+==12023==    at 0x484A074: realloc (vg_replace_malloc.c:1690)
+==12023==    by 0x48AFDE1: xrealloc (xmalloc.c:70)
+==12023==    by 0x488B994: rl_add_funmap_entry (funmap.c:218)
+==12023==    by 0x488B9E7: UnknownInlinedFun (funmap.c:241)
+==12023==    by 0x488B9E7: rl_initialize_funmap (funmap.c:233)
+==12023==    by 0x4896364: UnknownInlinedFun (readline.c:1289)
+==12023==    by 0x4896364: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 1,664 bytes in 1 blocks are still reachable in loss record 61 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x4ACDE64: _nc_read_termtype (read_entry.c:349)
+==12023==    by 0x4ACEE41: _nc_read_file_entry (read_entry.c:603)
+==12023==    by 0x4ACF1C6: _nc_read_tic_entry.constprop.0 (read_entry.c:861)
+==12023==    by 0x4ACF320: _nc_read_entry2 (read_entry.c:905)
+==12023==    by 0x4ACB2D7: _nc_setup_tinfo (lib_setup.c:626)
+==12023==    by 0x4ACB465: _nc_setupterm (lib_setup.c:916)
+==12023==    by 0x4ACB8F4: tgetent_sp (lib_termcap.c:104)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 2,032 bytes in 1 blocks are still reachable in loss record 62 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x48AAEC9: _rl_init_terminal_io (terminal.c:516)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 2,272 bytes in 142 blocks are still reachable in loss record 63 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x488B941: rl_add_funmap_entry (funmap.c:221)
+==12023==    by 0x488B9E7: UnknownInlinedFun (funmap.c:241)
+==12023==    by 0x488B9E7: rl_initialize_funmap (funmap.c:233)
+==12023==    by 0x4896364: UnknownInlinedFun (readline.c:1289)
+==12023==    by 0x4896364: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 2,337 bytes in 1 blocks are still reachable in loss record 64 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x4ABEF90: copy_termtype (alloc_ttype.c:581)
+==12023==    by 0x4ACB497: _nc_setupterm (lib_setup.c:948)
+==12023==    by 0x4ACB8F4: tgetent_sp (lib_termcap.c:104)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 2,864 bytes in 11 blocks are still reachable in loss record 65 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48FF352: _nl_intern_locale_data (in /usr/lib64/libc.so.6)
+==12023==    by 0x48FEF02: _nl_load_locale_from_archive (in /usr/lib64/libc.so.6)
+==12023==    by 0x48FE3D8: _nl_find_locale (in /usr/lib64/libc.so.6)
+==12023==    by 0x4901205: setlocale (in /usr/lib64/libc.so.6)
+==12023==    by 0x48A9244: _rl_init_locale (nls.c:143)
+==12023==    by 0x48A9386: _rl_init_eightbit (nls.c:231)
+==12023==    by 0x4896369: UnknownInlinedFun (readline.c:1292)
+==12023==    by 0x4896369: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 4,000 bytes in 1 blocks are still reachable in loss record 66 of 97
+==12023==    at 0x484A074: realloc (vg_replace_malloc.c:1690)
+==12023==    by 0x4ABF77C: _nc_doalloc (doalloc.c:54)
+==12023==    by 0x4ACE626: _nc_read_termtype (read_entry.c:440)
+==12023==    by 0x4ACEE41: _nc_read_file_entry (read_entry.c:603)
+==12023==    by 0x4ACF1C6: _nc_read_tic_entry.constprop.0 (read_entry.c:861)
+==12023==    by 0x4ACF320: _nc_read_entry2 (read_entry.c:905)
+==12023==    by 0x4ACB2D7: _nc_setup_tinfo (lib_setup.c:626)
+==12023==    by 0x4ACB465: _nc_setupterm (lib_setup.c:916)
+==12023==    by 0x4ACB8F4: tgetent_sp (lib_termcap.c:104)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023== 
+==12023== 4,000 bytes in 1 blocks are still reachable in loss record 67 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x4ABEDC1: copy_termtype (alloc_ttype.c:544)
+==12023==    by 0x4ACB497: _nc_setupterm (lib_setup.c:948)
+==12023==    by 0x4ACB8F4: tgetent_sp (lib_termcap.c:104)
+==12023==    by 0x48AAC50: _rl_init_terminal_io (terminal.c:523)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 4,016 bytes in 1 blocks are still reachable in loss record 68 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x48A8561: add_history (history.c:314)
+==12023==    by 0x40148F: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 4,080 bytes in 1 blocks are still reachable in loss record 69 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x48AAEA9: _rl_init_terminal_io (terminal.c:519)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 4,112 bytes in 1 blocks are still reachable in loss record 70 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x48AA756: bind_termcap_arrow_keys (terminal.c:651)
+==12023==    by 0x48AAD84: _rl_init_terminal_io (terminal.c:621)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 4,112 bytes in 1 blocks are still reachable in loss record 71 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x48AA7DB: bind_termcap_arrow_keys (terminal.c:660)
+==12023==    by 0x48AAD84: _rl_init_terminal_io (terminal.c:621)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 4,112 bytes in 1 blocks are still reachable in loss record 72 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x48AA7EE: bind_termcap_arrow_keys (terminal.c:662)
+==12023==    by 0x48AAD84: _rl_init_terminal_io (terminal.c:621)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 4,112 bytes in 1 blocks are still reachable in loss record 73 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x48AA801: bind_termcap_arrow_keys (terminal.c:663)
+==12023==    by 0x48AAD84: _rl_init_terminal_io (terminal.c:621)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 4,112 bytes in 1 blocks are still reachable in loss record 74 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x48AA7DB: bind_termcap_arrow_keys (terminal.c:660)
+==12023==    by 0x48AAD90: _rl_init_terminal_io (terminal.c:624)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 4,112 bytes in 1 blocks are still reachable in loss record 75 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x48AA7EE: bind_termcap_arrow_keys (terminal.c:662)
+==12023==    by 0x48AAD90: _rl_init_terminal_io (terminal.c:624)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 4,112 bytes in 1 blocks are still reachable in loss record 76 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x48AA801: bind_termcap_arrow_keys (terminal.c:663)
+==12023==    by 0x48AAD90: _rl_init_terminal_io (terminal.c:624)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 4,112 bytes in 1 blocks are still reachable in loss record 77 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x48AA7DB: bind_termcap_arrow_keys (terminal.c:660)
+==12023==    by 0x48AAD9C: _rl_init_terminal_io (terminal.c:625)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 4,112 bytes in 1 blocks are still reachable in loss record 78 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x48AA7EE: bind_termcap_arrow_keys (terminal.c:662)
+==12023==    by 0x48AAD9C: _rl_init_terminal_io (terminal.c:625)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 4,112 bytes in 1 blocks are still reachable in loss record 79 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x48AA801: bind_termcap_arrow_keys (terminal.c:663)
+==12023==    by 0x48AAD9C: _rl_init_terminal_io (terminal.c:625)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 4,112 bytes in 1 blocks are still reachable in loss record 80 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x489627E: bind_arrow_keys_internal (readline.c:1388)
+==12023==    by 0x48963BC: UnknownInlinedFun (readline.c:1421)
+==12023==    by 0x48963BC: UnknownInlinedFun (readline.c:1309)
+==12023==    by 0x48963BC: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 4,112 bytes in 1 blocks are still reachable in loss record 81 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x489627E: bind_arrow_keys_internal (readline.c:1388)
+==12023==    by 0x48963CB: UnknownInlinedFun (readline.c:1424)
+==12023==    by 0x48963CB: UnknownInlinedFun (readline.c:1309)
+==12023==    by 0x48963CB: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 4,112 bytes in 1 blocks are still reachable in loss record 82 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x489627E: bind_arrow_keys_internal (readline.c:1388)
+==12023==    by 0x48963EC: UnknownInlinedFun (readline.c:1429)
+==12023==    by 0x48963EC: UnknownInlinedFun (readline.c:1309)
+==12023==    by 0x48963EC: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 4,399 bytes in 75 blocks are still reachable in loss record 83 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x4022A1: ft_strdup (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40135E: copyenv (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x4013F6: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 7,952 bytes in 1 blocks are still reachable in loss record 84 of 97
+==12023==    at 0x4849E60: calloc (vg_replace_malloc.c:1595)
+==12023==    by 0x4ABDB47: _nc_build_names.lto_priv.0 (comp_captab.c:3285)
+==12023==    by 0x4ABF3EC: _nc_find_type_entry (comp_hash.c:104)
+==12023==    by 0x4AC23C1: tgetstr_sp (lib_termcap.c:352)
+==12023==    by 0x48AAC82: UnknownInlinedFun (terminal.c:464)
+==12023==    by 0x48AAC82: _rl_init_terminal_io (terminal.c:587)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 8,224 bytes in 2 blocks are still reachable in loss record 85 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x48AA7C8: bind_termcap_arrow_keys (terminal.c:659)
+==12023==    by 0x48AAD84: _rl_init_terminal_io (terminal.c:621)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 8,224 bytes in 2 blocks are still reachable in loss record 86 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x48AA756: bind_termcap_arrow_keys (terminal.c:651)
+==12023==    by 0x48AAD90: _rl_init_terminal_io (terminal.c:624)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 8,224 bytes in 2 blocks are still reachable in loss record 87 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x48AA7C8: bind_termcap_arrow_keys (terminal.c:659)
+==12023==    by 0x48AAD90: _rl_init_terminal_io (terminal.c:624)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 8,224 bytes in 2 blocks are still reachable in loss record 88 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x48AA756: bind_termcap_arrow_keys (terminal.c:651)
+==12023==    by 0x48AAD9C: _rl_init_terminal_io (terminal.c:625)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 8,224 bytes in 2 blocks are still reachable in loss record 89 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x48AA7C8: bind_termcap_arrow_keys (terminal.c:659)
+==12023==    by 0x48AAD9C: _rl_init_terminal_io (terminal.c:625)
+==12023==    by 0x4896347: UnknownInlinedFun (readline.c:1283)
+==12023==    by 0x4896347: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 8,224 bytes in 2 blocks are still reachable in loss record 90 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x489626F: bind_arrow_keys_internal (readline.c:1385)
+==12023==    by 0x48963BC: UnknownInlinedFun (readline.c:1421)
+==12023==    by 0x48963BC: UnknownInlinedFun (readline.c:1309)
+==12023==    by 0x48963BC: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 8,224 bytes in 2 blocks are still reachable in loss record 91 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x489626F: bind_arrow_keys_internal (readline.c:1385)
+==12023==    by 0x48963CB: UnknownInlinedFun (readline.c:1424)
+==12023==    by 0x48963CB: UnknownInlinedFun (readline.c:1309)
+==12023==    by 0x48963CB: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 8,224 bytes in 2 blocks are still reachable in loss record 92 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x489626F: bind_arrow_keys_internal (readline.c:1385)
+==12023==    by 0x48963EC: UnknownInlinedFun (readline.c:1429)
+==12023==    by 0x48963EC: UnknownInlinedFun (readline.c:1309)
+==12023==    by 0x48963EC: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 8,224 bytes in 2 blocks are still reachable in loss record 93 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x4896406: UnknownInlinedFun (readline.c:1441)
+==12023==    by 0x4896406: UnknownInlinedFun (readline.c:1313)
+==12023==    by 0x4896406: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 8,224 bytes in 2 blocks are still reachable in loss record 94 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x489641C: UnknownInlinedFun (readline.c:1445)
+==12023==    by 0x489641C: UnknownInlinedFun (readline.c:1313)
+==12023==    by 0x489641C: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 12,336 bytes in 3 blocks are still reachable in loss record 95 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x4896246: bind_arrow_keys_internal (readline.c:1383)
+==12023==    by 0x48963CB: UnknownInlinedFun (readline.c:1424)
+==12023==    by 0x48963CB: UnknownInlinedFun (readline.c:1309)
+==12023==    by 0x48963CB: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 12,336 bytes in 3 blocks are still reachable in loss record 96 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x4896085: UnknownInlinedFun (bind.c:340)
+==12023==    by 0x4896085: rl_bind_keyseq_if_unbound_in_map (bind.c:317)
+==12023==    by 0x4896246: bind_arrow_keys_internal (readline.c:1383)
+==12023==    by 0x48963EC: UnknownInlinedFun (readline.c:1429)
+==12023==    by 0x48963EC: UnknownInlinedFun (readline.c:1309)
+==12023==    by 0x48963EC: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== 20,560 bytes in 5 blocks are still reachable in loss record 97 of 97
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x48AF26C: xmalloc (xmalloc.c:59)
+==12023==    by 0x4889EB1: rl_make_bare_keymap (keymaps.c:62)
+==12023==    by 0x488AD4F: rl_generic_bind (bind.c:454)
+==12023==    by 0x489C7B9: rl_parse_and_bind (bind.c:1812)
+==12023==    by 0x489C9BB: _rl_read_init_file (bind.c:1119)
+==12023==    by 0x4896370: UnknownInlinedFun (readline.c:1295)
+==12023==    by 0x4896370: rl_initialize (readline.c:1183)
+==12023==    by 0x4896606: readline (readline.c:379)
+==12023==    by 0x40145E: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== LEAK SUMMARY:
+==12023==    definitely lost: 0 bytes in 0 blocks
+==12023==    indirectly lost: 0 bytes in 0 blocks
+==12023==      possibly lost: 0 bytes in 0 blocks
+==12023==    still reachable: 240,176 bytes in 349 blocks
+==12023==         suppressed: 0 bytes in 0 blocks
+==12023== 
+==12023== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==12023== 
+==12023== 1 errors in context 1 of 1:
+==12023== Conditional jump or move depends on uninitialised value(s)
+==12023==    at 0x401733: add_parse_node (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401C26: split_quote (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x4014ED: start_program (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x40140F: initalizer (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==    by 0x401667: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023==  Uninitialised value was created by a heap allocation
+==12023==    at 0x484280F: malloc (vg_replace_malloc.c:442)
+==12023==    by 0x40163F: main (in /run/media/abkiraz/ortak/projects/MINISHELL-main/minishell)
+==12023== 
+==12023== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

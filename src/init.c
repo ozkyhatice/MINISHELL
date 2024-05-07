@@ -96,11 +96,6 @@ void	start_program(t_shell *shell)
 // 	shell->skip32 = skipped_str;
 // }
 
-void	imp_pipe(t_shell *shell)
-{
-	//pipe ve heredoc islenecek
-	return ;
-}
 
 int	pipe_ctl(t_shell *shell)
 {

@@ -1,12 +1,16 @@
 #include "../include/minishell.h"
 
-void handler(int signum) {
+void handler(int signum)
+{
+	(void)signum;
 	exit(0);
 }
 
 int main(int argc, char **argv, char **env)
 {
+	(void)argv;
 	t_shell	*shell;
+	int		ex;
 	if (argc > 1)
 		printf("error in argc");
 	shell = malloc(sizeof(t_shell));
@@ -14,10 +18,11 @@ int main(int argc, char **argv, char **env)
 		exit(0);
 	//printf("%d", getpid());
 	initalizer(shell, env);
-	free(shell);
+	ex = shell->ex_status;
 	free(shell->cmd2_line);
 	free(shell->cmd_line);
+	free(shell);
 	//signal(SIGINT, handler);
 	// signal(EOF, handler);
-	return(shell->ex_status);
+	return(ex);
 }
