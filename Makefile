@@ -1,6 +1,6 @@
 CC		= gcc
 NAME	= minishell
-CFLAGS	= 
+CFLAGS	= -Wall -Werror -Wextra
 
 SRC_DIR = ./src/
 LIB_DIR = ./lib/
@@ -18,8 +18,13 @@ LIBFT = ./libft/libft.a
 FTDIR = libft
 FTSRC = $(shell ls ./libft/*.c)
 
-all:$(NAME)
+all:$(READLINE) $(NAME)
 
+$(READLINE):
+	curl -O https://ftp.gnu.org/gnu/readline/readline-8.2.tar.gz
+	tar -xvf readline-8.2.tar.gz
+	cd readline-8.2 && ./configure --prefix=${PWD}/readline
+	cd readline-8.2 && make install
 
 $(NAME): $(LIBFT) $(LIB_DIR) $(OBJ) 
 	$(CC) $(CFLAGS) $(OBJ) -lreadline $(LIBFT) -o $@ 
