@@ -18,6 +18,7 @@ int	split_char(t_shell *shell, char *str)
 {
 	int	i;
 	int	j;
+	char	*str2;
 
 	i = 0;
 	j = 0;
@@ -34,8 +35,10 @@ int	split_char(t_shell *shell, char *str)
 		else 
 		{
 			i = split_tokens(str, i);
-		}		
-		add_parse_node(shell, ft_substr(str, j, i - j));
+		}
+		str2 = ft_substr(str, j, i - j);
+		add_parse_node(shell, str2);
+		free(str2);
 	}
 	return (0);
 }
