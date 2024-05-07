@@ -3,68 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkaragoz <mkaragoz@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: abkiraz <abkiraz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/27 14:06:35 by mkaragoz          #+#    #+#             */
-/*   Updated: 2023/10/23 01:59:49 by mkaragoz         ###   ########.fr       */
+/*   Created: 2023/07/17 18:34:52 by abkiraz           #+#    #+#             */
+/*   Updated: 2023/07/28 12:27:44 by abkiraz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	size_calc(long nb)
+static int	ft_lenght(int nb)
 {
-	int	counter;
+	int	count;
 
-	counter = 0;
-	if (nb < 0)
+	count = 0;
+	if (nb <= 0)
+		count++;
+	while (nb != 0)
 	{
-		nb *= -1;
-		counter++;
-	}
-	while (nb >= 10)
-	{
+		count++;
 		nb /= 10;
-		counter++;
 	}
-	counter++;
-	return (counter);
+	return (count);
 }
 
-void	convert_number(long nb, char *c, int *i)
+char	*ft_itoa(int n)
 {
-	if (nb < 0)
+	char			*str;
+	int				len;
+	unsigned int	nb;
+
+	len = ft_lenght(n);
+	str = (char *)malloc(len + 1);
+	if (!str)
+		return (NULL);
+	str[len] = 0;
+	if (n < 0)
 	{
-		nb *= -1;
-		*c = '-';
-		*i += 1;
-	}
-	if (nb >= 10)
-	{
-		convert_number(nb / 10, c, i);
-		convert_number(nb % 10, c, i);
+		str[0] = '-';
+		nb = -n;
 	}
 	else
+		nb = n;
+	if (nb == 0)
+		str[0] = '0';
+	while (nb != 0)
 	{
-		*(c + *i) = nb + '0';
-		*i += 1;
+		--len;
+		str[len] = nb % 10 + '0';
+		nb /= 10;
 	}
-}
-
-char	*ft_itoa(int nbr)
-{
-	long	nb;
-	char	*str;
-	int		size;
-	int		i;
-
-	i = 0;
-	nb = nbr;
-	size = size_calc(nb);
-	str = malloc(sizeof(char) * size + 1);
-	if (!str)
-		return (0);
-	convert_number(nb, str, &i);
-	str[i] = '\0';
 	return (str);
 }

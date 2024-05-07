@@ -26,10 +26,10 @@ static int    pipe_control(t_parse_node	*parse_head)
     {
         if (parse_head->type == PIPE)
             return (err_msg("|"));
-        else if (tmp_node->type == PIPE && tmp_node->next == NULL)
-            return(err_msg("|"));
         else if (tmp_node->next && tmp_node->next->type == PIPE && istoken2(tmp_node->word))
             return(err_msg("|"));
+        // else if (tmp_node->type == PIPE && tmp_node->next == NULL)
+        //     return(err_msg("|"));
         tmp_node = tmp_node -> next;
     }
     return (1);
@@ -37,15 +37,15 @@ static int    pipe_control(t_parse_node	*parse_head)
 
 static int    redirection_control(t_parse_node	*parse_head)
 {
-    // t_parse_node    *tmp_node;
+    t_parse_node    *tmp_node;
 
-    // tmp_node = parse_head;
-    // while (tmp_node)
-    // {
-    //     if ()
-    //         return(err_msg("newline"));
-    //     tmp_node = tmp_node -> next;
-    // }
+    tmp_node = parse_head;
+    while (tmp_node)
+    {
+        if (tmp_node->type >= 3 && tmp_node->type <= 6 && !tmp_node->next)
+            return(err_msg("newline"));
+        tmp_node = tmp_node -> next;
+    }
     return (1);
 }
 

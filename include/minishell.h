@@ -13,16 +13,16 @@
 
 enum e_token
 {
-	AND,
-	OR,
-	PIPE,
-	L_REDIR,
-	R_REDIR,
-	HEREDOC,
-	APPEND,
-	L_BRACKET,
-	R_BRACKET,
-	WORD,
+	AND,//0
+	OR,//1
+	PIPE,//2
+	L_REDIR,//3
+	R_REDIR,//4
+	HEREDOC,//5
+	APPEND,//6
+	L_BRACKET,//7
+	R_BRACKET,//8
+	WORD,//9
 };
 
 typedef struct s_parse_node

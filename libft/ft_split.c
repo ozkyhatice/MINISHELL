@@ -3,61 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkaragoz <mkaragoz@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: abkiraz <abkiraz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/27 14:04:56 by mkaragoz          #+#    #+#             */
-/*   Updated: 2023/10/23 01:59:49 by mkaragoz         ###   ########.fr       */
+/*   Created: 2023/07/22 18:07:06 by abkiraz           #+#    #+#             */
+/*   Updated: 2023/07/26 18:49:23 by abkiraz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	count_words(char const *s, char c)
+static int	wordcount(const char *s, char c)
 {
 	int	i;
-	int	count;
+	int	wc;
 
 	i = 0;
-	count = 0;
-	while (*(s + i))
+	wc = 0;
+	while (s[i])
 	{
-		if (*(s + i) == c)
+		while (s[i] == c)
 			i++;
-		else
-		{
-			count++;
-			while (*(s + i) && *(s + i) != c)
-				i++;
-		}
+		if (s[i])
+			wc++;
+		while (s[i] != c && s[i])
+			i++;
 	}
-	return (count);
+	return (wc);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**strs;
-	size_t	i;
+	char	**str;
+	int		size;
+	int		i;
 	int		j;
-	size_t	len;
 
-	if (!s)
-		return (0);
-	len = count_words(s, c);
-	strs = malloc(sizeof(char *) * (len + 1));
-	if (!strs)
-		return (0);
-	i = -1;
-	j = 0;
-	while (++i < len)
+	size = wordcount(s, c);
+	str = malloc(sizeof(char *) * (size + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < size)
 	{
 		while (*s == c)
 			s++;
 		j = 0;
-		while (*(s + j) != c && *(s + j))
+		while (s[j] != c && s[j])
 			j++;
-		*(strs + i) = ft_substr(s, 0, j);
+		str[i++] = ft_substr(s, 0, j);
 		s += j;
 	}
-	*(strs + i) = 0;
-	return (strs);
+	str[i] = 0;
+	return (str);
 }

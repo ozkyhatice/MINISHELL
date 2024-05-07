@@ -11,3 +11,6 @@ bash: syntax error near unexpected token `|'
 minishell ~ "ls -l" | |
 burasını düzelt
 bir de node larda ayırma kısmında NULL node atıyor ona bak
+
+
+ls -l | grep | <

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkaragoz <mkaragoz@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: abkiraz <abkiraz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/27 14:04:24 by mkaragoz          #+#    #+#             */
-/*   Updated: 2023/10/23 01:59:49 by mkaragoz         ###   ########.fr       */
+/*   Created: 2023/07/17 15:02:20 by abkiraz           #+#    #+#             */
+/*   Updated: 2023/07/22 14:46:22 by abkiraz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	size;
-	char	*str;
+	char	*trim;
+	int		start;
+	int		end;
 
-	if (!s1 || !set)
-		return (NULL);
-	while (*s1 && ft_strchr(set, *s1))
-		s1++;
-	size = ft_strlen(s1);
-	while (size && ft_strchr(set, *(s1 + size)))
-		size--;
-	str = ft_substr((char *)s1, 0, size + 1);
-	return (str);
+	if (!*s1)
+		return (ft_strdup(""));
+	start = 0;
+	end = ft_strlen(s1) - 1;
+	while (s1[start] && ft_strchr(set, s1[start]))
+		start++;
+	while (s1[end] && ft_strchr(set, s1[end]))
+		end--;
+	trim = ft_substr(s1, start, end - start + 1);
+	return (trim);
 }

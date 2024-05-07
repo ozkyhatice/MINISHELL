@@ -7,11 +7,11 @@ int ft_strtoken(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if(ft_istoken(str[i]))
+		if(ft_istoken(str[i]))//token var
 			return (0);
 		i++;
 	}
-	return (1);
+	return (1);//token yok
 }
 
 int	split_char(t_shell *shell, char *str)
@@ -21,7 +21,7 @@ int	split_char(t_shell *shell, char *str)
 
 	i = 0;
 	j = 0;
-	if(!str)
+	if(!str && str[0] != '\0')
 		return (0);
 	if (ft_strtoken(str))
 		return (1);
@@ -83,7 +83,7 @@ void	split_quote(t_shell *shell)
 			}
 			i++;
 		}
-		str = ft_substr(shell->cmd_line, first, i - first + 1);
+		str = ft_substr(shell->cmd_line, first, i - first);
 		if (split_char(shell, str))
 		{
 			add_parse_node(shell, str);

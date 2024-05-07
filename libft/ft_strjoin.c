@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkaragoz <mkaragoz@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: abkiraz <abkiraz@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/27 13:59:44 by mkaragoz          #+#    #+#             */
-/*   Updated: 2023/10/23 01:59:49 by mkaragoz         ###   ########.fr       */
+/*   Created: 2023/07/16 12:57:17 by abkiraz           #+#    #+#             */
+/*   Updated: 2023/07/17 14:51:09 by abkiraz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,16 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
+	size_t	lens1;
+	size_t	lens2;
 	char	*str;
-	size_t	i;
-	size_t	j;
 
-	if (!s1 || !s2)
-		return (NULL);
-	str = malloc((sizeof(char) * (ft_strlen(s1) + ft_strlen(s2))) + 1);
+	lens1 = ft_strlen(s1);
+	lens2 = ft_strlen(s2);
+	str = (char *)malloc(sizeof(char) * (lens2 + lens1 + 1));
 	if (!str)
 		return (NULL);
-	i = 0;
-	j = 0;
-	while (*(s1 + i))
-	{
-		*(str + i) = *((char *)(s1 + i));
-		i++;
-	}
-	while (*(s2 + j))
-	{
-		*(str + i + j) = *((char *)(s2 + j));
-		j++;
-	}
-	*(str + i + j) = '\0';
+	ft_strlcpy(str, s1, lens1 + 1);
+	ft_strlcat(str, s2, lens1 + lens2 + 1);
 	return (str);
 }

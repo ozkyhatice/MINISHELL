@@ -15,19 +15,23 @@ void	add_parse_node(t_shell *shell, char *s)
 {
 	t_parse_node	*new;
 
-	new = create_parse_node(s);
-	if (shell->parse_head == NULL && new)
-	{
-		new->prev = NULL;
-		shell->parse_head = new;
-		shell->parse_tail = new;
-	}
-	else
-	{
-		new->prev = shell->parse_tail;
-		shell->parse_tail->next = new;
-		shell->parse_tail = new;
-	}
+    if (s[0] != '\0' && s)
+    {
+        new = create_parse_node(s);
+        if (shell->parse_head == NULL && new)
+        {
+            new->prev = NULL;
+            shell->parse_head = new;
+            shell->parse_tail = new;
+        }
+        else
+        {
+            new->prev = shell->parse_tail;
+            shell->parse_tail->next = new;
+            shell->parse_tail = new;
+        }
+    }
+	
 }
 
 void print_parse_node(t_shell *shell)
@@ -35,7 +39,7 @@ void print_parse_node(t_shell *shell)
     t_parse_node *current = shell->parse_head; 
     printf("\n");
     while (current != NULL) {
-        printf("%s %u-> ", current->word, current->type);
+        printf("\n-%s-\n", current->word);
         current = current->next;
     }
     printf("\n");
