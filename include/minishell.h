@@ -42,6 +42,9 @@ typedef struct s_shell{
 	char	*skip32;
 	int		er_status;
 	int		ex_status;
+	int	l_br;
+	int	r_br;
+	int	br_type;
 
 	//added
 	t_parse_node	*parse_head;
@@ -84,5 +87,6 @@ int	split_tokens(char *str, int i);
 
 //Syntax
 int    syntax_rules(t_shell *shell);
+void    bracket_ctrl(t_shell *shell, t_parse_node *tmp);
 
 #endif

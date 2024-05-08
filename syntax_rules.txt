@@ -1,47 +1,66 @@
-ilk node pipe ise
-pipe pipe word kombinasyonu hatalı->ls | | wc
-pipe tan sonra bir şey yoksa->ls |
-
-
-minishell ~ "ls -l" | "|" >
-minishell ~ "ls -l" "|" >
-minishell ~ "ls -l" | "|" 
-minishell ~ "ls -l" | |
-bash: syntax error near unexpected token `|'
-minishell ~ "ls -l" | |
-burasını düzelt
-bir de node larda ayırma kısmında NULL node atıyor ona bak
-
-
-ls -l | grep | <
-
-
-bash-3.2$ ls -l | >
-bash: syntax error near unexpected token `newline'
-bash-3.2$ ls -l | >)
-bash: syntax error near unexpected token `)'
-bash-3.2$ ls -l | > )
-bash: syntax error near unexpected token `)'
-bash-3.2$ (()))ls -l | >
-bash: syntax error near unexpected token `)'
-bash-3.2$ ls -l <| )
-bash: syntax error near unexpected token `|'
-bash-3.2$ ls -l <| )
-bash: syntax error near unexpected token `|'
-bash-3.2$ ls -l ) <| )
-bash: syntax error near unexpected token `)'
-bash-3.2$ ls -l ) <| ()
-bash-3.2$ ls -l | grep a >
-bash: syntax error near unexpected token `newline'
-bash-3.2$ ls -l | grep a <
-bash: syntax error near unexpected token `newline'
-bash-3.2$ ls -l | grep a |,
-bash: ,: command not found
 bash-3.2$ ls -l | grep a |
 > 
 bash-3.2$ ls -l | grep a | |
 bash: syntax error near unexpected token `|'
 bash-3.2$ ls -l | grep a | | >
 bash: syntax error near unexpected token `|'
-bash-3.2$ 
 
+bash-3.2$ ls -l | | ()
+bash: syntax error near unexpected token `|'
+bash-3.2$ ls -l > > ()
+bash: syntax error near unexpected token `>'
+
+
+bash-3.2$ ls -l > > ()
+bash: syntax error near unexpected token `>'
+bash-3.2$ ls -l < < ()
+bash: syntax error near unexpected token `<'
+
+bash-3.2$ ls -l >| >
+bash: syntax error near unexpected token `>'
+bash-3.2$ ls -l >|
+bash: syntax error near unexpected token `newline'
+bash-3.2$ ls -l >|
+bash: syntax error near unexpected token `newline'
+bash-3.2$ ls -l >| <
+bash: syntax error near unexpected token `<'
+bash-3.2$ ls -l > > )
+bash: syntax error near unexpected token `>'
+bash-3.2$ ls -l >| 
+bash: syntax error near unexpected token `newline'
+bash-3.2$ ls -l >| cc
+
+bash: syntax error near unexpected token `|'
+bash-3.2$ ls -l | grep  () | | ls
+bash: syntax error near unexpected token `|'
+bash-3.2$ ls -l | grep  () > > ls
+bash: syntax error near unexpected token `>'
+bash-3.2$ ls -l | grep  () >
+bash: syntax error near unexpected token `>'
+bash-3.2$ ls -l | grep  <| () 
+bash: syntax error near unexpected token `|'
+bash-3.2$ ls -l >
+bash: syntax error near unexpected token `newline'
+bash-3.2$ ls -l () > > )
+bash: syntax error near unexpected token `('
+bash-3.2$ ls -l () > > ()
+bash: syntax error near unexpected token `('
+bash-3.2$ ls -l () | | ()
+bash: syntax error near unexpected token `('
+bash-3.2$ ls -l () | | "()"
+bash: syntax error near unexpected token `('
+bash-3.2$ ls -l "()" | | "()"
+bash: syntax error near unexpected token `|'
+
+pipe pipe > redir sondays
+redir sondaysa > redir pipe
+redir redir > aç kapa parantez
+redir redir > redir sondaysa
+pipe pipe > aç kapa parantez
+redir pipe > redir sondaysa
+
+pipe pipe
+redir redir
+
+redir sonda
+redir pipe

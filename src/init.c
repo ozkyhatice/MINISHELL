@@ -55,6 +55,7 @@ void	initalizer(t_shell *shell, char **env)
 	shell->ex_status = 0;
 	shell->er_status = 0;
 	shell->env_p = copyenv(env);
+	
 	printwelcome();
 	start_program(shell);
     free(shell->path);
@@ -68,6 +69,8 @@ void	start_program(t_shell *shell)
 	//char	*str;
 	while (1)
 	{
+		shell->l_br = 0;
+		shell->r_br = 0;
 		shell->cmd_line = readline("minishell ~ ");
 		if (ft_strcmp(shell->cmd_line, ""))
 			add_history(shell->cmd_line);
