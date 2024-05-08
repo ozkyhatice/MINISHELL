@@ -32,7 +32,7 @@ int	split_char(t_shell *shell, char *str)
 		if (ft_istoken(str[i]))
 			while(str[i] && str[i] == str[j])
 				i++;
-		else
+		else 
 		{
 			i = split_tokens(str, i);
 		}

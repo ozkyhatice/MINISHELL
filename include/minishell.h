@@ -28,6 +28,7 @@ enum e_token
 typedef struct s_parse_node
 {
 	char				*word;
+	
 	enum e_token		type;
 	struct s_parse_node	*next;
 	struct s_parse_node	*prev;
@@ -38,7 +39,6 @@ typedef struct s_shell{
 	char	**path;
 	char	**env_p;
 	char	*cmd_line;
-	char	*cmd2_line;
 	char	*skip32;
 	int		er_status;
 	int		ex_status;

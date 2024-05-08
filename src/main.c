@@ -19,7 +19,6 @@ int main(int argc, char **argv, char **env)
 	//printf("%d", getpid());
 	initalizer(shell, env);
 	ex = shell->ex_status;
-	free(shell->cmd2_line);
 	free(shell->cmd_line);
 	free(shell);
 	//signal(SIGINT, handler);

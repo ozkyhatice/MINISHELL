@@ -77,18 +77,17 @@ void	start_program(t_shell *shell)
 		else
 			free(shell->cmd_line);
 		if (check_missing_quotes(shell->cmd_line) != 0)
+			printf("Missing quote!\n");
+		else
 		{
-			perror("Missing quote!\n");
-			free(shell->cmd_line);
-			free(shell->cmd2_line);
-			return ;
+			split_quote(shell);	
+			print_parse_node(shell);
+			syntax_rules(shell);
+
 		}
 		//str = skip_32(shell);
 		//printf("%s\n", str);
 		//control_bracket(str);
-		split_quote(shell);	
-		print_parse_node(shell);
-		syntax_rules(shell);
 		// parsing(shell);
 		// if (!pipe_ctl(shell))segment hatası var
 		//  	imp_pipe(shell);

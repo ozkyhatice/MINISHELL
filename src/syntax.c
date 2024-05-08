@@ -28,6 +28,8 @@ int    syntax_rules(t_shell *shell)
         bracket_ctrl(shell, tmp_node);
         if (shell->parse_head->type == PIPE)
             return (err_msg("|"));
+        else if (shell->parse_head->word[0] == '|' && shell->parse_head->word[1] == '|')
+            return (err_msg("||"));
         else if (tmp_node->next && tmp_node->type == L_BRACKET && tmp_node->next->type == R_BRACKET)
             return(err_msg("("));
         else if (tmp_node->next && tmp_node->type == R_BRACKET && tmp_node->next->type == L_BRACKET)

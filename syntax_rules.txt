@@ -64,3 +64,13 @@ redir redir
 
 redir sonda
 redir pipe
+|| ||
+((ls -l | | )))
+
+
+
+
+
+ec"ho"->
+
+"$US"ER->
