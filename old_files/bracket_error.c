@@ -30,22 +30,4 @@ void control_bracket(const char *str)
        printf("r>l bracket!\n");
         return ;
     }
-    while (str[i] != '(')
-    {
-        if (str[i] == ')')
-        {
-            printf("syntax error near unexpected token `)'\n");
-            return ;
-        }
-        i++;
-    }
-    i = 0;
-    while(str[i] != '\0' && str[i+1] != '\0')
-    {
-        if(str[i] == '(' && str[i+1] == ')')
-           printf("errorrr ()\n");
-        else if(str[i] == ')' && str[i+1] == '(')
-            printf("errorrr )(\n");;
-        i++;
-    }
 }

@@ -14,3 +14,34 @@ bir de node larda ayırma kısmında NULL node atıyor ona bak
 
 
 ls -l | grep | <
+
+
+bash-3.2$ ls -l | >
+bash: syntax error near unexpected token `newline'
+bash-3.2$ ls -l | >)
+bash: syntax error near unexpected token `)'
+bash-3.2$ ls -l | > )
+bash: syntax error near unexpected token `)'
+bash-3.2$ (()))ls -l | >
+bash: syntax error near unexpected token `)'
+bash-3.2$ ls -l <| )
+bash: syntax error near unexpected token `|'
+bash-3.2$ ls -l <| )
+bash: syntax error near unexpected token `|'
+bash-3.2$ ls -l ) <| )
+bash: syntax error near unexpected token `)'
+bash-3.2$ ls -l ) <| ()
+bash-3.2$ ls -l | grep a >
+bash: syntax error near unexpected token `newline'
+bash-3.2$ ls -l | grep a <
+bash: syntax error near unexpected token `newline'
+bash-3.2$ ls -l | grep a |,
+bash: ,: command not found
+bash-3.2$ ls -l | grep a |
+> 
+bash-3.2$ ls -l | grep a | |
+bash: syntax error near unexpected token `|'
+bash-3.2$ ls -l | grep a | | >
+bash: syntax error near unexpected token `|'
+bash-3.2$ 
+

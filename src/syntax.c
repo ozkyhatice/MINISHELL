@@ -17,44 +17,26 @@ static  int istoken2(char *token)
         return (0);
 }
 
-static int    pipe_control(t_parse_node	*parse_head)
-{
-    t_parse_node    *tmp_node;
-
-    tmp_node = parse_head;
-    while (tmp_node)
-    {
-        if (parse_head->type == PIPE)
-            return (err_msg("|"));
-        else if (tmp_node->next && tmp_node->next->type == PIPE && istoken2(tmp_node->word))
-            return(err_msg("|"));
-        // else if (tmp_node->type == PIPE && tmp_node->next == NULL)
-        //     return(err_msg("|"));
-        tmp_node = tmp_node -> next;
-    }
-    return (1);
-}
-
-static int    redirection_control(t_parse_node	*parse_head)
-{
-    t_parse_node    *tmp_node;
-
-    tmp_node = parse_head;
-    while (tmp_node)
-    {
-        if (tmp_node->type >= 3 && tmp_node->type <= 6 && !tmp_node->next)
-            return(err_msg("newline"));
-        tmp_node = tmp_node -> next;
-    }
-    return (1);
-}
-
-
 int    syntax_rules(t_shell *shell)
 {
-    if (!pipe_control(shell->parse_head))
-        return (-1);
-    if (!redirection_control(shell->parse_head))
-        return (-1);
+    
+    t_parse_node    *tmp_node;
+
+    tmp_node = shell->parse_head;
+
+    while (tmp_node)
+    {
+        if (shell->parse_head->type == PIPE)
+            return (err_msg("|"));
+        if (tmp_node->next && tmp_node->next->type == PIPE && istoken2(tmp_node->word))
+            return(err_msg("|"));
+        if (tmp_node->type >= 3 && tmp_node->type <= 6 && !tmp_node->next)
+            return(err_msg("newline"));
+        if (tmp_node->next && tmp_node->type == L_BRACKET && tmp_node->next->type == R_BRACKET)
+            return(err_msg("("));
+        if (tmp_node->next && tmp_node->type == R_BRACKET && tmp_node->next->type == L_BRACKET)
+            return(err_msg(")"));
+        tmp_node = tmp_node -> next;
+    }
     return (0);
 }

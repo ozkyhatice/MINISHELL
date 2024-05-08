@@ -16,54 +16,7 @@ char	**copyenv(char **env)
 	return (return_env);
 }
 
-void	initalizer(t_shell *shell, char **env)
-{
-	shell->path = ft_split(getenv("PATH"), ':');
-	shell->ex_status = 0;
-	shell->er_status = 0;
-	shell->env_p = copyenv(env);
-	printwelcome();
-	start_program(shell);
-    free(shell->path);
-    shell->path = NULL;
-    free(shell->env_p);
-    shell->env_p = NULL;
-}
-
-void	start_program(t_shell *shell)
-{
-	while (1)
-	{
-		shell->cmd_line = readline("minishell ~ ");
-		if (ft_strcmp(shell->cmd_line, ""))
-			add_history(shell->cmd_line);
-		else
-			free(shell->cmd_line);
-		if (check_missing_quotes(shell->cmd_line) != 0)
-		{
-			perror("Missing quote!\n");
-			free(shell->cmd_line);
-			free(shell->cmd2_line);
-			return ;
-		}
-		// skip_32(shell);
-		// control_bracket(str);
-		split_quote(shell);	
-		print_parse_node(shell);
-		syntax_rules(shell);
-		// parsing(shell);
-		// if (!pipe_ctl(shell))segment hatası var
-		//  	imp_pipe(shell);
-		if (ft_strlen(shell->cmd_line) != 0)
-			free(shell->cmd_line);
-		ft_free_nodes(shell);
-		// clear_history();
-		//system("leaks minishell");
-	}
-	
-}
-
-// void	skip_32(t_shell *shell)
+// char	*skip_32(t_shell *shell)
 // {
 // 	int len;
 // 	int i;
@@ -93,8 +46,57 @@ void	start_program(t_shell *shell)
 // 		j++;
 // 	}
 // 	skipped_str[i] = '\0'; 
-// 	shell->skip32 = skipped_str;
+// 	return (skipped_str);
 // }
+
+void	initalizer(t_shell *shell, char **env)
+{
+	shell->path = ft_split(getenv("PATH"), ':');
+	shell->ex_status = 0;
+	shell->er_status = 0;
+	shell->env_p = copyenv(env);
+	printwelcome();
+	start_program(shell);
+    free(shell->path);
+    shell->path = NULL;
+    free(shell->env_p);
+    shell->env_p = NULL;
+}
+
+void	start_program(t_shell *shell)
+{
+	//char	*str;
+	while (1)
+	{
+		shell->cmd_line = readline("minishell ~ ");
+		if (ft_strcmp(shell->cmd_line, ""))
+			add_history(shell->cmd_line);
+		else
+			free(shell->cmd_line);
+		if (check_missing_quotes(shell->cmd_line) != 0)
+		{
+			perror("Missing quote!\n");
+			free(shell->cmd_line);
+			free(shell->cmd2_line);
+			return ;
+		}
+		//str = skip_32(shell);
+		//printf("%s\n", str);
+		//control_bracket(str);
+		split_quote(shell);	
+		print_parse_node(shell);
+		syntax_rules(shell);
+		// parsing(shell);
+		// if (!pipe_ctl(shell))segment hatası var
+		//  	imp_pipe(shell);
+		if (ft_strlen(shell->cmd_line) != 0)
+			free(shell->cmd_line);
+		ft_free_nodes(shell);
+		// clear_history();
+		//system("leaks minishell");
+	}
+	
+}
 
 
 int	pipe_ctl(t_shell *shell)
