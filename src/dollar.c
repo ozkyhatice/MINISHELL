@@ -129,7 +129,6 @@ static char	*parse_dollar(t_shell *shell, char *word)
 			if (tmp_str)
 				add_parse_subnode(shell, tmp_str);
 		}
-		i++;
 	}
 	free(tmp_str);
 	tmp_str = ft_strjoin_subnode(shell->subnode_head);
