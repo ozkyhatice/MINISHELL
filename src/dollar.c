@@ -54,7 +54,7 @@ void	quote_dollar(t_shell *shell, char *word, int *i)
 				free(str);
 			
 		}
-		else if (word[*i] != '$')
+		else
 		{
 			s = *i;
 			while (word[*i] && word[*i] != '$' && word[*i] != '\"')
@@ -65,11 +65,8 @@ void	quote_dollar(t_shell *shell, char *word, int *i)
 				free(str);
 			
 		}
-		*i += 1;
+		
 	}
-	if (word[*i - 1])
-		add_parse_subnode(shell, "\"");
-
 }
 static char	*parse_dollar(t_shell *shell, char *word)
 {
