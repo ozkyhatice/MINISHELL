@@ -55,7 +55,10 @@ void	initalizer(t_shell *shell, char **env)
 	shell->ex_status = 0;
 	shell->er_status = 0;
 	shell->env_p = copyenv(env);
-	
+	shell->parse_head = NULL;
+	shell->parse_tail = NULL;
+	shell->subnode_head = NULL;
+
 	printwelcome();
 	start_program(shell);
     free(shell->path);
@@ -81,8 +84,9 @@ void	start_program(t_shell *shell)
 		else
 		{
 			split_quote(shell);	
-			print_parse_node(shell);
 			syntax_rules(shell);
+			split_dollar(shell);
+			print_parse_node(shell);
 
 		}
 		//str = skip_32(shell);

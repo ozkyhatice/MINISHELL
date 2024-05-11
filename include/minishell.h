@@ -34,6 +34,13 @@ typedef struct s_parse_node
 	struct s_parse_node	*prev;
 }	t_parse_node;
 
+typedef struct	s_subnode
+{
+	char	*word;
+	struct s_subnode	*next;
+	struct s_subnode	*prev;
+}	t_subnode;
+
 typedef struct s_shell{
 
 	char	**path;
@@ -49,6 +56,8 @@ typedef struct s_shell{
 	//added
 	t_parse_node	*parse_head;
 	t_parse_node	*parse_tail;
+	t_subnode		*subnode_head;
+	t_subnode		*subnode_tail;
 	bool			arg_mode;
 
 } t_shell;
@@ -61,6 +70,7 @@ int	check_missing_quotes(char *cmd_line);
 int	ft_isspace(char c);
 int	ft_isquote(char c);
 int ft_istoken(char c);
+int	ft_isdollar(char *str);
 
 //others
 void	initalizer(t_shell *shell, char **env);
@@ -79,11 +89,19 @@ void	add_parse_node(t_shell *shell, char *s);
 void print_parse_node(t_shell *shell);
 void ft_free_nodes(t_shell *shell);
 
+//subnode func
+void	add_parse_subnode(t_shell *shell, char *s);
+void print_subnode(t_shell *shell);
+void ft_free_subnodes(t_shell *shell);
+
+
+
 //lexer funcs
 int ft_strtoken(char *str);
 int	split_char(t_shell *shell, char *str);
 void	split_quote(t_shell *shell);
 int	split_tokens(char *str, int i);
+void	split_dollar(t_shell *shell);
 
 //Syntax
 int    syntax_rules(t_shell *shell);

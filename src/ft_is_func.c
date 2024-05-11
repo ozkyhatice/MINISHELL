@@ -23,3 +23,16 @@ int ft_istoken(char c)
 	else
 		return (0);
 }
+
+int	ft_isdollar(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i++] == '$')
+			return (1);
+	}
+	return (0);
+}
