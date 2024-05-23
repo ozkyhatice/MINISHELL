@@ -59,3 +59,30 @@ void ft_free_subnodes(t_shell *shell)
     shell->subnode_head = NULL;
     shell->subnode_tail = NULL;
 }
+
+char *ft_strjoin_subnode(t_subnode *node)
+{
+	t_subnode	*current;
+	char		*str;
+	char		*copy;
+
+	current = node;
+	str = NULL;
+	while (current)
+	{
+		if(!str)
+			str = current->word;
+		else
+		{
+			copy = ft_strdup(current->word);
+			if (copy)
+			{
+				str = ft_strjoin(str, copy);
+				free(copy);
+			}
+		}	
+		current = current->next;
+	}
+	return (str);
+}
+

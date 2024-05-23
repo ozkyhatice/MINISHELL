@@ -84,10 +84,10 @@ void	start_program(t_shell *shell)
 		else
 		{
 			split_quote(shell);	
-			syntax_rules(shell);
 			split_dollar(shell);
+			//split_bracket(shell);		
+			syntax_rules(shell);
 			print_parse_node(shell);
-
 		}
 		//str = skip_32(shell);
 		//printf("%s\n", str);
@@ -99,7 +99,7 @@ void	start_program(t_shell *shell)
 			free(shell->cmd_line);
 		ft_free_nodes(shell);
 		// clear_history();
-		//system("leaks minishell");
+		system("leaks minishell");
 	}
 	
 }

@@ -19,6 +19,7 @@ int same_str(const char *str1, char *str2)
 	}
 	return (1);
 }
+
 int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;

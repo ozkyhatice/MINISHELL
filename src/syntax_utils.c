@@ -5,7 +5,7 @@ void    bracket_ctrl(t_shell *shell, t_parse_node *tmp)
     int i;
 
     i = 0;
-    while (tmp->word[i])
+    while (tmp->word[i]) // env icinde parantez verince burdan gecmemesi icin
     {
         if (tmp->word[i] == '(')
         {

@@ -1,0 +1,13 @@
+Makefile
+a.txt
+dnm.txt
+echo
+error_case
+include
+lib
+libft
+minishell
+old_files
+src
+syntax_rules.txt
+valgrind-out.txt

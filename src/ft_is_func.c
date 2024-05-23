@@ -18,8 +18,8 @@ int ft_istoken(char c)
 		return (1);
 	else if (c == '>')
 		return (1);
-	else if (c == '(' || c == ')')
-		return (1);
+	// else if (c == '(' || c == ')')
+	// 	return (1);
 	else
 		return (0);
 }

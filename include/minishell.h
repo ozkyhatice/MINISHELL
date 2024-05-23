@@ -23,12 +23,21 @@ enum e_token
 	L_BRACKET,//7
 	R_BRACKET,//8
 	WORD,//9
+	OUTPUT,//10
+	INPUT,// 11
+};
+
+enum e_builtin
+{
+	LS = 12,
+	ECHO = 13,
+	CD = 14,
+
 };
 
 typedef struct s_parse_node
 {
 	char				*word;
-	
 	enum e_token		type;
 	struct s_parse_node	*next;
 	struct s_parse_node	*prev;
@@ -41,12 +50,13 @@ typedef struct	s_subnode
 	struct s_subnode	*prev;
 }	t_subnode;
 
-typedef struct s_shell{
-
+typedef struct s_shell
+{
 	char	**path;
 	char	**env_p;
 	char	*cmd_line;
 	char	*skip32;
+	char	**commands; //ls -l -a 
 	int		er_status;
 	int		ex_status;
 	int	l_br;
@@ -94,6 +104,8 @@ void	add_parse_subnode(t_shell *shell, char *s);
 void print_subnode(t_shell *shell);
 void ft_free_subnodes(t_shell *shell);
 
+char *ft_strjoin_subnode(t_subnode *node);
+
 
 
 //lexer funcs
@@ -106,5 +118,15 @@ void	split_dollar(t_shell *shell);
 //Syntax
 int    syntax_rules(t_shell *shell);
 void    bracket_ctrl(t_shell *shell, t_parse_node *tmp);
+
+// dollar kontrol
+void	dollar_nullcontrol(t_shell *shell, char *str);
+int	dollar_control(char c);
+int	dollar_control2(char c, t_shell *shell, char *tmp);
+int	special_dollar(char c);
+
+//asdsa
+char	*getcmdpath(char *cmd, char **path);
+void	ft_fre_arr(char **str);
 
 #endif
