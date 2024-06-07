@@ -1,0 +1,144 @@
+#include "../include/minishell.h"
+
+void	ft_free_arr(char **str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] != NULL)
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
+char	*getcmdpath(char *cmd, char **path)
+{
+	int		i;
+	char	*cmdpath;
+	char	*tmp;
+
+	i = 0;
+	while (path[i])
+	{
+		tmp = ft_strjoin(path[i], "/");
+		cmdpath = ft_strjoin(tmp, cmd);
+		if (access(cmdpath, F_OK) == 0)
+		{
+			free(tmp);
+			return (cmdpath);
+		}
+		free(tmp);
+		free(cmdpath);
+		i++;
+	}
+	return (NULL);
+}
+
+void	define_rtype(t_parse_node *node, t_exec_node *exnode)
+{
+	t_parse_node	*tmp;
+	t_exec_node		*ex;
+
+	tmp = node;
+	ex = exnode;
+	(void)ex;
+
+	while (tmp)
+	{
+		if(tmp->type == R_REDIR || tmp->type == APPEND)
+		{
+			tmp->next->type = OUTPUT;
+		}
+		else if (tmp->type == L_REDIR)
+		{
+			tmp->next->type = INPUT;
+		}
+		tmp = tmp->next;
+	}
+}
+
+t_exec_node	*get_exec_node(t_exec_node *exnode, int indx)
+{
+	t_exec_node	*tmp;
+	int			i;
+
+	i = 0;
+	tmp = exnode;
+	while (tmp && i < indx)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	if (i == indx)
+		return (tmp);
+	return (NULL);
+}
+
+t_parse_node	*get_parse_node(t_parse_node *node, int indx)
+{
+	t_parse_node	*tmp;
+	int				i;
+
+	i = 0;
+	tmp = node;
+	while (tmp && i < indx)// ls > a
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	if (i == indx)
+		return (tmp);
+	return (NULL);
+}
+
+void	put_cmnds(t_shell *shell)
+{
+	int	i;
+	int	j;
+	int	arg_len;
+	t_parse_node	*head;
+	t_parse_node	*tmp;
+	t_exec_node		*cmnds;
+
+	define_rtype(shell->parse_head, shell->exec_head);
+	head = shell->parse_head;
+	cmnds = shell->exec_head;
+	j = 0;
+	while (head)
+	{
+		i = 0;
+		arg_len = 0;
+		while (head && head->type != PIPE)
+		{
+			printf("\nhead_type= %d head=%s\n", head->type, head->word);
+			if (head->type == WORD)
+				arg_len++;
+			head = head->next;
+		}
+		printf("arglen= %d\n", arg_len);
+		if (head != NULL)
+			head = head->next;
+		//printf("\nheadddd= %s	type=%d\n", head->word, head->type);
+		tmp = get_parse_node(shell->parse_head, j);
+		//printf("\ntmp= %s	type=%d\n", tmp->word, tmp->type);
+		if (tmp != NULL && cmnds != NULL) //&& tmp->type == WORD 
+		{
+			cmnds->cmd = malloc(sizeof(char *) * (arg_len + 1));
+			if(!cmnds->cmd)
+				return ;
+			while (i < arg_len)
+			{
+				if (tmp->type == WORD)
+				{
+					cmnds->cmd[i] = ft_strdup(tmp->word);
+					i++;
+				}
+				j++;
+				tmp = tmp->next;
+			}
+			cmnds->cmd[i] = NULL;
+			cmnds = cmnds->next;
+		}
+	}
+}

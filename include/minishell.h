@@ -41,6 +41,7 @@ typedef struct s_parse_node
 	enum e_token		type;
 	struct s_parse_node	*next;
 	struct s_parse_node	*prev;
+	char				*heredoc;
 }	t_parse_node;
 
 typedef struct	s_subnode
@@ -49,6 +50,18 @@ typedef struct	s_subnode
 	struct s_subnode	*next;
 	struct s_subnode	*prev;
 }	t_subnode;
+
+typedef struct s_exec_node
+{
+	char				**cmd;
+	char				*heredoc;
+	int					in;
+	int					out;
+	pid_t				pid;
+	enum e_token		type;
+	struct s_exec_node	*next;
+	struct s_exec_node	*prev;
+}	t_exec_node;
 
 typedef struct s_shell
 {
@@ -62,12 +75,15 @@ typedef struct s_shell
 	int	l_br;
 	int	r_br;
 	int	br_type;
+	int	c_pipe;
 
 	//added
 	t_parse_node	*parse_head;
 	t_parse_node	*parse_tail;
 	t_subnode		*subnode_head;
 	t_subnode		*subnode_tail;
+	t_exec_node		*exec_head;
+	t_exec_node		*exec_tail;
 	bool			arg_mode;
 
 } t_shell;
@@ -80,7 +96,7 @@ int	check_missing_quotes(char *cmd_line);
 int	ft_isspace(char c);
 int	ft_isquote(char c);
 int ft_istoken(char c);
-int	ft_isdollar(char *str);
+int	ft_exist(char *str, char c);
 
 //others
 void	initalizer(t_shell *shell, char **env);
@@ -104,6 +120,12 @@ void	add_parse_subnode(t_shell *shell, char *s);
 void print_subnode(t_shell *shell);
 void ft_free_subnodes(t_shell *shell);
 
+//execnode func
+void	add_exec_node(t_shell *shell);
+void print_exec_node(t_shell *shell);
+void ft_free_execnodes(t_shell *shell);
+
+
 char *ft_strjoin_subnode(t_subnode *node);
 
 
@@ -125,8 +147,15 @@ int	dollar_control(char c);
 int	dollar_control2(char c, t_shell *shell, char *tmp);
 int	special_dollar(char c);
 
-//asdsa
-char	*getcmdpath(char *cmd, char **path);
-void	ft_fre_arr(char **str);
+//EXEC
+void    counter_pipe(t_shell *shell);
+void    create_pipes(t_shell *shell);
+void    init_heredoc(t_shell *shell);
 
+
+
+char	*get_line(int fd);
+void	put_cmnds(t_shell *shell);
+void	ft_free_arr(char **str);
+t_exec_node	*get_exec_node(t_exec_node *exnode, int indx);
 #endif

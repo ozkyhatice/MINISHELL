@@ -61,7 +61,7 @@ static void	do_dollar(t_shell *shell, char *str, int *i)
 			if (dollar_control(tmp[0]))
 				add_dollar(shell, tmp);
 			if (dollar_control2(tmp[0], shell, tmp))
-				printf("error dollar"); // duzeltilcek
+				add_parse_subnode(shell, "error");
 		}
 		free(tmp);
 	}
@@ -150,7 +150,7 @@ static char	*parse_dollar(t_shell *shell, char *word)
 		}
 	}
 	tmp_str = ft_strjoin_subnode(shell->subnode_head);
-	printf("%s\n", tmp_str);
+	//printf("%s\n", tmp_str);
  	ft_free_subnodes(shell);
  	return (tmp_str);
  }
@@ -164,7 +164,7 @@ void	split_dollar(t_shell *shell)
 	node = shell->parse_head;
 	while (node)
 	{
-		if (ft_isdollar(node->word))
+		if (ft_exist(node->word, '$'))
 		{	
 			mal = ft_strdup(node->word);
 			if (node->word)

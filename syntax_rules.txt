@@ -91,8 +91,7 @@ int	ret_null(char c)
 	return ((c >= '1' && c <= '9') || c == '*' || c == '@' || c == '!');
 }
 
-!!!!!!!!!!! butun splitler sonrası syntax ruleds yapılmalı parantez spliti yapılacak !!!
-ekstra dollar errorunu syntax rulesa gondersin ordan ona gore dolara uygun error yazılsın!!!! AMA ECHOYLA CALISICAK BU OLMASA DA OLURRR
+
 komutların tokenini değiştir!!!!!!!!
 
 

@@ -6,6 +6,8 @@ int same_str(const char *str1, char *str2)
 	int len2;
 	int i;
 
+	if (!str1 || !str2)
+		return (0);
 	len1 = ft_strlen(str1);
 	len2 = ft_strlen(str2);
 	i = 0;

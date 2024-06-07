@@ -6,6 +6,7 @@ static t_parse_node *create_parse_node(const char *s)
     if (new) {
         new->type = get_token(s);
         new->word = ft_strdup(s);
+        new->heredoc = NULL;
         new->next = NULL;
     }
     return (new);
@@ -39,7 +40,7 @@ void print_parse_node(t_shell *shell)
     t_parse_node *current = shell->parse_head; 
     printf("\n");
     while (current != NULL) {
-        printf("%s: type: %u\n", current->word, current->type);
+        printf("parse_node%s: type: %u\n", current->word, current->type);
         current = current->next;
     }
     printf("\n");
@@ -54,9 +55,23 @@ void ft_free_nodes(t_shell *shell)
     {
         next = current->next;
         free(current->word);
+        free(current->heredoc);
         free(current);
         current = next;
     }
     shell->parse_head = NULL;
     shell->parse_tail = NULL;
+}
+
+void ft_addwhere_node(t_parse_node *node, char *str)
+{
+	t_parse_node *head;
+	t_parse_node *current;
+
+	head = node;
+	current = create_parse_node(str);
+	head->next = current;
+	current->prev = head;
+	current->next = head->next->next;
+	current->next->prev = current;
 }

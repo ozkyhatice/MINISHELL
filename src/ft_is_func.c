@@ -18,20 +18,20 @@ int ft_istoken(char c)
 		return (1);
 	else if (c == '>')
 		return (1);
-	// else if (c == '(' || c == ')')
-	// 	return (1);
+	else if (c == '(' || c == ')')
+		return (1);
 	else
 		return (0);
 }
 
-int	ft_isdollar(char *str)
+int	ft_exist(char *str, char c)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (str[i++] == '$')
+		if (str[i++] == c)
 			return (1);
 	}
 	return (0);

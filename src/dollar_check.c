@@ -10,7 +10,7 @@ void	dollar_nullcontrol(t_shell *shell, char *str)
 }
 
 
-int	dollar_control(char c)
+int dollar_control(char c)
 {
 	if (c == '%' || c == '+' || c == ',' || c == '.' || c == '/'
 		|| c == ':' || c == '=' || c == ']' || c == '^' || c == '}'

@@ -1,6 +1,6 @@
 CC		= gcc
 NAME	= minishell
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -g -Wall -Werror -Wextra
 
 SRC_DIR = ./src/
 LIB_DIR = ./lib/

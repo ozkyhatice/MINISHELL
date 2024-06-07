@@ -87,7 +87,9 @@ void	split_quote(t_shell *shell)
 			i++;
 		}
 		str = ft_substr(shell->cmd_line, first, i - first);
-		if (split_char(shell, str))
+		if (ft_strnstr(str, "$(", ft_strlen(str)))
+			add_parse_node(shell, str);
+		else if (split_char(shell, str))
 		{
 			add_parse_node(shell, str);
 		}

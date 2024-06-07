@@ -58,7 +58,8 @@ void	initalizer(t_shell *shell, char **env)
 	shell->parse_head = NULL;
 	shell->parse_tail = NULL;
 	shell->subnode_head = NULL;
-
+	shell->exec_head = NULL;
+	shell->exec_tail = NULL;
 	printwelcome();
 	start_program(shell);
     free(shell->path);
@@ -74,8 +75,8 @@ void	start_program(t_shell *shell)
 	{
 		shell->l_br = 0;
 		shell->r_br = 0;
-		shell->cmd_line = readline("minishell ~ ");
-		if (ft_strcmp(shell->cmd_line, ""))
+		shell->cmd_line = readline("\033[0;31m(minishell)~\033[0m ");
+		if (ft_strcmp(shell->cmd_line, ""))	//if (shell->cmd_line[0] != '\0')
 			add_history(shell->cmd_line);
 		else
 			free(shell->cmd_line);
@@ -83,11 +84,17 @@ void	start_program(t_shell *shell)
 			printf("Missing quote!\n");
 		else
 		{
-			split_quote(shell);	
-			split_dollar(shell);
-			//split_bracket(shell);		
+			split_quote(shell);
 			syntax_rules(shell);
+			split_dollar(shell);
+			counter_pipe(shell);
+			//init_heredoc(shell);
 			print_parse_node(shell);
+			
+			//printf("buraya geldik -> putcmds\n");
+			put_cmnds(shell);
+			//printf("buraya geldik -> putcmds yapıldı\n");
+			print_exec_node(shell);
 		}
 		//str = skip_32(shell);
 		//printf("%s\n", str);
@@ -98,8 +105,9 @@ void	start_program(t_shell *shell)
 		if (ft_strlen(shell->cmd_line) != 0)
 			free(shell->cmd_line);
 		ft_free_nodes(shell);
+		ft_free_execnodes(shell);
 		// clear_history();
-		system("leaks minishell");
+		// system("leaks minishell");
 	}
 	
 }
