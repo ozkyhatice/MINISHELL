@@ -6,7 +6,7 @@
 /*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 02:28:12 by mkaragoz          #+#    #+#             */
-/*   Updated: 2024/06/24 15:47:05 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/25 00:36:53 by abkiraz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@ int	check_echo_n(char *keyword)
 	while (keyword[++i])
 		if (keyword[i] != 'n')
 			return (0);
+	return (1);
+}
+
+int	is_full_space(char *rl)
+{
+	int	i;
+
+	i = 0;
+	while (rl && rl[i])
+	{
+		if (rl[i] != ' ' && rl[i] != '\t')
+			return (0);
+		i++;
+	}
 	return (1);
 }
 

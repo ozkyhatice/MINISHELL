@@ -51,6 +51,7 @@ char	**copyenv(char **env)
 
 void	initalizer(t_shell *shell, char **env)
 {
+	env_init(shell, env);
 	shell->path = ft_split(getenv("PATH"), ':');
 	shell->ex_status = 0;
 	shell->er_status = 0;

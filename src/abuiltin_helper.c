@@ -6,7 +6,7 @@
 /*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 02:17:34 by mkaragoz          #+#    #+#             */
-/*   Updated: 2024/06/24 19:37:08 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/24 23:43:45 by abkiraz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //extern t_data	g_data;
 
-int	run_pwd(void)
+void	run_pwd(void)
 {
 	char	cwd[256];
 	char	*pwd;
@@ -22,7 +22,7 @@ int	run_pwd(void)
 	pwd = getcwd(cwd, 256);
 	write(1, pwd, ft_strlen(pwd));
 	write(1, "\n", 1);
-	return (1);
+	//return (1);
 	//shell->exit_code = 0;
 }
 
@@ -42,14 +42,14 @@ int	run_pwd(void)
 // {
 // 	void	*tmp;
 
-// 	smart_free(node->key);
-// 	smart_free(node->value);
+// 	smart_free(node->name);
+// 	smart_free(node->content);
 // 	tmp = node->next;
 // 	free(node);
 // 	return (tmp);
 // }
 
-int	run_echo(t_exec_node *ex)
+void	run_echo(t_exec_node *ex)
 {
 	bool	n;
 	int		i;
@@ -72,18 +72,18 @@ int	run_echo(t_exec_node *ex)
 	}
 	if (n == false)
 		printf("\n");
-	return (1);
+	//return (1);
 }
 
-int	run_env(void)
+void	run_env(t_shell *shell)
 {
 	t_env	*env;
 
-	env = g_data.env_head;
-	while (env && env->value && !is_full_space(env->value))
+	env = shell->env_l;
+	while (env && env->content) //&& !is_full_space(env->content)
 	{
-		printf("%s=%s\n", env->key, env->value);
+		printf("%s=%s\n", env->name, env->content);
 		env = env->next;
 	}
-	return (1);
+	//return (1);
 }

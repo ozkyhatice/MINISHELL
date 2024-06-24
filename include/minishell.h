@@ -184,13 +184,23 @@ void	fd_closer(t_shell *shell);
 void	set_dup2(t_shell *shell, int i);
 void	wait_al(t_shell *shell); //senemden
 
+//built-in utils
+int	is_full_space(char *rl);
 
 // built-in
-int    builtin_run(t_exec_node *ex);
-int    is_builtin(char *cmd);
 int	check_echo_n(char *keyword);
-int	run_echo(t_exec_node *ex);
-int	run_pwd(void);
+void    builtin_run(t_exec_node *ex, t_shell *shell);
+int    is_builtin(char *cmd);
+void	run_echo(t_exec_node *ex);
+void	run_pwd(void);
+
+//env
+void	run_env(t_shell *shell);
+void	env_init(t_shell *shell, char **env);
+void	run_unset(t_shell *shell);
+int		run_export(t_exec_node *cmd, t_shell *shell);
+
+void	run_exit(t_shell *shell);
 
 #endif
 

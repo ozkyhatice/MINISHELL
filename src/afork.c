@@ -35,19 +35,28 @@ void	ft_multi_exec(t_shell *shell, int i)
 
 void	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 {
-	ex->pid = fork();
-	if (ex->pid == 0)
+	if (shell->c_pipe == 1 && is_builtin(ex->cmd[0]))
 	{
-		if(shell->c_pipe - 1 == 0)
+		builtin_run(ex, shell);
+		printf("-----child builtin %d. kez------\n", i);
+		builtin_run(ex, shell);
+	}
+	else
+	{
+		ex->pid = fork();
+		if (ex->pid == 0)
 		{
-			ft_single_exec(shell, i);
-			printf("-----child single %d. kez------\n", i);
+			if(shell->c_pipe - 1 == 0)
+			{
+				ft_single_exec(shell, i);
+				printf("-----child single %d. kez------\n", i);
 
-		}
-		else
-		{
-			ft_multi_exec(shell, i);
-			printf("-----child multi %d. kez------\n", i);
+			}
+			else
+			{
+				ft_multi_exec(shell, i);
+				printf("-----child multi %d. kez------\n", i);
+			}
 		}
 	}
 	
