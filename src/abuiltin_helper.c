@@ -6,7 +6,7 @@
 /*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 02:17:34 by mkaragoz          #+#    #+#             */
-/*   Updated: 2024/06/24 17:04:44 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/24 19:37:08 by abkiraz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	run_pwd(void)
 	write(1, pwd, ft_strlen(pwd));
 	write(1, "\n", 1);
 	return (1);
-	//g_prime->exit_code = 0;
+	//shell->exit_code = 0;
 }
 
 // void	add_export(char	*arg)
@@ -72,5 +72,18 @@ int	run_echo(t_exec_node *ex)
 	}
 	if (n == false)
 		printf("\n");
+	return (1);
+}
+
+int	run_env(void)
+{
+	t_env	*env;
+
+	env = g_data.env_head;
+	while (env && env->value && !is_full_space(env->value))
+	{
+		printf("%s=%s\n", env->key, env->value);
+		env = env->next;
+	}
 	return (1);
 }

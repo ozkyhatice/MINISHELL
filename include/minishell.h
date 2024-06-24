@@ -35,6 +35,13 @@ enum e_builtin
 
 };
 
+typedef struct s_env
+{
+	char	*name;
+	char	*content;
+	struct s_env	*next;
+}	t_env;
+
 typedef struct s_parse_node
 {
 	char				*word;
@@ -88,6 +95,7 @@ typedef struct s_shell
 	t_subnode		*subnode_tail;
 	t_exec_node		*exec_head;
 	t_exec_node		*exec_tail;
+	t_env			*env_l;
 	bool			arg_mode;
 
 } t_shell;
