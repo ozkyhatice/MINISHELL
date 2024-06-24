@@ -1,5 +1,7 @@
 #include "../include/minishell.h"
 
+int	g_index;
+
 void handler(int signum)
 {
 	(void)signum;

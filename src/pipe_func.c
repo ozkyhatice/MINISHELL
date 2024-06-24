@@ -13,12 +13,12 @@ void    counter_pipe(t_shell *shell)
         node = node->next;
     }
     shell->c_pipe++;
-    create_pipes(shell);
+    create_ex_nodes(shell);
     // printf("pipe: %d\n", shell->c_pipe);
     // print_exec_node(shell);
 }
 
-void    create_pipes(t_shell *shell)
+void    create_ex_nodes(t_shell *shell)
 {
     int i;
 
@@ -28,5 +28,5 @@ void    create_pipes(t_shell *shell)
         add_exec_node(shell);
         i++;
     }
-    printf("i:%d", i);
+    //printf("i:%d", i);
 }

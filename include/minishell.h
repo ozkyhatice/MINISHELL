@@ -57,11 +57,14 @@ typedef struct s_exec_node
 	char				*heredoc;
 	int					in;
 	int					out;
+	int					fd[2];
 	pid_t				pid;
 	enum e_token		type;
+	int					id;
 	struct s_exec_node	*next;
 	struct s_exec_node	*prev;
 }	t_exec_node;
+
 
 typedef struct s_shell
 {
@@ -76,6 +79,7 @@ typedef struct s_shell
 	int	r_br;
 	int	br_type;
 	int	c_pipe;
+	int	**fd;
 
 	//added
 	t_parse_node	*parse_head;
@@ -149,7 +153,7 @@ int	special_dollar(char c);
 
 //EXEC
 void    counter_pipe(t_shell *shell);
-void    create_pipes(t_shell *shell);
+void    create_ex_nodes(t_shell *shell);
 void    init_heredoc(t_shell *shell);
 
 
@@ -158,4 +162,28 @@ char	*get_line(int fd);
 void	put_cmnds(t_shell *shell);
 void	ft_free_arr(char **str);
 t_exec_node	*get_exec_node(t_exec_node *exnode, int indx);
+char	*getcmdpath(char *cmd, char **path);
+void	exec_handler(t_shell *shell);
+void	ft_execve(t_shell *shell, t_exec_node *ex, int i);
+
+void	add_indx_to_exnd(t_exec_node *exnd);
+void	wait_all(t_exec_node *exnd);
+void	close_fd(t_exec_node *exnd, int i, int count);
+void	set_dup(t_exec_node *exnd, int i, int count);
+void	open_fd(t_exec_node *exnd);
+void	open_pipes(t_shell *shell);
+void	fd_closer(t_shell *shell);
+void	set_dup2(t_shell *shell, int i);
+void	wait_al(t_shell *shell); //senemden
+
+
+// built-in
+int    builtin_run(t_exec_node *ex);
+int    is_builtin(char *cmd);
+int	check_echo_n(char *keyword);
+int	run_echo(t_exec_node *ex);
+int	run_pwd(void);
+
 #endif
+
+

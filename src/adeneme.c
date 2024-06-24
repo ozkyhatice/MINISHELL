@@ -111,12 +111,12 @@ void	put_cmnds(t_shell *shell)
 		arg_len = 0;
 		while (head && head->type != PIPE)
 		{
-			printf("\nhead_type= %d head=%s\n", head->type, head->word);
+			//printf("\nhead_type= %d head=%s\n", head->type, head->word);
 			if (head->type == WORD)
 				arg_len++;
 			head = head->next;
 		}
-		printf("arglen= %d\n", arg_len);
+		//printf("arglen= %d\n", arg_len);
 		if (head != NULL)
 			head = head->next;
 		//printf("\nheadddd= %s	type=%d\n", head->word, head->type);

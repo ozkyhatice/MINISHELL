@@ -71,12 +71,15 @@ void	initalizer(t_shell *shell, char **env)
 void	start_program(t_shell *shell)
 {
 	//char	*str;
+	// int	ind;
+
+	// ind = 0;
 	while (1)
 	{
 		shell->l_br = 0;
 		shell->r_br = 0;
-		shell->cmd_line = readline("\033[0;31m(minishell)~\033[0m ");
-		if (ft_strcmp(shell->cmd_line, ""))	//if (shell->cmd_line[0] != '\0')
+		shell->cmd_line = readline("minishell ~ ");
+		if (ft_strcmp(shell->cmd_line, ""))
 			add_history(shell->cmd_line);
 		else
 			free(shell->cmd_line);
@@ -89,12 +92,12 @@ void	start_program(t_shell *shell)
 			split_dollar(shell);
 			counter_pipe(shell);
 			//init_heredoc(shell);
-			print_parse_node(shell);
-			
-			//printf("buraya geldik -> putcmds\n");
+			//print_parse_node(shell);
 			put_cmnds(shell);
-			//printf("buraya geldik -> putcmds yapıldı\n");
-			print_exec_node(shell);
+			//print_exec_node(shell);
+			//ft_execve(shell, ind);
+			add_indx_to_exnd(shell->exec_head);
+			exec_handler(shell);
 		}
 		//str = skip_32(shell);
 		//printf("%s\n", str);

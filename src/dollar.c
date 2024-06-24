@@ -51,7 +51,9 @@ static void	do_dollar(t_shell *shell, char *str, int *i)
 	{
 		env_value = getenv(tmp);
 		printf("%s\n", env_value);
-		if (env_value)
+		if(!env_value)
+			env_dollar(shell, env_value);
+		else if (env_value)
 			env_dollar(shell, env_value);
 		else if ((tmp[0] >= '1' && tmp[0] <= '9') ||
 			tmp[0] == '*' || tmp[0] == '@' || tmp[0] == '!')

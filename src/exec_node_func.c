@@ -3,7 +3,8 @@
 static t_exec_node *create_exec_node()
 {
     t_exec_node *new = malloc(sizeof(t_exec_node));
-    if (new) {
+    if (new)
+	{
         new->type = -1;
         new->cmd = NULL;
         new->heredoc = NULL;
@@ -40,7 +41,7 @@ void	add_exec_node(t_shell *shell)
 void print_exec_node(t_shell *shell)
 {
     t_exec_node *current = shell->exec_head; 
-    printf("\n");
+    //printf("\n");
 	int j = 0;
     while (current != NULL)
 	{
@@ -48,13 +49,13 @@ void print_exec_node(t_shell *shell)
         //printf("pid:%d komut=%s: type: %u\n",current->pid, current->cmd[i], current->type);
 		while (current->cmd[i] != NULL)
 		{
-			printf("node=%d	komut=%s\n", j, current->cmd[i]);
+			printf("node#%d	komut#%s\n", j, current->cmd[i]);
 			i++;
 		}
         current = current->next;
 		j++;
     }
-    printf("\n");
+    //printf("\n");
 }
 
 void ft_free_execnodes(t_shell *shell)
