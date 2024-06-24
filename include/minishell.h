@@ -201,6 +201,8 @@ void	run_unset(t_shell *shell);
 int		run_export(t_exec_node *cmd, t_shell *shell);
 
 void	run_exit(t_shell *shell);
+void	add_environment(t_shell *shell, char *name, char *content);
+int	run_cd(t_shell *shell, t_exec_node *cmd);
 
 #endif
 

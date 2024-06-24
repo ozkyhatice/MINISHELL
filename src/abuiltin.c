@@ -14,8 +14,8 @@ int    is_builtin(char *cmd)
         return (1);
     else if (ft_strncmp(cmd, "exit", 5) == 0)
         return (1);
-    // else if (ft_strncmp(cmd, "cd", 3) == 0)
-    //     return (1);
+    else if (ft_strncmp(cmd, "cd", 3) == 0)
+        return (1);
     return (0);
 }
 
@@ -33,8 +33,8 @@ void    builtin_run(t_exec_node *ex, t_shell *shell)
         run_export(ex, shell);
     else if (ft_strncmp(ex->cmd[0], "exit", 5) == 0)
         run_exit(shell);
-    // else if (ft_strncmp(ex->cmd[0], "cd", 3) == 0)
-    //     run_cd(ex);
+    else if (ft_strncmp(ex->cmd[0], "cd", 3) == 0)
+        run_cd(shell, ex);
     //return (0);
 }
 

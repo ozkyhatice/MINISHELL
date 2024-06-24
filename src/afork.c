@@ -39,7 +39,6 @@ void	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 	{
 		builtin_run(ex, shell);
 		printf("-----child builtin %d. kez------\n", i);
-		builtin_run(ex, shell);
 	}
 	else
 	{
