@@ -62,16 +62,15 @@ int	run_cd(t_shell *shell, t_exec_node *ex)
 	int		res;
 
 	res = -1;
-	home = getenv("HOME");
-	printf("home: %s\n", home);
-	curr = getenv("PWD");
+	home = ft_strdup(getenv("HOME"));
+	curr = ft_strdup(getenv("PWD"));
 	res = cd_exec(shell, &ex, &home, &tmp, &new);
 	if (!res)
 		return (0);
 	add_environment(shell, "PWD", new);
 	add_environment(shell, "OLDPWD", curr);
 	free(new);
-	free(curr);
 	free(home);
+	free(curr);
 	return (1);
 }
