@@ -1,0 +1,25 @@
+void print_redir_node(t_shell *shell)
+{
+	t_exec_node	*ex;
+	t_red		*red;
+	int			i;
+	int			j;
+
+	ex = shell->exec_head;
+	i = 0;
+	while (ex)
+	{
+		j = 0;
+		red = ex->redir_head;
+		while (red)
+		{
+			printf("node#%d	redir#%d	name=%s	type=%d\n", i, j, red->name, red->type);
+			red = red->next;
+			j++;
+		}
+		ex = ex->next;
+		i++;
+	}
+
+}
+
