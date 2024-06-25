@@ -42,6 +42,15 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
+typedef struct s_red
+{
+	char	*name;
+	int		type;
+	struct s_red	*next;
+	struct s_red	*prev;
+}	t_red;
+
+
 typedef struct s_parse_node
 {
 	char				*word;
@@ -68,6 +77,8 @@ typedef struct s_exec_node
 	pid_t				pid;
 	enum e_token		type;
 	int					id;
+	struct s_red		*redirection_head;
+	struct s_red		*redirection_tail;
 	struct s_exec_node	*next;
 	struct s_exec_node	*prev;
 }	t_exec_node;
@@ -203,7 +214,10 @@ int		run_export(t_exec_node *cmd, t_shell *shell);
 void	run_exit(t_shell *shell);
 void	add_environment(t_shell *shell, char *name, char *content);
 int	run_cd(t_shell *shell, t_exec_node *cmd);
+void	add_redirection_node(t_shell *shell, char *str, int type);
+t_red    *create_redirection_node(char *str, int type);
 
+void print_redir_node(t_shell *shell);
 #endif
 
 

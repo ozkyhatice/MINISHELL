@@ -114,6 +114,15 @@ void	put_cmnds(t_shell *shell)
 			//printf("\nhead_type= %d head=%s\n", head->type, head->word);
 			if (head->type == WORD)
 				arg_len++;
+			else if(head->type == INPUT || head->type == OUTPUT)
+			{
+				if (head->prev->type == APPEND)
+					add_redirection_node(shell, head->word, APPEND);
+				else if (head->type == INPUT)
+					add_redirection_node(shell, head->word, INPUT);
+				else if (head->type == OUTPUT)
+					add_redirection_node(shell, head->word, OUTPUT);
+			}
 			head = head->next;
 		}
 		//printf("arglen= %d\n", arg_len);
@@ -141,4 +150,5 @@ void	put_cmnds(t_shell *shell)
 			cmnds = cmnds->next;
 		}
 	}
+	print_redir_node(shell);
 }
