@@ -52,6 +52,8 @@ void	define_rtype(t_parse_node *node, t_exec_node *exnode)
 			tmp->next->type = APPENDOUT;
 		else if (tmp->type == L_REDIR)
 			tmp->next->type = INPUT;
+		else if (tmp->type == HEREDOC)
+			tmp->next->type = HD;
 		tmp = tmp->next;
 	}
 }
@@ -112,7 +114,7 @@ void	put_cmnds(t_shell *shell)
 			//printf("\nhead_type= %d head=%s\n", head->type, head->word);
 			if (head->type == WORD)
 				arg_len++;
-			else if(head->type == INPUT || head->type == OUTPUT || head->type == APPENDOUT)
+			else if(head->type == INPUT || head->type == OUTPUT || head->type == APPENDOUT || head->type == HD)
 			{
 				if (head->type == APPENDOUT)
 					add_redirection_node(shell, head->word, APPENDOUT);
@@ -120,6 +122,8 @@ void	put_cmnds(t_shell *shell)
 					add_redirection_node(shell, head->word, INPUT);
 				else if (head->type == OUTPUT)
 					add_redirection_node(shell, head->word, OUTPUT);
+				else if (head->type == HD)
+					add_redirection_node(shell, head->word, HD);	
 			}
 			head = head->next;
 		}

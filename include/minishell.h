@@ -15,7 +15,9 @@
 
 # define E_PERM		" Permission denied"
 # define E_NOFILE	"No such file or directory"
-
+# define IN_HEREDOC		2
+# define AFTER_HEREDOC	3
+int		g_sig;
 enum e_token
 {
 	AND,//0
@@ -31,6 +33,7 @@ enum e_token
 	OUTPUT,//10
 	INPUT,// 11
 	APPENDOUT,//12
+	HD,//13
 };
 
 enum e_builtin

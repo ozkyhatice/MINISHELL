@@ -84,6 +84,61 @@ void	ft_red_dgreat(t_exec_node *head, t_red *head_redir, t_shell *shell)
 	head->out = fd;
 }
 
+void	ft_heredoc(char *eof, int fd)
+{
+	char	*line;
+
+	g_sig = IN_HEREDOC;
+	while (1 && g_sig != AFTER_HEREDOC)
+	{
+		line = readline(">");
+		if (line == NULL)
+			break ;
+		if ((ft_strncmp(line, eof, ft_strlen(line)) == 0)
+			&& ft_strlen(line) == ft_strlen(eof))
+		{
+			free(line);
+			break ;
+		}
+		if (*line == 0x0)
+		{
+			free(line);
+			continue ;
+		}
+		ft_putstr_fd(line, fd);
+		ft_putstr_fd("\n", fd);
+		free(line);
+	}
+	close(fd);
+}
+void	ft_redir_dless(t_exec_node *head, t_red *head_redir, t_shell *shell)
+{
+	int	fd;
+
+	if (head->in != -3)
+		close(head->in);
+	fd = open("tmpfile", O_CREAT | O_TRUNC | O_RDWR, 0777);
+	if (fd < 0)
+	{
+		if (access(head_redir->name, F_OK) == -1)
+			ft_error_msg(NULL, head_redir->name, E_NOFILE);
+		else if (access(head_redir->name, R_OK) == -1)
+			ft_error_msg(NULL, head_redir->name, E_PERM);
+		else if (access(head_redir->name, R_OK) == -1)
+			ft_error_msg(NULL, head_redir->name, E_PERM);
+		// shell->exit_flag = 1;
+		shell->ex_status = 1;
+	}
+	ft_heredoc(head_redir->name, fd);
+	fd = open("tmpfile", O_RDONLY);
+	head->in = fd;
+	if (head->here_path != NULL)
+	{
+		unlink("tmpfile");
+		head->here_path = NULL;
+	}
+	head->here_path = ft_strdup(".tmpfile");
+}
 void	ft_redirection(t_shell	*shell)
 {
 	t_exec_node	*ex;
@@ -99,9 +154,10 @@ void	ft_redirection(t_shell	*shell)
 				ft_red_great(ex, ex_redir, shell);
 			else if (ex_redir->type == APPENDOUT)
 				ft_red_dgreat(ex, ex_redir, shell);
-			if (ex_redir->type == INPUT)
+			else if (ex_redir->type == INPUT)
 				ft_red_less(ex, ex_redir, shell);
-			
+			else if (ex_redir->type == HD)
+				ft_redir_dless(ex, ex_redir, shell);
 			// else if (ft_which_redir(ex_redir->operator) == DGREAT)
 			// 	ft_red_dgreat(ex, ex_redir, shell);
 			// else if (ft_which_redir(ex_redir->operator) == DLESS)

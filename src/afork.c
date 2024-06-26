@@ -43,7 +43,6 @@ void	ft_multi_exec(t_shell *shell, int i)
 
 void	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 {
-	
 	if (shell->c_pipe == 1 && is_builtin(ex->cmd[0]))
 	{
 		builtin_run(ex, shell);
