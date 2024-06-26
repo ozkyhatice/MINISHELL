@@ -64,9 +64,7 @@ void	set_dup2(t_shell *shell, int i)
 	t_exec_node	*ex;
 
 	ex = get_exec_node(shell->exec_head, i);
-	if (ex->in > 0 || ex->out > 0)
-		set_io(ex);
-	else if (i == 0)
+	if (i == 0)
 		dup2(shell->fd[i][1], STDOUT_FILENO);
 	else if (i == shell->c_pipe - 1)
 		dup2(shell->fd[i - 1][0], STDIN_FILENO);
@@ -76,4 +74,5 @@ void	set_dup2(t_shell *shell, int i)
 		dup2(shell->fd[i][1], STDOUT_FILENO);
 	}
 	fd_closer(shell);
+	set_io(ex);
 }

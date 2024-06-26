@@ -1,19 +1,26 @@
-BUILTIN NOTES
-Makefile
-dnm.txt
-echo
-eklen.txtn
-error_case
-include
-lib
-libft
-minishell
-old_files
-out_1
-out_2
-out_3
-pwd.txt
-src
-syntax_rules.txt
-tmpfile
-uto.txt
+total 232
+drwxr-xr-x@ 25 hatice  staff    800 Jun 26 17:10 .
+drwx------@ 21 hatice  staff    672 Jun 26 16:08 ..
+-rw-r--r--@  1 hatice  staff   6148 Jun 26 14:41 .DS_Store
+drwxr-xr-x  13 hatice  staff    416 Jun 26 17:01 .git
+-rw-r--r--   1 hatice  staff     35 Jun 25 22:55 .gitignore
+drwxr-xr-x@  4 hatice  staff    128 Jun 26 14:56 .vscode
+-rw-rw-r--@  1 hatice  staff    377 Jun 25 19:29 BUILTIN NOTES
+-rw-rw-r--@  1 hatice  staff   1157 Jun 25 19:29 Makefile
+-rw-r--r--@  1 hatice  staff      0 Jun 26 17:11 dnm.txt
+-rw-rw-r--@  1 hatice  staff   2842 Jun 25 19:29 echo
+-rw-rw-r--@  1 hatice  staff    331 Jun 25 19:29 eklen.txtn
+drwxrwxr-x@  4 hatice  staff    128 Jun 25 19:29 error_case
+drwxrwxr-x@  3 hatice  staff     96 Jun 25 19:29 include
+drwxr-xr-x  38 hatice  staff   1216 Jun 26 17:10 lib
+drwxrwxr-x@ 73 hatice  staff   2336 Jun 26 13:43 libft
+-rwxr-xr-x   1 hatice  staff  69784 Jun 26 17:10 minishell
+drwxrwxr-x@  4 hatice  staff    128 Jun 25 19:29 old_files
+-rw-r--r--   1 hatice  staff      0 Jun 26 01:29 out_1
+-rw-r--r--   1 hatice  staff      0 Jun 26 16:30 out_2
+-rw-r--r--   1 hatice  staff    159 Jun 26 16:27 out_3
+-rw-r--r--@  1 hatice  staff      0 Jun 26 15:25 pwd.txt
+drwxrwxr-x@ 38 hatice  staff   1216 Jun 26 15:29 src
+-rw-rw-r--@  1 hatice  staff   2697 Jun 25 19:29 syntax_rules.txt
+-rwxr-xr-x@  1 hatice  staff     20 Jun 26 13:50 tmpfile
+-rw-r--r--@  1 hatice  staff    165 Jun 26 15:24 uto.txt

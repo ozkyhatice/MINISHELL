@@ -12,8 +12,8 @@ void    set_io(t_exec_node *ex)
 {
     ex->std_in = dup(0);
     ex->std_out = dup(1);
-    if (ex->out > 0)
-		dup2(ex->out, 1);
-	if (ex->in > 0)
-		dup2(ex->in, 0);
+    if (ex->out >= 0)
+		dup2(ex->out, STDOUT_FILENO);
+	if (ex->in >= 0)
+		dup2(ex->in, STDIN_FILENO);
 }
