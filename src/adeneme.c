@@ -46,14 +46,12 @@ void	define_rtype(t_parse_node *node, t_exec_node *exnode)
 
 	while (tmp)
 	{
-		if(tmp->type == R_REDIR || tmp->type == APPEND)
-		{
+		if(tmp->type == R_REDIR)
 			tmp->next->type = OUTPUT;
-		}
+		else if (tmp->type == APPEND)
+			tmp->next->type = APPENDOUT;
 		else if (tmp->type == L_REDIR)
-		{
 			tmp->next->type = INPUT;
-		}
 		tmp = tmp->next;
 	}
 }
@@ -114,10 +112,10 @@ void	put_cmnds(t_shell *shell)
 			//printf("\nhead_type= %d head=%s\n", head->type, head->word);
 			if (head->type == WORD)
 				arg_len++;
-			else if(head->type == INPUT || head->type == OUTPUT)
+			else if(head->type == INPUT || head->type == OUTPUT || head->type == APPENDOUT)
 			{
-				if (head->prev->type == APPEND)
-					add_redirection_node(shell, head->word, APPEND);
+				if (head->type == APPENDOUT)
+					add_redirection_node(shell, head->word, APPENDOUT);
 				else if (head->type == INPUT)
 					add_redirection_node(shell, head->word, INPUT);
 				else if (head->type == OUTPUT)

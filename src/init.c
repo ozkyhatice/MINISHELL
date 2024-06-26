@@ -61,6 +61,8 @@ void	initalizer(t_shell *shell, char **env)
 	shell->subnode_head = NULL;
 	shell->exec_head = NULL;
 	shell->exec_tail = NULL;
+	shell->std_in = 0;
+	shell->std_out = 1;
 	printwelcome();
 	start_program(shell);
     free(shell->path);
@@ -94,10 +96,12 @@ void	start_program(t_shell *shell)
 			counter_pipe(shell);
 			//init_heredoc(shell);
 			//print_parse_node(shell);
+
 			put_cmnds(shell);
+			add_indx_to_exnd(shell->exec_head);
+			ft_redirection(shell);
 			//print_exec_node(shell);
 			//ft_execve(shell, ind);
-			add_indx_to_exnd(shell->exec_head);
 			exec_handler(shell);
 		}
 		//str = skip_32(shell);

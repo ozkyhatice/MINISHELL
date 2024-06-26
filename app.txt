@@ -1,0 +1,18 @@
+BUILTIN NOTES
+Makefile
+a.txt
+app.txt
+echo
+eklen.txtn
+error_case
+include
+lib
+libft
+minishell
+mns_21may
+old_files
+out_1
+out_2
+out_3
+src
+syntax_rules.txt

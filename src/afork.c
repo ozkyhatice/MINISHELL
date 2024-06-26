@@ -7,6 +7,14 @@ void	ft_single_exec(t_shell *shell, int i)
 
 	exnd = get_exec_node(shell->exec_head, i);
 	path = getcmdpath(exnd->cmd[i], shell->path);
+	exnd = get_exec_node(shell->exec_head, i);
+	if (exnd->out > 0)
+	{
+		dup2(exnd->out, 1);
+		//close(exnd->out);
+	}
+	if (exnd->in > 0)
+		dup2(exnd->in, 0);
 	if (execve(path, exnd->cmd, NULL) == -1)
 	{
 		if (!path)
@@ -35,6 +43,7 @@ void	ft_multi_exec(t_shell *shell, int i)
 
 void	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 {
+	
 	if (shell->c_pipe == 1 && is_builtin(ex->cmd[0]))
 	{
 		builtin_run(ex, shell);
@@ -60,7 +69,12 @@ void	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 	}
 	
 }
-
+int	ft_perform_dup(int fd, int std_stream)
+{
+	dup2(fd, std_stream);
+	close(fd);
+	return (-2);
+}
 
 void	exec_handler(t_shell *shell)
 {

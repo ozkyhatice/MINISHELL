@@ -1,6 +1,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+
 # include "../libft/libft.h"
 # include <sys/wait.h>
 # include <stdio.h>
@@ -9,7 +10,11 @@
 # include <readline/readline.h>
 # include <stdbool.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include <readline/history.h>
+
+# define E_PERM		" Permission denied"
+# define E_NOFILE	"No such file or directory"
 
 enum e_token
 {
@@ -25,6 +30,7 @@ enum e_token
 	WORD,//9
 	OUTPUT,//10
 	INPUT,// 11
+	APPENDOUT,//12
 };
 
 enum e_builtin
@@ -81,6 +87,8 @@ typedef struct s_exec_node
 	struct s_red		*redirection_tail;
 	struct s_exec_node	*next;
 	struct s_exec_node	*prev;
+	char			*here_path;
+
 }	t_exec_node;
 
 
@@ -99,6 +107,7 @@ typedef struct s_shell
 	int	c_pipe;
 	int	**fd;
 
+
 	//added
 	t_parse_node	*parse_head;
 	t_parse_node	*parse_tail;
@@ -109,6 +118,8 @@ typedef struct s_shell
 	t_env			*env_l;
 	bool			arg_mode;
 
+	int				std_in;
+	int				std_out;
 } t_shell;
 
 
@@ -218,6 +229,8 @@ void	add_redirection_node(t_shell *shell, char *str, int type);
 t_red    *create_redirection_node(char *str, int type);
 
 void print_redir_node(t_shell *shell);
+void	ft_redirection(t_shell	*shell);
+
 #endif
 
 
