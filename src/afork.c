@@ -8,19 +8,13 @@ void	ft_single_exec(t_shell *shell, int i)
 	exnd = get_exec_node(shell->exec_head, i);
 	path = getcmdpath(exnd->cmd[i], shell->path);
 	exnd = get_exec_node(shell->exec_head, i);
-	if (exnd->out > 0)
-	{
-		dup2(exnd->out, 1);
-		//close(exnd->out);
-	}
-	if (exnd->in > 0)
-		dup2(exnd->in, 0);
+	set_io(exnd);
 	if (execve(path, exnd->cmd, NULL) == -1)
 	{
-		if (!path)
-			printf("command not found\n");
-		else
-			printf("execve çalışamadı\n");
+		if (path == NULL)
+			ft_error_msg(exnd->cmd[0], NULL, "command not found");
+		else if (ft_access(path))	
+    	    ft_error_msg(path, NULL, "not authorize to execute");
 	}
 }
 
@@ -32,12 +26,13 @@ void	ft_multi_exec(t_shell *shell, int i)
 	exnd = get_exec_node(shell->exec_head, i);
 	path = getcmdpath(exnd->cmd[0], shell->path);
 	set_dup2(shell, i);
-	//close_fd(shell->exec_head, i, shell->c_pipe);
-	//printf("-------path: %s komut: %s----------\n", path, exnd->cmd[i]);
 	if (execve(path, exnd->cmd, NULL) == -1)
 	{
-		printf("execve çalışamadı\n");
-		printf("path: %s\n komut: %s\n", path, exnd->cmd[0]);
+		if (path == NULL)
+			ft_error_msg(exnd->cmd[0], NULL, "command not found");
+		else if (ft_access(path))	
+    	    ft_error_msg(path, NULL, "not authorize to execute");
+	
 	}
 }
 
@@ -45,8 +40,10 @@ void	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 {
 	if (shell->c_pipe == 1 && is_builtin(ex->cmd[0]))
 	{
+		set_io(ex);
 		builtin_run(ex, shell);
-		printf("-----child builtin %d. kez------\n", i);
+    	ft_dup_rev(ex);		
+		printf("----- builtin %d. kez------\n", i);
 	}
 	else
 	{
@@ -57,7 +54,6 @@ void	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 			{
 				ft_single_exec(shell, i);
 				printf("-----child single %d. kez------\n", i);
-
 			}
 			else
 			{

@@ -80,6 +80,8 @@ typedef struct s_exec_node
 {
 	char				**cmd;
 	char				*heredoc;
+	int					std_in;
+	int					std_out;
 	int					in;
 	int					out;
 	int					fd[2];
@@ -233,7 +235,9 @@ t_red    *create_redirection_node(char *str, int type);
 
 void print_redir_node(t_shell *shell);
 void	ft_redirection(t_shell	*shell);
-
+void	ft_error_msg(char *cmd, char *arg, char *msg);
+int ft_access(char *path);
+void    set_io(t_exec_node *ex);
+void    ft_dup_rev(t_exec_node *ex);
 #endif
-
 

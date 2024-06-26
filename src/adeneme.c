@@ -127,12 +127,9 @@ void	put_cmnds(t_shell *shell)
 			}
 			head = head->next;
 		}
-		//printf("arglen= %d\n", arg_len);
 		if (head != NULL)
 			head = head->next;
-		//printf("\nheadddd= %s	type=%d\n", head->word, head->type);
 		tmp = get_parse_node(shell->parse_head, j);
-		//printf("\ntmp= %s	type=%d\n", tmp->word, tmp->type);
 		if (tmp != NULL && cmnds != NULL) //&& tmp->type == WORD 
 		{
 			cmnds->cmd = malloc(sizeof(char *) * (arg_len + 1));
@@ -152,5 +149,5 @@ void	put_cmnds(t_shell *shell)
 			cmnds = cmnds->next;
 		}
 	}
-	print_redir_node(shell);
+	//print_redir_node(shell);
 }

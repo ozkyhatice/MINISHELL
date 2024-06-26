@@ -1,19 +1,6 @@
 #include "../include/minishell.h"
-void	ft_error_msg(char *cmd, char *arg, char *msg)
-{
-	ft_putstr_fd("sh.it: ", 2);
-	if (cmd != NULL)
-	{
-		ft_putstr_fd(cmd, 2);
-		ft_putstr_fd(": ", 2);
-	}
-	if (arg != NULL)
-	{
-		ft_putstr_fd(arg, 2);
-		ft_putstr_fd(": ", 2);
-	}
-	ft_putendl_fd(msg, 2);
-}
+
+
 void	ft_red_less(t_exec_node *ex, t_red *head_redir, t_shell *shell)
 {
 	int	fd;
@@ -43,7 +30,6 @@ void	ft_red_great(t_exec_node *head, t_red *head_redir, t_shell *shell)
 	int	fd;
 
     fd = open(head_redir->name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	dprintf(2, "içerde misin evlat");
 	if (fd < 0)
 	{
 		if (access(head_redir->name, F_OK) == -1)
