@@ -31,11 +31,11 @@ void	ft_red_less(t_exec_node *ex, t_red *head_redir, t_shell *shell)
 	if (ex->in != -3)
 		close(ex->in);
 	ex->in = fd;
-	// if (ex->here_path != NULL)
-	// {
-	// 	unlink("tmpfile");
-	// 	ex->here_path = NULL;
-	// }
+	if (ex->here_path != NULL)
+	{
+		unlink("tmpfile");
+		ex->here_path = NULL;
+	}
 }
 
 void	ft_red_great(t_exec_node *head, t_red *head_redir, t_shell *shell)

@@ -1,7 +1,8 @@
-total 192
+total 200
 -rw-rw-r--@  1 hatice  staff    377 Jun 25 19:29 BUILTIN NOTES
 -rw-rw-r--@  1 hatice  staff   1157 Jun 25 19:29 Makefile
--rw-r--r--   1 hatice  staff      0 Jun 26 03:10 a.txt
+-rw-r--r--   1 hatice  staff    984 Jun 26 03:10 a.txt
+-rw-r--r--   1 hatice  staff      0 Jun 26 03:10 a2.txt
 -rw-r--r--   1 hatice  staff    151 Jun 26 01:43 app.txt
 -rw-rw-r--@  1 hatice  staff   2842 Jun 25 19:29 echo
 -rw-rw-r--@  1 hatice  staff    331 Jun 25 19:29 eklen.txtn
