@@ -12,7 +12,10 @@ void	ft_single_exec(t_shell *shell, int i)
 	if (execve(path, exnd->cmd, NULL) == -1)
 	{
 		if (path == NULL)
-			ft_error_msg(exnd->cmd[0], NULL, "command not found");
+		{
+				ft_error_msg(exnd->cmd[0], NULL, "command not found");
+				shell->ex_status = 127;
+		}
 		else if (ft_access(path))	
     	    ft_error_msg(path, NULL, "not authorize to execute");
 	}
@@ -29,7 +32,10 @@ void	ft_multi_exec(t_shell *shell, int i)
 	if (execve(path, exnd->cmd, NULL) == -1)
 	{
 		if (path == NULL)
+		{
 			ft_error_msg(exnd->cmd[0], NULL, "command not found");
+			shell->ex_status = 127;
+		}
 		else if (ft_access(path))	
     	    ft_error_msg(path, NULL, "not authorize to execute");
 	
@@ -37,7 +43,7 @@ void	ft_multi_exec(t_shell *shell, int i)
 }
 
 void	ft_execve(t_shell *shell, t_exec_node *ex, int i)
-{
+{	
 	if (shell->c_pipe == 1 && is_builtin(ex->cmd[0]))
 	{
 		set_io(ex);

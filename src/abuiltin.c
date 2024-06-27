@@ -32,7 +32,7 @@ void    builtin_run(t_exec_node *ex, t_shell *shell)
     else if (ft_strncmp(ex->cmd[0], "export", 7) == 0)
         run_export(ex, shell);
     else if (ft_strncmp(ex->cmd[0], "exit", 5) == 0)
-        run_exit(shell);
+        run_exit(shell, ex->cmd[1], ex->cmd[2]);
     else if (ft_strncmp(ex->cmd[0], "cd", 3) == 0)
         run_cd(shell, ex);
     //return (0);

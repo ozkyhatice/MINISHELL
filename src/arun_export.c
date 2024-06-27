@@ -45,13 +45,13 @@ void	add_environment(t_shell *shell, char *name, char *content)
 		if (lst->next == NULL)
 		{
 			lst->next = new;
-			//shell->env_l = new;
+		// 	shell->env_l = new;
 		}
-	// 	else
-	// 	{
-	// 		shell->env_l->next = new;
-	// 		shell->env_l = shell->env_l->next;
-	// 	}
+		// else
+		// {
+		// 	shell->env_l->next = new;
+		// 	shell->env_l = shell->env_l->next;
+		// }
 	}
 }
 

@@ -11,7 +11,6 @@ int	go_dir(t_shell *shell, char *path, char **new)
 	oldpwd = getcwd(NULL, 0);
 	if (chdir(path) == -1)
 	{
-		printf("directory not changed\n");
 		free(pwd);
 		free(oldpwd);
 		return (0);
@@ -44,10 +43,12 @@ int	cd_exec(t_shell *shell, t_exec_node **ex, char **home, char **tmp, char **ne
 		res = go_dir(shell, (*ex)->cmd[1], new);
 		if (res == 0)
 		{
-			printf("cd: %s: No such file or directory\n", (*ex)->cmd[1]);
+			printf("minishell: cd: %s: No such file or directory\n", (*ex)->cmd[1]);
+			shell->ex_status = 1;
 			free(*home);
 			return (0);
 		}
+		shell->ex_status = 0;
 		*tmp = (*ex)->cmd[1];
 	}
 	return (1);

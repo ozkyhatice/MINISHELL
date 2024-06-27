@@ -230,8 +230,7 @@ void	run_unset(t_shell *shell);
 int		run_export(t_exec_node *cmd, t_shell *shell);
 t_env	*env_lstlast(t_env	*lst);
 
-
-void	run_exit(t_shell *shell);
+void	run_exit(t_shell *shell, char *str, char *s2);
 void	add_environment(t_shell *shell, char *name, char *content);
 int	run_cd(t_shell *shell, t_exec_node *cmd);
 void	add_redirection_node(t_shell *shell, char *str, int type);
@@ -251,6 +250,7 @@ int	control_howmany(char *str, char c);
 int	err_msg(char *str);
 int	istoken2(char *token);
 void	tilda_control(t_shell *shell);
+
 
 #endif
 

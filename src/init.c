@@ -52,7 +52,7 @@ void	shell_readline(t_shell *shell)
 	else if (*shell->cmd_line == '\0')
 	{
 		shell->er_status = 1;
-		shell->ex_status = 127;
+		shell->ex_status = 0;
 		//free(shell->cmd_line); double free olabilir
 		return ;
 	}
@@ -95,7 +95,8 @@ void delete_null_nodes(t_shell *shell)
 			tmp = prev;
 		}
 		prev = tmp;
-		tmp = tmp->next;
+		if(tmp)
+			tmp = tmp->next;
 	}
 }
 

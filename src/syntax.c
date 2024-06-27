@@ -26,7 +26,7 @@ static int	control_rules(t_shell *shell, t_parse_node *tmp_node)
 		return (0);
 }
 
-int	control_rules2(t_shell *shell, t_parse_node *tmp_node)
+int	control_rules2( t_parse_node *tmp_node)
 {
 	if (tmp_node->next && tmp_node->next->next && tmp_node->next->type == PIPE
 		&& (tmp_node->next->next->type == L_REDIR
@@ -41,8 +41,6 @@ int	control_rules2(t_shell *shell, t_parse_node *tmp_node)
 			|| tmp_node->type == NEWLINE)
 		&& !tmp_node->next)
 		return (err_msg("newline"));
-	if (shell->r_br > shell->l_br)
-		return (err_msg(")"));
 	else
 		return (0);
 }
@@ -83,7 +81,7 @@ int	syntax_rules(t_shell *shell)
 		if (er_code == 0)
 			er_code = control_rules(shell, tmp_node);
 		if (er_code == 0)
-			er_code = control_rules2(shell, tmp_node);
+			er_code = control_rules2( tmp_node);
 		if (er_code == 0)
 			er_code = control_rules3(tmp_node);
 		tmp_node = tmp_node -> next;

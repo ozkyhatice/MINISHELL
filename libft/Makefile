@@ -1,4 +1,4 @@
-CC = gcc
+export A- CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 NAME = libft.a
