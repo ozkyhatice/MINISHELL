@@ -250,6 +250,7 @@ void	ft_init_signals(void);
 int	control_howmany(char *str, char c);
 int	err_msg(char *str);
 int	istoken2(char *token);
+void	tilda_control(t_shell *shell);
 
 #endif
 

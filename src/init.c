@@ -47,8 +47,7 @@ void	shell_readline(t_shell *shell)
 	{
 		printf("exit\n");
 		shell->er_status = 2;
-		shell->ex_status = 0;
-		return ;
+		exit(0);
 	}
 	else if (*shell->cmd_line == '\0')
 	{
@@ -113,6 +112,7 @@ void	start_program(t_shell *shell)
 		if (shell->er_status == 0)
 		{
 			split_dollar(shell);
+			tilda_control(shell);
 			quote_remove(shell);
 			//print_parse_node(shell);
 			delete_null_nodes(shell);
