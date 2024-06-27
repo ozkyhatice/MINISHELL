@@ -109,15 +109,18 @@ void	start_program(t_shell *shell)
 		{
 			split_quote(shell);
 			shell->er_status = syntax_rules(shell);
+			if(shell->er_status != 0)
+				shell->ex_status = 258;
+			shell->l_br = 0;
+			shell->r_br = 0;
 		}
 		if (shell->er_status == 0)
-		{
+		{	
 			split_dollar(shell);
 			tilda_control(shell);
 			quote_remove(shell);
 			//print_parse_node(shell);
 			delete_null_nodes(shell);
-			//print_parse_node(shell);
 		}
 		if (shell->er_status == 0)
 		{
