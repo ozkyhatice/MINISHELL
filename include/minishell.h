@@ -251,6 +251,7 @@ int	err_msg(char *str);
 int	istoken2(char *token);
 void	tilda_control(t_shell *shell);
 
+int	ft_check_syntax(char *str);
 
 #endif
 
