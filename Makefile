@@ -18,18 +18,25 @@ LIBFT = ./libft/libft.a
 FTDIR = libft
 FTSRC = $(shell ls ./libft/*.c)
 
+READLINE_LIB_LOC = readline/lib
+READLINE_INC_LOC = readline/include
+READLINE = $(READLINE_LIB_LOC)/libreadline.a
+HISTORY = $(READLINE_LIB_LOC)/libhistory.a
+READLINE_INIT_FILE_LOC = ~/
+
 all:$(READLINE) $(NAME)
 
 $(READLINE):
 	curl -O https://ftp.gnu.org/gnu/readline/readline-8.2.tar.gz
 	tar -xvf readline-8.2.tar.gz
+	@echo $(PWD)
 	cd readline-8.2 && ./configure --prefix=${PWD}/readline
 	cd readline-8.2 && make install
 	echo "set echo-control-characters 0" > $(READLINE_INIT_FILE_LOC).inputrc
 	rm -rf readline-8.2 readline-8.2.tar.gz
 
 $(NAME): $(LIBFT) $(LIB_DIR) $(OBJ) 
-	$(CC) $(CFLAGS) $(OBJ) -lreadline $(LIBFT) -o $@ 
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -I $(READLINE_INC_LOC) -L $(READLINE_LIB_LOC) -lreadline -lhistory -o $@ 
 
 $(LIBFT): $(FTSRC)
 	make -C libft

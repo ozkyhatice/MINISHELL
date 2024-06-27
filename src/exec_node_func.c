@@ -12,6 +12,8 @@ static t_exec_node *create_exec_node()
         new->pid = -1;
         new->in = 0;
         new->out = 1;
+		new->redirection_head=NULL;
+		new->redirection_tail=NULL;
     }
     return (new);
 }

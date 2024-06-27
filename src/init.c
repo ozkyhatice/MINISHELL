@@ -132,7 +132,7 @@ void	start_program(t_shell *shell)
 		 		free(shell->cmd_line);
 		}
 		ft_free_nodes(shell);
-		ft_free_execnodes(shell);
+		// ft_free_execnodes(shell);
 	}
 }
 

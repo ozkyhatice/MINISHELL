@@ -134,16 +134,16 @@ void	ft_redirection(t_shell	*shell)
 	while (ex)
 	{
 		ex_redir = ex->redirection_head;
-		while (ex_redir)// && shell->exit_flag != 1
+		while (ex_redir && shell->ex_status != 1)// 
 		{
-			if (ex_redir->type == OUTPUT)
-				ft_red_great(ex, ex_redir, shell);
-			else if (ex_redir->type == APPENDOUT)
-				ft_red_dgreat(ex, ex_redir, shell);
-			else if (ex_redir->type == INPUT)
-				ft_red_less(ex, ex_redir, shell);
-			else if (ex_redir->type == HD)
-				ft_redir_dless(ex, ex_redir, shell);
+			// if (ex_redir->type == OUTPUT)
+			// 	ft_red_great(ex, ex_redir, shell);
+			// else if (ex_redir->type == APPENDOUT)
+			// 	ft_red_dgreat(ex, ex_redir, shell);
+			// else if (ex_redir->type == INPUT)
+			// 	ft_red_less(ex, ex_redir, shell);
+			// else if (ex_redir->type == HD)
+			// 	ft_redir_dless(ex, ex_redir, shell);
 			// else if (ft_which_redir(ex_redir->operator) == DGREAT)
 			// 	ft_red_dgreat(ex, ex_redir, shell);
 			// else if (ft_which_redir(ex_redir->operator) == DLESS)
