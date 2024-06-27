@@ -5,7 +5,7 @@ void	ft_free_arr(char **str)
 	int	i;
 
 	i = 0;
-	if (str[i] != NULL)
+	while (str[i] != NULL)
 	{
 		free(str[i]);
 		i++;

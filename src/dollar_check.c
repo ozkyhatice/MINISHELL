@@ -1,5 +1,4 @@
 #include "../include/minishell.h"
-
 void	dollar_nullcontrol(t_shell *shell, char *str)
 {
 	char	*tmp;
@@ -9,8 +8,7 @@ void	dollar_nullcontrol(t_shell *shell, char *str)
 	free(tmp);
 }
 
-
-int dollar_control(char c)
+int	dollar_control(char c)
 {
 	if (c == '%' || c == '+' || c == ',' || c == '.' || c == '/'
 		|| c == ':' || c == '=' || c == ']' || c == '^' || c == '}'
@@ -32,7 +30,7 @@ int	dollar_control2(char c, t_shell *shell, char *tmp)
 	{
 		if (c == '-')
 			add_parse_subnode(shell, "himBH");
-		else if(c == '#')
+		else if (c == '#')
 			add_parse_subnode(shell, "0");
 		add_parse_subnode(shell, (tmp + 1));
 	}

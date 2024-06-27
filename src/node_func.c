@@ -8,6 +8,7 @@ static t_parse_node *create_parse_node(const char *s)
         new->word = ft_strdup(s);
         new->heredoc = NULL;
         new->next = NULL;
+		new->prev = NULL;
     }
     return (new);
 }
@@ -61,17 +62,4 @@ void ft_free_nodes(t_shell *shell)
     }
     shell->parse_head = NULL;
     shell->parse_tail = NULL;
-}
-
-void ft_addwhere_node(t_parse_node *node, char *str)
-{
-	t_parse_node *head;
-	t_parse_node *current;
-
-	head = node;
-	current = create_parse_node(str);
-	head->next = current;
-	current->prev = head;
-	current->next = head->next->next;
-	current->next->prev = current;
 }

@@ -29,10 +29,13 @@ int	ft_exist(char *str, char c)
 	int	i;
 
 	i = 0;
-	while (str[i])
+	if(str)
 	{
-		if (str[i++] == c)
-			return (1);
+		while (str[i])
+		{
+			if (str[i++] == c)
+				return (1);
+		}
 	}
 	return (0);
 }

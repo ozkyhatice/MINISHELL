@@ -1,0 +1,1 @@
+/home/abkiraz/.local/bin:/home/abkiraz/bin:/home/abkiraz/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/var/lib/snapd/snap/bin

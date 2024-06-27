@@ -1,7 +1,7 @@
 BUILTIN NOTES
 Makefile
-app.txt
-c.txt
+a.out
+a.txt
 dnm.txt
 echo
 eklen.txtn
@@ -10,11 +10,8 @@ include
 lib
 libft
 minishell
-old_files
-out_1
-out_2
-out_3
 src
 syntax_rules.txt
-tmpfile
-uto.txt
+valgrind-out.txt
+valgrind-out.txt.core.28970
+[?2004hminishell ~ ^C[?2004l

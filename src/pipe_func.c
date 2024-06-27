@@ -8,7 +8,7 @@ void    counter_pipe(t_shell *shell)
 	node = shell->parse_head;
     while (node)
     {
-        if (node->type == 2)
+        if (node->type == PIPE)
             shell->c_pipe++;
         node = node->next;
     }

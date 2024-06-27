@@ -45,19 +45,24 @@ void    init_heredoc(t_shell *shell)
     p_head = shell->parse_head;
     e_head = shell->exec_head;
 	stat = 0;
-	// print_exec_node(shell);
+	print_exec_node(shell);
     while (p_head)
     {
+		printf("0\n");
         while (p_head && p_head->type != PIPE)
         {
+		printf("1\n");
+
             if (p_head->type == 5)
             {
+				printf("bura\n");
 				pipe(fd);
 				pid = fork();
 				if (pid == 0)
 				{
 					close(fd[0]);
 					signal(SIGINT, interrupt_here_document);
+					printf("word: %s\n", p_head->next->word);
 					heredoc_read(p_head->next->word, fd[1]);
 				}
 				else

@@ -1,36 +1,91 @@
 #include "../include/minishell.h"
 
-void    bracket_ctrl(t_shell *shell, t_parse_node *tmp)
-{
-    int i;
 
-    i = 0;
-    while (tmp->word[i]) // env icinde parantez verince burdan gecmemesi icin
-    {
-        if (tmp->word[i] == '(')
-        {
-            shell->br_type = L_BRACKET;
-            shell->l_br++;
-        }
-        if (tmp->word[i] == ')')
-        {
-            shell->r_br++;
-            shell->br_type = R_BRACKET;
-        }
-        i++;
-    }
+void	bracket_ctrl(t_shell *shell, t_parse_node *tmp)
+{
+	int	i;
+
+	i = 0;
+	while (tmp->word[i])
+	{
+		if (tmp->word[i] == '(')
+		{
+			shell->br_type = L_BRACKET;
+			shell->l_br++;
+		}
+		if (tmp->word[i] == ')')
+		{
+			shell->r_br++;
+			shell->br_type = R_BRACKET;
+		}
+		i++;
+	}
 }
 
-// void   control_redir(shell)
-// {
-//     t_parse_node    *tmp_node;
+int	ft_print_control(char c, int count)
+{
+	if (count == 3 && c == '|')
+		return (err_msg("|"));
+	if (count > 3 && c == '|')
+		return (err_msg("||"));
+	if (count == 4 && c == '<')
+		return (err_msg("<"));
+	if (count == 5 && c == '<')
+		return (err_msg("<<"));
+	if (count > 5 && c == '<')
+		return (err_msg("<<<"));
+	if (count == 4 && c == '>')
+		return (err_msg(">"));
+	if (count == 5 && c == '>')
+		return (err_msg(">>"));
+	if (count > 5 && c == '>')
+		return (err_msg(">>>"));
+	else
+		return (0);
 
-//     tmp_node = shell->parse_head;
-//     while (tmp_node)
-//     {
-//         if (tmp_node->next && tmp_node->type == L_REDIR && tmp_node->next->type == L_REDIR)
-//             return (err_msg("<"));
-//         if (tmp_node->next && tmp_node->type == R_REDIR && tmp_node->next->type == R_REDIR)
-//             return (err_msg(">"));
-//     }
-// }
+}
+
+int	control_howmany(char *str, char c)
+{
+	int		i;
+	char	quote;
+	int		count;
+	int		re_code;
+
+	i = 0;
+	count = 0;
+	re_code = 0;
+	while (str[i])
+	{
+		if (ft_isquote(str[i]))
+		{
+			quote = str[i];
+			while (str[i] && str[i] != quote)
+				i++;
+		}
+		else if (str[i] == c)
+			count++;
+		i++;
+	}
+	re_code = ft_print_control(count, c);
+	return (re_code);
+}
+
+
+int	err_msg(char *str)
+{
+	printf("bash: syntax error near unexpected token `%s'\n", str);
+	return (258);
+}
+
+int	istoken2(char *token)
+{
+	if (!ft_strncmp(token, "|", ft_strlen(token)))
+		return (1);
+	else if (!ft_strncmp(token, ">", ft_strlen(token)))
+		return (1);
+	else if (!ft_strncmp(token, "<", ft_strlen(token)))
+		return (1);
+	else
+		return (0);
+}

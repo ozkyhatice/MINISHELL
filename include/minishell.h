@@ -12,12 +12,13 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <readline/history.h>
+# include <signal.h>
 
 # define E_PERM		" Permission denied"
 # define E_NOFILE	"No such file or directory"
 # define IN_HEREDOC		2
 # define AFTER_HEREDOC	3
-int		g_sig;
+extern int		g_sig;
 enum e_token
 {
 	AND,//0
@@ -34,6 +35,7 @@ enum e_token
 	INPUT,// 11
 	APPENDOUT,//12
 	HD,//13
+	NEWLINE, //14
 };
 
 enum e_builtin
@@ -239,5 +241,13 @@ void	ft_error_msg(char *cmd, char *arg, char *msg);
 int ft_access(char *path);
 void    set_io(t_exec_node *ex);
 void    ft_dup_rev(t_exec_node *ex);
+
+void	do_dollar(t_shell *shell, char *str, int *i);
+void	quote_remove(t_shell *shell);
+void	ft_init_signals(void);
+int	control_howmany(char *str, char c);
+int	err_msg(char *str);
+int	istoken2(char *token);
+
 #endif
 

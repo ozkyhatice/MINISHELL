@@ -1,28 +1,22 @@
 #include "../include/minishell.h"
 
-int	g_index;
-
-void handler(int signum)
+int	main(int argc, char **argv, char **env)
 {
-	(void)signum;
-	exit(0);
-}
-
-int main(int argc, char **argv, char **env)
-{
-	(void)argv;
 	t_shell	*shell;
+	// int		exit_code;
+
 	if (argc > 1)
-		printf("error in argc");
+	{
+		printf("minishell: %s: No such file or directory", argv[1]);
+		return (127);
+	}
 	shell = malloc(sizeof(t_shell));
 	if (!shell)
 		exit(0);
-	//printf("%d", getpid());
+	ft_init_signals();
 	initalizer(shell, env);
-	free(shell->cmd_line);
-	free(shell);
-
-	//signal(SIGINT, handler);
-	// signal(EOF, handler);
+	//exit_code = shell->ex_status;
+	// free(shell->cmd_line);
+	// free(shell);
 	return(0);
 }

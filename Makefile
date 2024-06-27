@@ -25,6 +25,8 @@ $(READLINE):
 	tar -xvf readline-8.2.tar.gz
 	cd readline-8.2 && ./configure --prefix=${PWD}/readline
 	cd readline-8.2 && make install
+	echo "set echo-control-characters 0" > $(READLINE_INIT_FILE_LOC).inputrc
+	rm -rf readline-8.2 readline-8.2.tar.gz
 
 $(NAME): $(LIBFT) $(LIB_DIR) $(OBJ) 
 	$(CC) $(CFLAGS) $(OBJ) -lreadline $(LIBFT) -o $@ 
@@ -48,6 +50,8 @@ clean:
 fclean: clean
 	rm -rf $(LIBFT)
 	rm -rf $(NAME)
+	@rm -rf readline readline-8.2 readline-8.2.tar.gz
+
 
 re: fclean all
 

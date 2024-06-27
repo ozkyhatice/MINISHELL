@@ -74,7 +74,7 @@ void	ft_heredoc(char *eof, int fd)
 {
 	char	*line;
 
-	g_sig = IN_HEREDOC;
+	int g_sig = IN_HEREDOC;
 	while (1 && g_sig != AFTER_HEREDOC)
 	{
 		line = readline(">");

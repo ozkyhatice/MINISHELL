@@ -10,8 +10,8 @@ static t_exec_node *create_exec_node()
         new->heredoc = NULL;
         new->next = NULL;
         new->pid = -1;
-        new->in = -3;
-        new->out = -3;
+        new->in = 0;
+        new->out = 1;
     }
     return (new);
 }
