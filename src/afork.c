@@ -43,7 +43,7 @@ void	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 		set_io(ex);
 		builtin_run(ex, shell);
     	ft_dup_rev(ex);		
-		printf("----- builtin %d. kez------\n", i);
+		//printf("----- builtin %d. kez------\n", i);
 	}
 	else
 	{
@@ -53,12 +53,12 @@ void	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 			if(shell->c_pipe - 1 == 0)
 			{
 				ft_single_exec(shell, i);
-				printf("-----child single %d. kez------\n", i);
+				//printf("-----child single %d. kez------\n", i);
 			}
 			else
 			{
 				ft_multi_exec(shell, i);
-				printf("-----child multi %d. kez------\n", i);
+				//printf("-----child multi %d. kez------\n", i);
 			}
 		}
 	}

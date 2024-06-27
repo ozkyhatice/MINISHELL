@@ -228,6 +228,8 @@ void	run_env(t_shell *shell);
 void	env_init(t_shell *shell, char **env);
 void	run_unset(t_shell *shell);
 int		run_export(t_exec_node *cmd, t_shell *shell);
+t_env	*env_lstlast(t_env	*lst);
+
 
 void	run_exit(t_shell *shell);
 void	add_environment(t_shell *shell, char *name, char *content);

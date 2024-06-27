@@ -32,7 +32,7 @@ void	initalizer(t_shell *shell, char **env)
 	shell->r_br = 0;
 	shell->std_in = 0;
 	shell->std_out = 1;
-	printwelcome();
+	//printwelcome();
 	start_program(shell);
     ft_free_arr(shell->path);
     shell->path = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aenv_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 19:48:42 by senyilma          #+#    #+#             */
-/*   Updated: 2024/06/24 20:15:06 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/27 12:20:21 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ t_env	*env_listnew(char *name, char *content)
 		return (0);
 	new->name = name;
 	new->content = content;
-	new->next = 0;
+	new->next = NULL;
 	return (new);
 }
 
-static t_env	*env_lstlast(t_env	*lst)
+t_env	*env_lstlast(t_env	*lst)
 {
 	t_env	*temp;
 
 	if (!lst)
 		return (0);
 	temp = lst;
-	while (temp->next)
+	while (temp && temp->next)
 		temp = temp->next;
 	return (temp);
 }
