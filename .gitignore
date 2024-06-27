@@ -3,3 +3,4 @@ libft/*.o
 .vscode
 .DS_Store
 readline
+minishell_tester
