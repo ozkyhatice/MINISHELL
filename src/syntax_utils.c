@@ -4,18 +4,10 @@
 void	bracket_ctrl(t_shell *shell, t_parse_node *tmp)
 {
 	int	i;
-	int	quote;
 
 	i = 0;
 	while (tmp->word[i])
 	{
-		if(ft_isquote(tmp->word[i]))
-		{
-			quote = tmp->word[i];
-			i++;
-			while (tmp->word[i] && tmp->word[i] != quote)
-				i++;
-		}
 		if (tmp->word[i] == '(')
 		{
 			shell->br_type = L_BRACKET;

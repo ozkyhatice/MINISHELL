@@ -26,7 +26,7 @@ void    builtin_run(t_exec_node *ex, t_shell *shell)
     else if (ft_strncmp(ex->cmd[0], "pwd", 4) == 0)
        run_pwd();
     else if (ft_strncmp(ex->cmd[0], "env", 4) == 0)
-      run_env(shell);
+		run_env(shell);
     else if (ft_strncmp(ex->cmd[0], "unset", 6) == 0)
         run_unset(shell);
     else if (ft_strncmp(ex->cmd[0], "export", 7) == 0)

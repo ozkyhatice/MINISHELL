@@ -21,6 +21,7 @@ char	*getcmdpath(char *cmd, char **path)
 	i = 0;
 	while (path[i])
 	{
+		printf("%s", cmd);
 		tmp = ft_strjoin(path[i], "/");
 		cmdpath = ft_strjoin(tmp, cmd);
 		if (access(cmdpath, F_OK) == 0)
@@ -28,6 +29,10 @@ char	*getcmdpath(char *cmd, char **path)
 			free(tmp);
 			return (cmdpath);
 		}
+		struct stat a;
+		stat("/", &a);
+		if (S_ISDIR(a.st_mode))
+
 		free(tmp);
 		free(cmdpath);
 		i++;

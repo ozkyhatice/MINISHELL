@@ -20,17 +20,7 @@ void	initalizer(t_shell *shell, char **env)
 {
 	env_init(shell, env);
 	shell->path = ft_split(getenv("PATH"), ':');
-	shell->ex_status = 0;
-	shell->er_status = 0;
 	shell->env_p = copyenv(env);
-	shell->parse_head = NULL;
-	shell->parse_tail = NULL;
-	shell->subnode_head = NULL;
-	shell->exec_head = NULL;
-	shell->exec_tail = NULL;
-	shell->l_br = 0;
-	shell->r_br = 0;
-	shell->std_in = 0;
 	shell->std_out = 1;
 	//printwelcome();
 	start_program(shell);
@@ -109,18 +99,15 @@ void	start_program(t_shell *shell)
 		{
 			split_quote(shell);
 			shell->er_status = syntax_rules(shell);
-			if(shell->er_status != 0)
-				shell->ex_status = 258;
-			shell->l_br = 0;
-			shell->r_br = 0;
 		}
 		if (shell->er_status == 0)
-		{	
+		{
 			split_dollar(shell);
 			tilda_control(shell);
 			quote_remove(shell);
 			//print_parse_node(shell);
 			delete_null_nodes(shell);
+			//print_parse_node(shell);
 		}
 		if (shell->er_status == 0)
 		{
@@ -136,7 +123,8 @@ void	start_program(t_shell *shell)
 		 		free(shell->cmd_line);
 		}
 		ft_free_nodes(shell);
-		// ft_free_execnodes(shell);
+		ft_free_execnodes(shell);
+
 	}
 }
 

@@ -43,7 +43,7 @@ int	cd_exec(t_shell *shell, t_exec_node **ex, char **home, char **tmp, char **ne
 		res = go_dir(shell, (*ex)->cmd[1], new);
 		if (res == 0)
 		{
-			ft_error_msg((*ex)->cmd[1], NULL, "No such file or directory");
+			printf("minishell: cd: %s: No such file or directory\n", (*ex)->cmd[1]);
 			shell->ex_status = 1;
 			free(*home);
 			return (0);

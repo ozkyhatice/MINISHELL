@@ -10,7 +10,7 @@ int	main(int argc, char **argv, char **env)
 		printf("minishell: %s: No such file or directory", argv[1]);
 		return (127);
 	}
-	shell = malloc(sizeof(t_shell));
+	shell = ft_calloc(1, sizeof(t_shell));
 	if (!shell)
 		exit(0);
 	ft_init_signals();

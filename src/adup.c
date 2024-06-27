@@ -38,6 +38,7 @@ void	wait_al(t_shell *shell)
 		// 	shell->exit_code = 1;
 		ex = ex->next;
 	}
+	
 	//g_signal = 0;
 }
 
@@ -73,6 +74,6 @@ void	set_dup2(t_shell *shell, int i)
 		dup2(shell->fd[i - 1][0], STDIN_FILENO);
 		dup2(shell->fd[i][1], STDOUT_FILENO);
 	}
-	fd_closer(shell);
 	set_io(ex);
+	fd_closer(shell);
 }

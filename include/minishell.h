@@ -13,7 +13,7 @@
 # include <fcntl.h>
 # include <readline/history.h>
 # include <signal.h>
-
+# include <sys/stat.h>
 # define E_PERM		" Permission denied"
 # define E_NOFILE	"No such file or directory"
 # define IN_HEREDOC		2
@@ -200,8 +200,8 @@ void	put_cmnds(t_shell *shell);
 void	ft_free_arr(char **str);
 t_exec_node	*get_exec_node(t_exec_node *exnode, int indx);
 char	*getcmdpath(char *cmd, char **path);
-void	exec_handler(t_shell *shell);
-void	ft_execve(t_shell *shell, t_exec_node *ex, int i);
+int		exec_handler(t_shell *shell);
+int		ft_execve(t_shell *shell, t_exec_node *ex, int i);
 
 void	add_indx_to_exnd(t_exec_node *exnd);
 void	wait_all(t_exec_node *exnd);
@@ -250,8 +250,8 @@ int	control_howmany(char *str, char c);
 int	err_msg(char *str);
 int	istoken2(char *token);
 void	tilda_control(t_shell *shell);
-int	ft_check_syntax(char *str);
 
+int	ft_check_syntax(char *str);
 
 #endif
 

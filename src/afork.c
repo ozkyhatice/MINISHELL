@@ -26,29 +26,40 @@ void	ft_multi_exec(t_shell *shell, int i)
 	t_exec_node	*exnd;
 	char		*path;
 
-	exnd = get_exec_node(shell->exec_head, i);
-	path = getcmdpath(exnd->cmd[0], shell->path);
 	set_dup2(shell, i);
-	if (execve(path, exnd->cmd, NULL) == -1)
+	exnd = get_exec_node(shell->exec_head, i);
+	if (is_builtin(exnd->cmd[0]))
 	{
-		if (path == NULL)
+		builtin_run(exnd, shell);
+
+		// dprintf(2, "asdasdasdasdasdasa\n");
+		//printf("----- builtin %d. kez------\n", i);
+	}
+	else 
+	{
+		path = getcmdpath(exnd->cmd[0], shell->path);
+	// dprintf(2,"battı balık: %s\n", exnd->cmd[1]);
+		if (execve(path, exnd->cmd, NULL) == -1)
 		{
-			ft_error_msg(exnd->cmd[0], NULL, "command not found");
-			shell->ex_status = 127;
+			if (path == NULL)
+			{
+				ft_error_msg(exnd->cmd[0], NULL, "command not found");
+				shell->ex_status = 127;
+			}
+			else if (ft_access(path))	
+				ft_error_msg(path, NULL, "not authorize to execute");
+		
 		}
-		else if (ft_access(path))	
-    	    ft_error_msg(path, NULL, "not authorize to execute");
-	
 	}
 }
 
-void	ft_execve(t_shell *shell, t_exec_node *ex, int i)
+int	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 {	
 	if (shell->c_pipe == 1 && is_builtin(ex->cmd[0]))
 	{
 		set_io(ex);
 		builtin_run(ex, shell);
-    	ft_dup_rev(ex);		
+    	ft_dup_rev(ex);	
 		//printf("----- builtin %d. kez------\n", i);
 	}
 	else
@@ -64,11 +75,12 @@ void	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 			else
 			{
 				ft_multi_exec(shell, i);
+				return (1);
 				//printf("-----child multi %d. kez------\n", i);
 			}
 		}
 	}
-	
+	return (0);
 }
 int	ft_perform_dup(int fd, int std_stream)
 {
@@ -77,7 +89,7 @@ int	ft_perform_dup(int fd, int std_stream)
 	return (-2);
 }
 
-void	exec_handler(t_shell *shell)
+int	exec_handler(t_shell *shell)
 {
 	int			i;
 	//int			status;
@@ -89,12 +101,13 @@ void	exec_handler(t_shell *shell)
 		open_pipes(shell);
 	while (i < shell->c_pipe)
 	{
-		ft_execve(shell, exnd, i);
+		if (ft_execve(shell, exnd, i))
+			exit(1);
 		i++;
 		exnd = exnd->next;
 	}
 	fd_closer(shell);
 	wait_al(shell);
 	//close_fd(shell->exec_head, i, shell->c_pipe);
-
+	return (0);
 }
