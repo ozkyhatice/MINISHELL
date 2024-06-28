@@ -4,11 +4,8 @@ void	is_dir(char *path)
 {
 	struct stat	filestat;
 
-    if (stat(path, &filestat) < 0)
-	{
-		ft_error_msg(NULL, path, "No such file or directory");
-		exit (1);
-    }
+    stat(path, &filestat);
+
     if (S_ISDIR(filestat.st_mode))
 	{
 		ft_error_msg(path, NULL, " is a directory");
