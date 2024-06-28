@@ -38,7 +38,8 @@ void	wait_al(t_shell *shell)
 		// 	shell->exit_code = 1;
 		ex = ex->next;
 	}
-	
+	if(WIFEXITED(status))
+		shell->ex_status = WEXITSTATUS(status);
 	//g_signal = 0;
 }
 

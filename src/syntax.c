@@ -35,17 +35,19 @@ int	control_rules2( t_parse_node *tmp_node)
 		return (err_msg(tmp_node->next->next->word));
 	else if (tmp_node->next && tmp_node->next->type == PIPE
 		&& istoken2(tmp_node->word))
-		return (err_msg("newline"));
+		return (err_msg("|"));
 	else if ((tmp_node->type == L_REDIR || tmp_node->type == APPEND
 			|| tmp_node->type == R_REDIR || tmp_node->type == HEREDOC
 			|| tmp_node->type == NEWLINE)
 		&& !tmp_node->next)
 		return (err_msg("newline"));
+	else if ((tmp_node->type == NEWLINE_R) && !tmp_node->next)
+		return (err_msg(">"));
 	else
 		return (0);
 }
 
-int	control_rules3(t_parse_node *tmp_node)
+int	control_rules3(t_shell *shell, t_parse_node *tmp_node)
 {
 	if (tmp_node->next && (tmp_node->next->type == R_REDIR
 			|| tmp_node->next->type == L_REDIR
@@ -58,6 +60,8 @@ int	control_rules3(t_parse_node *tmp_node)
 			|| tmp_node->type == HEREDOC
 			|| tmp_node->type == NEWLINE))
 		return (err_msg(tmp_node->next->word));
+	else if (shell->l_br < shell->r_br)
+		return (err_msg(")"));
 	else
 		return (0);
 }
@@ -81,12 +85,12 @@ int	syntax_rules(t_shell *shell)
 		if (er_code == 0)
 			er_code = control_rules(shell, tmp_node);
 		if (er_code == 0)
-			er_code = control_rules2( tmp_node);
+			er_code = control_rules2(tmp_node);
 		if (er_code == 0)
-			er_code = control_rules3(tmp_node);
+			er_code = control_rules3(shell, tmp_node);
 		tmp_node = tmp_node -> next;
 	}
-	if (shell->l_br < shell->r_br)
-		return (err_msg(")"));
+	if(shell->l_br != shell->r_br && er_code == 0)
+		return (err_msg("("));
 	return (er_code);
 }
