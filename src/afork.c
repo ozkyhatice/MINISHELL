@@ -48,7 +48,7 @@ void	ft_multi_exec(t_shell *shell, int i)
 			}
 			else if (ft_access(path))	
 				ft_error_msg(path, NULL, "not authorize to execute");
-		
+
 		}
 	}
 }

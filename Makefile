@@ -36,7 +36,7 @@ $(READLINE):
 	rm -rf readline-8.2 readline-8.2.tar.gz
 
 $(NAME): $(LIBFT) $(LIB_DIR) $(OBJ) 
-	$(CC) $(CFLAGS) -fsanitize=address $(OBJ) $(LIBFT) -I $(READLINE_INC_LOC) -L $(READLINE_LIB_LOC) -lreadline -lhistory -o $@ 
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -I $(READLINE_INC_LOC) -L $(READLINE_LIB_LOC) -lreadline -lhistory -o $@ 
 
 $(LIBFT): $(FTSRC)
 	make -C libft
@@ -53,6 +53,7 @@ run:
 clean:
 	make clean -C libft/
 	rm -rf $(OBJ)
+	rm -rf $(NAME)
 
 fclean: clean
 	rm -rf $(LIBFT)

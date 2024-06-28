@@ -36,6 +36,7 @@ enum e_token
 	APPENDOUT,//12
 	HD,//13
 	NEWLINE, //14
+	NEWLINE_R,//15
 };
 
 enum e_builtin

@@ -4,10 +4,19 @@
 void	bracket_ctrl(t_shell *shell, t_parse_node *tmp)
 {
 	int	i;
+	int quote;
 
 	i = 0;
+	quote = 0;
 	while (tmp->word[i])
 	{
+		if(ft_isquote(tmp->word[i]))
+		{
+			quote = tmp->word[i];
+			i++;
+			while (tmp->word[i] && tmp->word[i] != quote)
+				i++;
+		}
 		if (tmp->word[i] == '(')
 		{
 			shell->br_type = L_BRACKET;
@@ -22,7 +31,7 @@ void	bracket_ctrl(t_shell *shell, t_parse_node *tmp)
 	}
 }
 
-int	ft_print_control(char c, int count)
+int	ft_print_control(int count, char c)
 {
 	if (count == 3 && c == '|')
 		return (err_msg("|"));
@@ -60,6 +69,7 @@ int	control_howmany(char *str, char c)
 		if (ft_isquote(str[i]))
 		{
 			quote = str[i];
+			i++;
 			while (str[i] && str[i] != quote)
 				i++;
 		}
@@ -74,8 +84,10 @@ int	control_howmany(char *str, char c)
 
 int	err_msg(char *str)
 {
-	printf("bash: syntax error near unexpected token `%s'\n", str);
-	return (258);
+	ft_putstr_fd(" syntax error near unexpected token `", 2);
+	ft_putstr_fd(str, 2);
+	ft_putendl_fd("\'", 2);
+	return (1);
 }
 
 int	istoken2(char *token)

@@ -99,6 +99,10 @@ void	start_program(t_shell *shell)
 		{
 			split_quote(shell);
 			shell->er_status = syntax_rules(shell);
+			if(shell->er_status != 0)
+				shell->ex_status = 258;
+			shell->l_br = 0;
+			shell->r_br = 0;
 		}
 		if (shell->er_status == 0)
 		{
@@ -114,7 +118,7 @@ void	start_program(t_shell *shell)
 			counter_pipe(shell);
 			put_cmnds(shell);
 			add_indx_to_exnd(shell->exec_head);
-			ft_redirection(shell);
+			//ft_redirection(shell);
 			exec_handler(shell);
 		}
 		if(shell->er_status != 2)
