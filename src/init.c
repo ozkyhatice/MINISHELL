@@ -118,7 +118,10 @@ void	start_program(t_shell *shell)
 			counter_pipe(shell);
 			put_cmnds(shell);
 			add_indx_to_exnd(shell->exec_head);
-			//ft_redirection(shell);
+			ft_redirection(shell);
+		}
+		if (shell->er_status == 0)
+		{
 			exec_handler(shell);
 		}
 		if(shell->er_status != 2)

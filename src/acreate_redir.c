@@ -8,6 +8,8 @@ t_red    *create_redirection_node(char *str, int type)
 	{
         new->type = type;
         new->name = ft_strdup (str);
+		new->next = NULL;
+		new->prev = NULL;
     }
     return (new);
 }

@@ -3,7 +3,7 @@
 int	main(int argc, char **argv, char **env)
 {
 	t_shell	*shell;
-	// int		exit_code;
+	int		exit_code;
 
 	if (argc > 1)
 	{
@@ -15,8 +15,8 @@ int	main(int argc, char **argv, char **env)
 		exit(0);
 	ft_init_signals();
 	initalizer(shell, env);
-	//exit_code = shell->ex_status;
+	exit_code = shell->ex_status;
 	// free(shell->cmd_line);
 	// free(shell);
-	return(0);
+	return(exit_code);
 }
