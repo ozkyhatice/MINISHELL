@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:53 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 16:33:42 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 17:32:08 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_sigint(int sig)
 		rl_redisplay();
 	}
 }
+
 void	ft_init_signals(void)
 {
 	signal(SIGINT, ft_sigint);
