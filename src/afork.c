@@ -11,13 +11,8 @@ void	ft_single_exec(t_shell *shell, int i)
 	set_io(exnd);
 	if (execve(path, exnd->cmd, NULL) == -1)
 	{
-		if (path == NULL)
-		{
-				ft_error_msg(exnd->cmd[0], NULL, "command not found");
-				shell->ex_status = 127;
-		}
-		else if (ft_access(path))	
-    	    ft_error_msg(path, NULL, "not authorize to execute");
+		is_path_ok(path, exnd->cmd[0], &shell->ex_status);
+		exit(shell->ex_status);
 	}
 }
 
@@ -31,24 +26,15 @@ void	ft_multi_exec(t_shell *shell, int i)
 	if (is_builtin(exnd->cmd[0]))
 	{
 		builtin_run(exnd, shell);
-
-		// dprintf(2, "asdasdasdasdasdasa\n");
-		//printf("----- builtin %d. kez------\n", i);
+		exit(shell->ex_status);
 	}
 	else 
 	{
 		path = getcmdpath(exnd->cmd[0], shell->path);
-	// dprintf(2,"battı balık: %s\n", exnd->cmd[1]);
 		if (execve(path, exnd->cmd, NULL) == -1)
 		{
-			if (path == NULL)
-			{
-				ft_error_msg(exnd->cmd[0], NULL, "command not found");
-				shell->ex_status = 127;
-			}
-			else if (ft_access(path))	
-				ft_error_msg(path, NULL, "not authorize to execute");
-		
+			is_path_ok(path, exnd->cmd[0], &shell->ex_status);
+			exit(shell->ex_status);
 		}
 	}
 }
@@ -60,7 +46,6 @@ int	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 		set_io(ex);
 		builtin_run(ex, shell);
     	ft_dup_rev(ex);	
-		//printf("----- builtin %d. kez------\n", i);
 	}
 	else
 	{
@@ -68,15 +53,11 @@ int	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 		if (ex->pid == 0)
 		{
 			if(shell->c_pipe - 1 == 0)
-			{
 				ft_single_exec(shell, i);
-				//printf("-----child single %d. kez------\n", i);
-			}
 			else
 			{
 				ft_multi_exec(shell, i);
 				return (1);
-				//printf("-----child multi %d. kez------\n", i);
 			}
 		}
 	}

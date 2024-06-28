@@ -252,6 +252,7 @@ int	istoken2(char *token);
 void	tilda_control(t_shell *shell);
 
 int	ft_check_syntax(char *str);
-
+void	is_path_ok(char *path, char *cmd, int *ex_status);
+void	is_dir(char *path);
 #endif
 
