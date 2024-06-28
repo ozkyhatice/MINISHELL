@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:52 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 17:33:58 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 17:41:48 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,24 @@ static void	doublequote_trim(t_shell *shell, char *word, int *i)
 		*i += 1;
 }
 
+int	trim_quote_plus(t_shell *shell, char *w, int i, char *tmp_str)
+{
+	int		s;
+
+	s = i;
+	while (w[i] && w[i] != '\"' && w[i] != '\'')
+		i++;
+	if (tmp_str)
+		free(tmp_str);
+	tmp_str = ft_substr(w, s, i - s);
+	if (tmp_str)
+		add_parse_subnode(shell, tmp_str);
+	return (i);
+}
+
 static char	*trim_quote(t_shell *shell, char *word)
 {
 	int		i;
-	int		s;
 	char	*tmp_str;
 
 	i = 0;
@@ -77,16 +91,7 @@ static char	*trim_quote(t_shell *shell, char *word)
 		else if (word[i] == '\"')
 			doublequote_trim(shell, word, &i);
 		else
-		{
-			s = i;
-			while (word[i] && word[i] != '\"' && word[i] != '\'')
-				i++;
-			if (tmp_str)
-				free(tmp_str);
-			tmp_str = ft_substr(word, s, i - s);
-			if (tmp_str)
-				add_parse_subnode(shell, tmp_str);
-		}
+			i = trim_quote_plus(shell, word, i, tmp_str);
 	}
 	tmp_str = ft_strjoin_subnode(shell->subnode_head);
 	ft_free_subnodes(shell);

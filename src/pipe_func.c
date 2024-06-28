@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:48 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 13:37:47 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 17:42:30 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	counter_pipe(t_shell *shell)
 	}
 	shell->c_pipe++;
 	create_ex_nodes(shell);
-	// printf("pipe: %d\n", shell->c_pipe);
-	// print_exec_node(shell);
 }
 
 void	create_ex_nodes(t_shell *shell)
@@ -40,5 +38,4 @@ void	create_ex_nodes(t_shell *shell)
 		add_exec_node(shell);
 		i++;
 	}
-	// printf("i:%d", i);
 }

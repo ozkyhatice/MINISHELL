@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:14:58 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 13:43:53 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 18:25:33 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	run_pwd(void)
 	pwd = getcwd(cwd, 256);
 	write(1, pwd, ft_strlen(pwd));
 	write(1, "\n", 1);
-	// return (1);
-	// shell->exit_code = 0;
 }
 
 // void	add_export(char	*arg)

@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:13:48 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 17:21:22 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 18:17:48 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,6 +251,7 @@ void			ft_dup_rev(t_exec_node *ex);
 
 void			do_dollar(t_shell *shell, char *str, int *i);
 void			quote_remove(t_shell *shell);
+int				trim_quote_plus(t_shell *shell, char *w, int i, char *tmp_str);
 void			ft_init_signals(void);
 int				control_howmany(char *str, char c);
 int				err_msg(char *str);
@@ -261,5 +262,7 @@ int				ft_check_syntax(char *str);
 void			is_path_ok(char *path, char *cmd, int *ex_status);
 void			is_dir(char *path);
 char			*ft_getenv(t_env *envc, char *env_var);
+void			ft_freeallnodes(t_shell *shell);
+void			shell_readline(t_shell *shell);
 
 #endif

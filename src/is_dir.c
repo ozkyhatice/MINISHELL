@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:15:54 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 12:15:56 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 17:55:14 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	is_dir(char *path)
 	ret = stat(path, &filestat);
 	if (ret == -1)
 	{
-		// strerror(errno);
-		// perror("ms: ");
 		ft_error_msg(path, NULL, E_NOFILE);
 		exit(127);
 	}

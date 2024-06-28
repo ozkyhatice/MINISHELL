@@ -6,11 +6,25 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:44 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 17:02:33 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 17:53:30 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+void	ft_buffer(char *buf, char **nextline)
+{
+	char	*temp;
+
+	if (*nextline)
+	{
+		temp = ft_strjoin(*nextline, buf);
+		free(*nextline);
+		*nextline = temp;
+	}
+	else
+		*nextline = ft_strdup(buf);
+}
 
 static char	*buffer(char *nextline, int fd)
 {
@@ -34,11 +48,7 @@ static char	*buffer(char *nextline, int fd)
 		}
 		buf[countread] = '\0';
 		printf("buf: %s, %s\n", buf, nextline);
-		if (nextline)
-			nextline = ft_strjoin(nextline, buf);
-		else
-			nextline = ft_strdup(buf);
-			
+		ft_buffer(buf, &nextline);
 	}
 	if (buf)
 		free(buf);

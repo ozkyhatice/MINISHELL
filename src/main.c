@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:46 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 10:13:47 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 17:42:46 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,5 @@ int	main(int argc, char **argv, char **env)
 	ft_init_signals();
 	initalizer(shell, env);
 	exit_code = shell->ex_status;
-	// free(shell->cmd_line);
-	// free(shell);
 	return (exit_code);
 }
