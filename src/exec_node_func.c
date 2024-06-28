@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_node_func.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:17 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 10:14:28 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 19:24:40 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,10 @@ void	print_exec_node(t_shell *shell)
 	int			i;
 
 	current = shell->exec_head;
-	// printf("\n");
 	j = 0;
 	while (current != NULL)
 	{
 		i = 0;
-		// printf("pid:%d komut=%s: type: %u\n",current->pid, current->cmd[i],
-			// current->type);
 		while (current->cmd[i] != NULL)
 		{
 			printf("node#%d	komut#%s\n", j, current->cmd[i]);
@@ -73,7 +70,6 @@ void	print_exec_node(t_shell *shell)
 		current = current->next;
 		j++;
 	}
-	// printf("\n");
 }
 
 void	ft_free_execnodes(t_shell *shell)

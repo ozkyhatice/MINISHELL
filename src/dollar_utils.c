@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:12 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 15:01:46 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 19:26:11 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	special_dodollar(t_shell *shell, char *str)
 			g_sig = 0;
 		}
 		else
-		add_parse_subnode(shell, ft_itoa(shell->ex_status));
+			add_parse_subnode(shell, ft_itoa(shell->ex_status));
 		add_parse_subnode(shell, str + 1);
 	}
 }
@@ -67,7 +67,7 @@ void	do_dollar2(t_shell *shell, char *tmp)
 	char	*env_value;
 	char	*str;
 
-	env_value = ft_getenv(shell->env_l ,tmp);
+	env_value = ft_getenv(shell->env_l, tmp);
 	str = ft_strdup(tmp);
 	if (str)
 	{

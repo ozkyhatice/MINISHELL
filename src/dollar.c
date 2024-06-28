@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:13 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 14:54:33 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 19:26:27 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ static void	quote_dollar(t_shell *shell, char *word, int *i)
 				free(str);
 			str = ft_substr(word, s, *i - s);
 			if (str)
-			{
 				add_parse_subnode(shell, str);
-				// free(str);
-			}
 		}
 	}
 	if (word[*i] == '\"')
@@ -71,10 +68,24 @@ static void	onequote_split(t_shell *shell, char *word, int *i)
 	add_parse_subnode(shell, "\'");
 }
 
+int	trim_quote_dllr(t_shell *shell, char *w, int i, char *tmp_str)
+{
+	int		s;
+
+	s = i;
+	while (w[i] && w[i] != '$' && w[i] != '\"' && w[i] != '\'')
+		i++;
+	if (tmp_str)
+		free(tmp_str);
+	tmp_str = ft_substr(w, s, i - s);
+	if (tmp_str)
+		add_parse_subnode(shell, tmp_str);
+	return (i);
+}
+
 static char	*parse_dollar(t_shell *shell, char *word)
 {
 	int		i;
-	int		s;
 	char	*tmp_str;
 
 	i = 0;
@@ -88,17 +99,7 @@ static char	*parse_dollar(t_shell *shell, char *word)
 		else if (word[i] == '$')
 			do_dollar(shell, word, &i);
 		else
-		{
-			s = i;
-			while (word[i] && word[i] != '$' && word[i] != '\"'
-				&& word[i] != '\'')
-				i++;
-			if (tmp_str)
-				free(tmp_str);
-			tmp_str = ft_substr(word, s, i - s);
-			if (tmp_str)
-				add_parse_subnode(shell, tmp_str);
-		}
+			i = trim_quote_dllr(shell, word, i, tmp_str);
 	}
 	tmp_str = ft_strjoin_subnode(shell->subnode_head);
 	ft_free_subnodes(shell);

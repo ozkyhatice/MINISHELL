@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   abuiltin.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:50 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 11:37:09 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 19:31:52 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,4 @@ void	builtin_run(t_exec_node *ex, t_shell *shell)
 		run_exit(shell, ex->cmd[1], ex->cmd[2]);
 	else if (ft_strncmp(ex->cmd[0], "cd", 3) == 0)
 		run_cd(shell, ex);
-	// return (0);
 }

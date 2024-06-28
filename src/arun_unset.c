@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:15:39 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 13:53:28 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 19:28:48 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ int	env_arg_control(char *env)
 	if (env_name_control(env))
 		return (1);
 	printf("-not a valid identifier--\n");
-	// command_error(env, "export", "not a valid identifier", shell);
-	// shell->ex_status = 1;
 	return (0);
 }
 
@@ -68,7 +66,6 @@ void	delete_env(t_shell *shell, char *name)
 			if (env->content)
 				free(env->content);
 			free(env->name);
-			// env->name = NULL;
 			if (shell->env_l == env)
 				shell->env_l = shell->env_l->next;
 			else
@@ -86,7 +83,6 @@ void	run_unset(t_shell *shell)
 	char	**temp_name;
 	int		array_len;
 
-	// shell->exit_code = 0;
 	array_len = parameters_count(shell->exec_head->cmd);
 	if (array_len > 1)
 	{
@@ -96,7 +92,6 @@ void	run_unset(t_shell *shell)
 			if (!env_arg_control(*temp_name))
 			{
 				printf("not a valid identifier\n");
-				// command_error(0, "unset", "not a valid identifier", shell);
 				continue ;
 			}
 			else

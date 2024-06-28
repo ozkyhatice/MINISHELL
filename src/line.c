@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:44 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 17:53:30 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 19:21:54 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static char	*buffer(char *nextline, int fd)
 			return (0);
 		}
 		buf[countread] = '\0';
-		printf("buf: %s, %s\n", buf, nextline);
 		ft_buffer(buf, &nextline);
 	}
 	if (buf)
