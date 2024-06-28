@@ -3,6 +3,7 @@
 
 
 # include "../libft/libft.h"
+# include <errno.h>
 # include <sys/wait.h>
 # include <stdio.h>
 # include <stdlib.h>

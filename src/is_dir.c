@@ -3,13 +3,22 @@
 void	is_dir(char *path)
 {
 	struct stat	filestat;
+	int				ret;
 
-    stat(path, &filestat);
-
-    if (S_ISDIR(filestat.st_mode))
+    ret = stat(path, &filestat);
+    if (errno == ENOENT || errno == ENOTDIR) {
+        ft_error_msg(path, NULL, "No such file or directory");
+        exit(127);
+    }
+    if (errno == EACCES) 
 	{
-		ft_error_msg(path, NULL, " is a directory");
-		exit (126);
+        ft_error_msg(path, NULL, "Permission denied");
+        exit(126);
+    }
+	if (S_ISDIR(filestat.st_mode))
+	{
+		ft_error_msg(path, NULL, "is a directory");
+		exit(126);
 	}
 }
 
