@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   afds.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:58 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 10:12:59 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 13:47:20 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	open_fd(t_exec_node *exnd)
 
 void	open_pipes(t_shell *shell) // senem
 {
-	int **fd;
-	int i;
+	int	**fd;
+	int	i;
 
 	if (shell->c_pipe > 1)
 	{
@@ -61,7 +61,7 @@ void	open_pipes(t_shell *shell) // senem
 
 void	fd_closer(t_shell *shell) // senemdden
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < shell->c_pipe - 1)

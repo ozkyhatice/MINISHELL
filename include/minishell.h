@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:13:48 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 12:14:11 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 15:38:48 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,16 @@
 # include <fcntl.h>
 # include <readline/history.h>
 # include <signal.h>
+# include <sys/ioctl.h>
 # include <sys/stat.h>
 # define E_PERM		" Permission denied"
 # define E_NOFILE	"No such file or directory"
 # define IN_HEREDOC		2
 # define AFTER_HEREDOC	3
+# define IN_CMD		4
+# define AFTER_CMD	5
 
-extern int		g_sig;
+int		g_sig;
 
 enum e_token
 {
@@ -50,8 +53,8 @@ enum e_token
 	INPUT,// 11
 	APPENDOUT,//12
 	HD,//13
-	NEWLINE, //14
-	NEWLINE_R,//15
+	NEWLINE_N, //14
+	NEWLINE_N_R,//15
 };
 
 enum e_builtin
@@ -258,4 +261,7 @@ int				ft_check_syntax(char *str);
 void			is_path_ok(char *path, char *cmd, int *ex_status);
 void			is_dir(char *path);
 char			*ft_getenv(t_env *envc, char *env_var);
+void			free_if_not_null(void *ptr);
+void	trim_quote_extra(t_shell *shell, int i, char *word, char **tmp_str);
+
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_func.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:18 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 10:13:37 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 13:41:40 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_istoken(char c)
 
 int	ft_exist(char *str, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (str)

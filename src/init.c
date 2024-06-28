@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:39 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 11:37:09 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 16:53:04 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	initalizer(t_shell *shell, char **env)
 void	shell_readline(t_shell *shell)
 {
 	shell->cmd_line = readline("minishell ~ ");
-	if (shell->cmd_line == NULL)
+	if (shell->cmd_line == NULL && g_sig != IN_HEREDOC)
 	{
 		printf("exit\n");
 		shell->er_status = 2;
@@ -71,6 +71,7 @@ void	shell_readline(t_shell *shell)
 		shell->er_status = 1;
 	}
 }
+
 void	delete_null_nodes(t_shell *shell)
 {
 	t_parse_node	*tmp;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:10 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 10:13:11 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 13:43:02 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	check_missing_quotes(char *cmd_line)
 {
-	int quote;
-	int i;
+	int	quote;
+	int	i;
 
 	quote = 0;
 	i = -1;

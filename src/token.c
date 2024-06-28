@@ -6,7 +6,7 @@
 /*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:14:01 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 10:14:02 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 14:46:35 by abkiraz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ enum e_token	char_token(const char *str)
 	else if (same_str(str, "("))
 		return (L_BRACKET);
 	else if (same_str(str, ">>>"))
-		return (NEWLINE_R);
+		return (NEWLINE_N_R);
 	else if (same_str(str, "<<<"))
-		return (NEWLINE);
+		return (NEWLINE_N);
 	else
 		return (WORD);
 }

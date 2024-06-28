@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arun_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:05 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 10:40:03 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 13:52:27 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_is_all_alpha(char *str)
 void	run_exit(t_shell *shell, char *str, char *s2)
 {
 	(void)shell;
-	int code;
+	int	code;
 	// close_all_redirections();
 	// ft_free_nodes(shell);
 	// ft_free_execnodes(shell);

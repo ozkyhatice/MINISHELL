@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:56 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 10:13:57 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 13:59:05 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	bracket_ctrl(t_shell *shell, t_parse_node *tmp)
 	int	i;
 	int	quote;
 
-	i = 0;
+	i = -1;
 	quote = 0;
-	while (tmp->word[i])
+	while (tmp->word[++i])
 	{
 		if (ft_isquote(tmp->word[i]))
 		{
@@ -38,7 +38,6 @@ void	bracket_ctrl(t_shell *shell, t_parse_node *tmp)
 			shell->r_br++;
 			shell->br_type = R_BRACKET;
 		}
-		i++;
 	}
 }
 

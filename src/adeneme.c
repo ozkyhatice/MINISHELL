@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   adeneme.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:54 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 11:37:09 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 13:45:49 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_free_arr(char **str)
 	}
 	free(str);
 }
+
 char	*getcmdpath(char *cmd, char **path)
 {
 	int		i;

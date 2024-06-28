@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:51 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 10:13:52 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 13:36:31 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ void	split2_quote(t_shell *shell, int *first, int *i)
 
 void	split_quote(t_shell *shell)
 {
-	int i;
-	int first;
-	char *str;
+	int		i;
+	int		first;
+	char	*str;
 
 	i = 0;
 	while (shell->cmd_line && shell->cmd_line[i])

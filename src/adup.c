@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   adup.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:55 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 11:59:49 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 13:46:32 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	wait_al(t_shell *shell)
 	t_exec_node	*ex;
 	int			status;
 	int			i;
-	t_exec_node		*cmd;
+	t_exec_node	*cmd;
 
 	i = 0;
 	ex = shell->exec_head;
@@ -55,7 +55,7 @@ void	wait_al(t_shell *shell)
 		i++;
 	}
 	cmd = get_exec_node(shell->exec_head, i - 1);
-	if(is_builtin(cmd->cmd[0]) != 1)
+	if (is_builtin(cmd->cmd[0]) != 1)
 	{
 		if (WIFEXITED(status))
 			shell->ex_status = WEXITSTATUS(status);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   afork.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:02 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 11:49:42 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 13:49:37 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ void	ft_multi_exec(t_shell *shell, int i)
 void	ft_ft_split(t_shell *shell)
 {
 	char		**tmp;
-	char * const path = ft_getenv(shell->env_l ,"PATH");
+	char *const	path = ft_getenv(shell->env_l, "PATH");
 
 	tmp = shell->path;
 	if (path == NULL)
 		shell->path = NULL;
 	else
 		shell->path = ft_split(path, ':');
-	if((tmp))
+	if ((tmp))
 		free(tmp);
 }
 
@@ -90,6 +90,7 @@ int	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 	}
 	return (0);
 }
+
 int	ft_perform_dup(int fd, int std_stream)
 {
 	dup2(fd, std_stream);

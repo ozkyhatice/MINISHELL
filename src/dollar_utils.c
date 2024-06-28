@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:12 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 11:49:35 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 15:01:46 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ void	special_dodollar(t_shell *shell, char *str)
 	}
 	if (str[0] == '?')
 	{
-		// if (g_signal == 1)
-		// {
-		// 	add_parse_subnode(shell, "1");
-		// 	g_signal = 0;
-		// }
-		// else
+		if (g_sig == 1)
+		{
+			add_parse_subnode(shell, "1");
+			g_sig = 0;
+		}
+		else
 		add_parse_subnode(shell, ft_itoa(shell->ex_status));
 		add_parse_subnode(shell, str + 1);
 	}
@@ -67,7 +67,7 @@ void	do_dollar2(t_shell *shell, char *tmp)
 	char	*env_value;
 	char	*str;
 
-	env_value = getenv(tmp);
+	env_value = ft_getenv(shell->env_l ,tmp);
 	str = ft_strdup(tmp);
 	if (str)
 	{
@@ -83,7 +83,7 @@ void	do_dollar2(t_shell *shell, char *tmp)
 			if (dollar_control(str[0]))
 				add_dollar(shell, str);
 			if (dollar_control2(str[0], shell, str))
-				add_parse_subnode(shell, "error");
+				add_parse_subnode(shell, "");
 		}
 		free(str);
 	}

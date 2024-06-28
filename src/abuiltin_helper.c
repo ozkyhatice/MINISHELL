@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:14:58 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 12:15:00 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 13:43:53 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	run_echo(t_exec_node *ex, int *extstat)
 
 void	run_env(t_shell *shell)
 {
-	t_env *env;
+	t_env	*env;
 
 	env = shell->env_l;
 	while (env && env->content) //&& !is_full_space(env->content)

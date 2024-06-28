@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aredir.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:04 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 10:13:05 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 16:52:48 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_red_less(t_exec_node *ex, t_red *head_redir, t_shell *shell)
 		shell->er_status = 1;
 		shell->ex_status = 1;
 	}
-	if (ex->in != -3)
+	if (ex->in != 0)
 		close(ex->in);
 	ex->in = fd;
 	if (ex->here_path != NULL)
@@ -65,11 +65,14 @@ void	ft_red_great(t_exec_node *head, t_red *head_redir, t_shell *shell)
 			ft_error_msg(NULL, head_redir->name, E_PERM);
 		shell->er_status = 1;
 		shell->ex_status = 1;
+		return ;
+		// Hata durumunda erken çıkış
 	}
-	if (head->out != -3)
+	if (head->out != 1)
 		close(head->out);
 	head->out = fd;
 }
+
 void	ft_red_dgreat(t_exec_node *head, t_red *head_redir, t_shell *shell)
 {
 	int	fd;
@@ -92,7 +95,7 @@ void	ft_red_dgreat(t_exec_node *head, t_red *head_redir, t_shell *shell)
 		shell->er_status = 1;
 		shell->ex_status = 1;
 	}
-	if (head->out != -3)
+	if (head->out != 1)
 		close(head->out);
 	head->out = fd;
 }
@@ -125,40 +128,14 @@ void	ft_heredoc(char *eof, int fd)
 	}
 	close(fd);
 }
-void	ft_redir_dless(t_exec_node *head, t_red *head_redir, t_shell *shell)
-{
-	int	fd;
 
-	if (head->in != -3)
-		close(head->in);
-	fd = open("tmpfile", O_CREAT | O_TRUNC | O_RDWR, 0777);
-	if (fd < 0)
-	{
-		if (access(head_redir->name, F_OK) == -1)
-			ft_error_msg(NULL, head_redir->name, E_NOFILE);
-		else if (access(head_redir->name, R_OK) == -1)
-			ft_error_msg(NULL, head_redir->name, E_PERM);
-		else if (access(head_redir->name, R_OK) == -1)
-			ft_error_msg(NULL, head_redir->name, E_PERM);
-		shell->er_status = 1;
-		shell->ex_status = 1;
-	}
-	ft_heredoc(head_redir->name, fd);
-	fd = open("tmpfile", O_RDONLY);
-	head->in = fd;
-	if (head->here_path != NULL)
-	{
-		unlink("tmpfile");
-		head->here_path = NULL;
-	}
-	head->here_path = ft_strdup(".tmpfile");
-}
 void	ft_redirection(t_shell *shell)
 {
-	t_exec_node *ex;
-	t_red *ex_redir;
+	t_exec_node	*ex;
+	t_red		*ex_redir;
 
 	ex = shell->exec_head;
+	init_heredoc(shell);
 	while (ex && shell->ex_status == 0)
 	{
 		ex_redir = ex->redirection_head;
@@ -170,8 +147,6 @@ void	ft_redirection(t_shell *shell)
 				ft_red_dgreat(ex, ex_redir, shell);
 			else if (ex_redir->type == INPUT)
 				ft_red_less(ex, ex_redir, shell);
-			else if (ex_redir->type == HD)
-				ft_redir_dless(ex, ex_redir, shell);
 			ex_redir = ex_redir->next;
 		}
 		if (shell->er_status == 1)

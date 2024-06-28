@@ -19,15 +19,15 @@ bash: syntax error near unexpected token `<'
 bash-3.2$ ls -l >| >
 bash: syntax error near unexpected token `>'
 bash-3.2$ ls -l >|
-bash: syntax error near unexpected token `newline'
+bash: syntax error near unexpected token `NEWLINE_N'
 bash-3.2$ ls -l >|
-bash: syntax error near unexpected token `newline'
+bash: syntax error near unexpected token `NEWLINE_N'
 bash-3.2$ ls -l >| <
 bash: syntax error near unexpected token `<'
 bash-3.2$ ls -l > > )
 bash: syntax error near unexpected token `>'
 bash-3.2$ ls -l >| 
-bash: syntax error near unexpected token `newline'
+bash: syntax error near unexpected token `NEWLINE_N'
 bash-3.2$ ls -l >| cc
 
 bash: syntax error near unexpected token `|'
@@ -40,7 +40,7 @@ bash: syntax error near unexpected token `>'
 bash-3.2$ ls -l | grep  <| () 
 bash: syntax error near unexpected token `|'
 bash-3.2$ ls -l >
-bash: syntax error near unexpected token `newline'
+bash: syntax error near unexpected token `NEWLINE_N'
 bash-3.2$ ls -l () > > )
 bash: syntax error near unexpected token `('
 bash-3.2$ ls -l () > > ()

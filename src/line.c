@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:44 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 10:13:45 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 17:02:33 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,12 @@ static char	*buffer(char *nextline, int fd)
 			return (0);
 		}
 		buf[countread] = '\0';
-		nextline = ft_strjoin(nextline, buf);
+		printf("buf: %s, %s\n", buf, nextline);
+		if (nextline)
+			nextline = ft_strjoin(nextline, buf);
+		else
+			nextline = ft_strdup(buf);
+			
 	}
 	if (buf)
 		free(buf);

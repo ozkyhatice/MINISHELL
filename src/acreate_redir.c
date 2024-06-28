@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   acreate_redir.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:53 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 10:12:54 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 13:45:46 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../include/minishell.h"
 
@@ -62,8 +61,7 @@ void	print_redir_node(t_shell *shell)
 		red = ex->redirection_head;
 		while (red)
 		{
-			printf("node#%d	redir#%d	name=%s	type=%d\n", i, j, red->name,
-							red->type);
+			printf("node#%d	redir#%d name=%s type=%d\n", i, j, red->name, red->type);
 			red = red->next;
 			j++;
 		}

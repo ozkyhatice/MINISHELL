@@ -1,13 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   access.c                                           :+:      :+:    :+:   */
+/*   z_forcodelines.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/28 10:12:41 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 10:12:52 by abkiraz          ###   ########.fr       */
+/*   Created: 2024/06/28 14:04:31 by akdemir           #+#    #+#             */
+/*   Updated: 2024/06/28 14:35:31 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+void	free_if_not_null(void *ptr)
+{
+	if (ptr)
+	{
+		free(ptr);
+		ptr = NULL;
+	}
+}

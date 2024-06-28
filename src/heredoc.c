@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:33 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 10:13:38 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 17:10:12 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,23 @@ static void	heredoc_read(char *end, int write_fd)
 {
 	char	*input;
 	char	*heredoc;
+	int 	flag;
 
+	flag = 0;
 	heredoc = NULL;
 	input = NULL;
 	while (1)
 	{
 		input = readline("> ");
-		printf("heredoc: %s\n%s\n", input, end);
 		if (!input || same_str(input, end))
 		{
-			write(write_fd, heredoc, ft_strlen(heredoc));
+			if (heredoc && flag == 0)
+			{
+				write(write_fd, heredoc, ft_strlen(heredoc));
+				flag = 1;
+			}
+			else
+				write(write_fd, heredoc, 1);
 			if (heredoc)
 				free(heredoc);
 			if (input)
@@ -44,38 +51,35 @@ static void	heredoc_read(char *end, int write_fd)
 		if (input)
 			free(input);
 	}
+	g_sig = AFTER_HEREDOC;
 }
 
 void	init_heredoc(t_shell *shell)
 {
-	t_parse_node *p_head;
-	t_exec_node *e_head;
-	int fd[2];
-	int pid;
-	int stat;
+	t_parse_node	*p_head;
+	t_exec_node		*e_head;
+	int				fd[2];
+	int				pid;
+	int				stat;
 
 	p_head = shell->parse_head;
 	e_head = shell->exec_head;
 	stat = 0;
-	print_exec_node(shell);
 	while (p_head)
 	{
-		printf("0\n");
 		while (p_head && p_head->type != PIPE)
 		{
-			printf("1\n");
-
 			if (p_head->type == 5)
 			{
-				printf("bura\n");
+				g_sig = IN_HEREDOC;
 				pipe(fd);
 				pid = fork();
 				if (pid == 0)
 				{
 					close(fd[0]);
 					signal(SIGINT, interrupt_here_document);
-					printf("word: %s\n", p_head->next->word);
 					heredoc_read(p_head->next->word, fd[1]);
+					exit(0);
 				}
 				else
 				{
@@ -96,8 +100,8 @@ void	init_heredoc(t_shell *shell)
 						return ;
 					}
 				}
-
 				close(fd[1]);
+				g_sig = AFTER_HEREDOC;
 			}
 			p_head = p_head->next;
 		}

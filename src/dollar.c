@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:13 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 11:44:46 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 14:54:33 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	quote_dollar(t_shell *shell, char *word, int *i)
 
 	*i += 1;
 	str = NULL;
-	add_parse_subnode(shell, "\""); // FREELENİCEK
+	add_parse_subnode(shell, "\"");
 	while (word[*i] && word[*i] != '\"')
 	{
 		if (word[*i] == '$')
@@ -51,7 +51,7 @@ static void	onequote_split(t_shell *shell, char *word, int *i)
 
 	*i += 1;
 	str = NULL;
-	add_parse_subnode(shell, "\'"); // FREELENİCEK
+	add_parse_subnode(shell, "\'");
 	while (word[*i] && word[*i] != '\'')
 	{
 		s = *i;
@@ -68,7 +68,7 @@ static void	onequote_split(t_shell *shell, char *word, int *i)
 	}
 	if (word[*i] == '\'')
 		*i += 1;
-	add_parse_subnode(shell, "\'"); // FREELENİCEK
+	add_parse_subnode(shell, "\'");
 }
 
 static char	*parse_dollar(t_shell *shell, char *word)

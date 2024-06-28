@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:15:39 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 12:15:40 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 13:53:28 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	delete_env(t_shell *shell, char *name)
 			if (shell->env_l == env)
 				shell->env_l = shell->env_l->next;
 			else
-			temp_env->next = env->next;
+				temp_env->next = env->next;
 			free(env);
 			break ;
 		}

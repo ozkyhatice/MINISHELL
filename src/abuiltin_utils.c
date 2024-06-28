@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:15:08 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 12:15:11 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 16:18:25 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,39 +39,3 @@ int	is_full_space(char *rl)
 	return (1);
 }
 
-// void	update_env_tail(void)
-// {
-// 	g_data.env_tail = g_data.env_head;
-// 	while (g_data.env_tail->next && g_data.env_tail->next->key)
-// 		g_data.env_tail = g_data.env_tail->next;
-// }
-
-// int	go_dir(char *path, char **new)
-// {
-// 	char	*pwd;
-// 	char	*oldpwd;
-
-// 	pwd = getcwd(NULL, 0);
-// 	oldpwd = getcwd(NULL, 0);
-// 	if (chdir(path) == -1)
-// 	{
-// 		printf("minishell: cd: %s: %s\n", path, strerror(errno));
-// 		smart_free(pwd);
-// 		smart_free(oldpwd);
-// 		return (0);
-// 	}
-// 	*new = getcwd(NULL, 0);
-// 	add_environment("PWD", *new);
-// 	add_environment("OLDPWD", oldpwd);
-// 	smart_free(pwd);
-// 	smart_free(oldpwd);
-// 	return (1);
-// }
-
-// void	run_exit(int num)
-// {
-// 	close_all_redirections();
-// 	clear_parse_list();
-// 	clear_command_list();
-// 	exit(num);
-// }

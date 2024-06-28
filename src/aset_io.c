@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aset_io.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:09 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 10:13:10 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 13:05:17 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,14 @@ void	set_io(t_exec_node *ex)
 {
 	ex->std_in = dup(0);
 	ex->std_out = dup(1);
-	if (ex->out >= 0)
+	if (ex->out > 2)
+	{
 		dup2(ex->out, STDOUT_FILENO);
-	if (ex->in >= 0)
+		close(ex->out);
+	}
+	if (ex->in > 2)
+	{
 		dup2(ex->in, STDIN_FILENO);
+		close(ex->in);
+	}
 }

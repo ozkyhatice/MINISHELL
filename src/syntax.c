@@ -6,7 +6,7 @@
 /*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:57 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 10:13:58 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 14:46:35 by abkiraz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int	control_rules2(t_parse_node *tmp_node)
 		return (err_msg("|"));
 	else if ((tmp_node->type == L_REDIR || tmp_node->type == APPEND
 			|| tmp_node->type == R_REDIR || tmp_node->type == HEREDOC
-			|| tmp_node->type == NEWLINE) && !tmp_node->next)
-		return (err_msg("newline"));
-	else if ((tmp_node->type == NEWLINE_R) && !tmp_node->next)
+			|| tmp_node->type == NEWLINE_N) && !tmp_node->next)
+		return (err_msg("NEWLINE_N"));
+	else if ((tmp_node->type == NEWLINE_N_R) && !tmp_node->next)
 		return (err_msg(">"));
 	else
 		return (0);
@@ -63,9 +63,9 @@ int	control_rules3(t_shell *shell, t_parse_node *tmp_node)
 	if (tmp_node->next && (tmp_node->next->type == R_REDIR
 			|| tmp_node->next->type == L_REDIR || tmp_node->next->type == APPEND
 			|| tmp_node->next->type == HEREDOC
-			|| tmp_node->next->type == NEWLINE) && (tmp_node->type == R_REDIR
+			|| tmp_node->next->type == NEWLINE_N) && (tmp_node->type == R_REDIR
 			|| tmp_node->type == L_REDIR || tmp_node->type == APPEND
-			|| tmp_node->type == HEREDOC || tmp_node->type == NEWLINE))
+			|| tmp_node->type == HEREDOC || tmp_node->type == NEWLINE_N))
 		return (err_msg(tmp_node->next->word));
 	else if (shell->l_br < shell->r_br)
 		return (err_msg(")"));
