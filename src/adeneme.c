@@ -19,7 +19,8 @@ char	*getcmdpath(char *cmd, char **path)
 	char	*tmp;
 
 	i = 0;
-	is_dir(cmd);
+	if (cmd[0] == '.' || cmd[0] == '/')
+		is_dir(cmd);
 	while (path[i])
 	{
 		tmp = ft_strjoin(path[i], "/");

@@ -6,18 +6,21 @@ void	is_dir(char *path)
 	int				ret;
 
     ret = stat(path, &filestat);
-    // if (errno == ENOENT) {
-    //     ft_error_msg(path, NULL, "No such file or directory");
-    //     exit(127);
-    // }
-    // if (errno == EACCES) 
-	// {
-    //     ft_error_msg(path, NULL, "Permission denied");
-    //     exit(126);
-    // }
+	if (ret == -1)
+	{
+		// strerror(errno);
+		// perror("ms: ");
+		ft_error_msg(path, NULL, E_NOFILE);
+		exit(127);
+	}
 	if (S_ISDIR(filestat.st_mode))
 	{
 		ft_error_msg(path, NULL, "is a directory");
+		exit(126);
+	}
+	if (ft_access(path))
+	{
+		ft_error_msg(path, NULL, E_PERM);
 		exit(126);
 	}
 }
