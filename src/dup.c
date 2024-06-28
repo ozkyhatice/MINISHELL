@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:55 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 13:46:32 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 19:53:20 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,6 @@ void	wait_al(t_shell *shell)
 	while (ex)
 	{
 		waitpid(ex->pid, &status, 0);
-		// shell->exit_code = status / 256;
-		// if (ex->outfile == 2 || exec_head->infile == 2)
-		// 	shell->exit_code = 1;
 		ex = ex->next;
 		i++;
 	}
@@ -60,7 +57,6 @@ void	wait_al(t_shell *shell)
 		if (WIFEXITED(status))
 			shell->ex_status = WEXITSTATUS(status);
 	}
-	// g_signal = 0;
 }
 
 void	set_dup(t_exec_node *exnd, int i, int count)

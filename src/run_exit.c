@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:05 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 19:30:32 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 19:45:37 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,19 @@ int	ft_is_all_alpha(char *str)
 	return (1);
 }
 
+int	get_exit_code(char *str)
+{
+	int	code;
+
+	if (ft_atoi(str) == 100)
+		code = 100;
+	else if (ft_atoi(str) == -100)
+		code = 156;
+	else
+		code = ft_atoi(str) % 256;
+	return (code);
+}
+
 void	run_exit(t_shell *shell, char *str, char *s2)
 {
 	int	code;
@@ -63,12 +76,7 @@ void	run_exit(t_shell *shell, char *str, char *s2)
 	}
 	else if (ft_is_all_digit(str) || ft_atoi(str) != 0)
 	{
-		if (ft_atoi(str) == 100)
-			code = 100;
-		else if (ft_atoi(str) == -100)
-			code = 156;
-		else
-			code = ft_atoi(str) % 256;
+		code = get_exit_code(str);
 		exit(code);
 	}
 	else if (ft_is_all_alpha(str))

@@ -6,13 +6,11 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:15:08 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 16:18:25 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 20:51:12 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// extern t_data	g_data;
 
 int	check_echo_n(char *keyword)
 {
@@ -38,4 +36,3 @@ int	is_full_space(char *rl)
 	}
 	return (1);
 }
-

@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:18 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 13:41:40 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 21:56:47 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,18 @@ int	ft_exist(char *str, char c)
 		}
 	}
 	return (0);
+}
+
+int	ft_is_all_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_isspace(str[i]) == 0)
+			return (0);
+		i++;
+	}
+	return (1);
 }

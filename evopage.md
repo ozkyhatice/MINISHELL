@@ -38,7 +38,8 @@ exit
     If something crashes, select the "crash" flag.
     If something doesn't work, select the "incomplete work" flag.
 
-Return value of a process
+Return value of a process //siginnnttttt
+
 
     Execute a simple command with an absolute path like /bin/ls, or any other command with arguments but without any quotes and double quotes. Then execute echo $?
     Check the printed value. You can do the same in bash in order to compare the results.
@@ -50,7 +51,7 @@ Return value of a process
 Signals
 
     ctrl-C in an empty prompt should display a new line with a new prompt.
-    ctrl-\ in an empty prompt should not do anything.
+    ++++ctrl-\ in an empty prompt should not do anything.
     ctrl-D in an empty prompt should quit minishell --> RELAUNCH!
     ctrl-C in a prompt after you wrote some stuff should display a new line with a new prompt.
     The buffer should be clean too. Press "Enter" to make sure nothing from the previous line is executed.
@@ -96,7 +97,7 @@ unset
 
 cd
 
-    Use the command cd to move the working directory and check if you are in the right directory with /bin/ls
+    +++++Use the command cd to move the working directory and check if you are in the right directory with /bin/ls
     Repeat multiple times with working and not working cd
     Also, try '.' and '..' as arguments.
 
@@ -122,6 +123,8 @@ Redirection
     Repeat multiple times with different commands and arguments and sometimes change > with >>
     Check if multiple tries of the same redirections fail.
     Test << redirection (it doesn't have to update the history).
+    cat < a.txt
+    cat << a
 
 Pipes
 

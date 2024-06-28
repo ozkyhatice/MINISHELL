@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:15:25 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 12:15:27 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 19:51:52 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,34 +51,6 @@ void	env_lstadd_back(t_env **lst, t_env *new)
 	}
 }
 
-// void	path_init(t_shell *shell)
-// {
-// 	t_env	*env_l;
-// 	int		i;
-// 	char	**temp_command;
-// 	char	*join;
-
-// 	env_l = shell->env_l;
-// 	shell->path = NULL;
-// 	if (!search_path(env_l, "PATH"))
-// 		return ;
-// 	while (env_l)
-// 	{
-// 		if (!ownstrcmp(env_l->name, "PATH"))
-// 			break ;
-// 		env_l = env_l->next;
-// 	}
-// 	temp_command = ft_split(env_l->content, ':');
-// 	i = -1;
-// 	while (temp_command[++i])
-// 	{
-// 		join = ft_strjoin(temp_command[i], "/");
-// 		shell->path = dynamic_malloc(shell->path, join);
-// 		free(join);
-// 	}
-// 	free(temp_command);
-// }
-
 void	env_init(t_shell *shell, char **env)
 {
 	int		i;
@@ -105,5 +77,4 @@ void	env_init(t_shell *shell, char **env)
 			env_lstadd_back(&shell->env_l, env_listnew(name, content));
 		}
 	}
-	// path_init(shell);// bak
 }

@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:13:48 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 18:48:14 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 21:56:12 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,16 @@ typedef struct s_subnode
 	struct s_subnode	*next;
 	struct s_subnode	*prev;
 }	t_subnode;
+
+typedef struct s_put_cmd
+{
+	int					i;
+	int					j;
+	int					arg_len;
+	t_parse_node		*head;
+	t_parse_node		*tmp;
+	struct s_exec_node	*cmnds;
+}	t_put_cmd;
 
 typedef struct s_exec_node
 {
@@ -266,5 +276,33 @@ void			shell_readline(t_shell *shell);
 
 int				trim_quote_plus(t_shell *shell, char *w, int i, char *tmp_str);
 int				trim_quote_dllr(t_shell *shell, char *w, int i, char *tmp_str);
+
+int				ft_perform_dup(int fd, int std_stream);
+
+//export
+t_env			*create_env(char *name, char *content);
+int				check_and_update(t_shell *shell, char *name, char *content);
+void			add_environment(t_shell *shell, char *name, char *content);
+int				ft_is_all_num(char *str);
+int				ft_isname(int c);
+void			add_export(t_shell *shell, char *arg);
+int				ft_check_syntax(char *str);
+
+//init files
+void			ft_freeallnodes(t_shell *shell);
+char			**copyenv(char **env);
+void			initalizer(t_shell *shell, char **env);
+int				ft_is_all_space(char *str);
+void			shell_readline(t_shell *shell);
+
+//dnm.c funcs
+void			ft_free_arr(char **str);
+char			*getcmdpath(char *cmd, char **path);
+void			define_rtype(t_parse_node *node, t_exec_node *exnode);
+t_exec_node		*get_exec_node(t_exec_node *exnode, int indx);
+t_parse_node	*get_parse_node(t_parse_node *node, int indx);
+void			put_cmnds(t_shell *shell);
+int				ft_is_all_space(char *str);
+int				ft_isspace(char c);
 
 #endif

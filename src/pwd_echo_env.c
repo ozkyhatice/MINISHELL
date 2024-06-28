@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:14:58 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 19:31:40 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 19:54:33 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	run_env(t_shell *shell)
 	env = shell->env_l;
 	while (env && env->content)
 	{
-		printf("%s=%s\n", env->name, env->content);
+		if (env->content[0] != '\0')
+			printf("%s=%s\n", env->name, env->content);
 		env = env->next;
 	}
 }

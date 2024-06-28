@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   afork.c                                            :+:      :+:    :+:   */
+/*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:02 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 13:49:37 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 22:08:32 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	ft_ft_split(t_shell *shell)
 
 int	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 {
+	print_exec_node(shell);
 	if (shell->c_pipe == 1 && is_builtin(ex->cmd[0]))
 	{
 		set_io(ex);
@@ -91,19 +92,11 @@ int	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 	return (0);
 }
 
-int	ft_perform_dup(int fd, int std_stream)
-{
-	dup2(fd, std_stream);
-	close(fd);
-	return (-2);
-}
-
 int	exec_handler(t_shell *shell)
 {
 	int			i;
 	t_exec_node	*exnd;
 
-	// int			status;
 	i = 0;
 	exnd = shell->exec_head;
 	if (shell->c_pipe > 1)
@@ -117,6 +110,5 @@ int	exec_handler(t_shell *shell)
 	}
 	fd_closer(shell);
 	wait_al(shell);
-	// close_fd(shell->exec_head, i, shell->c_pipe);
 	return (0);
 }

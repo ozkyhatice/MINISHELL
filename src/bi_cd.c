@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   acd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:47 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 14:54:57 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 20:57:57 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-// extern	t_shell	*shell;
 
 int	go_dir(t_shell *shell, char *path, char **new)
 {
@@ -35,32 +33,40 @@ int	go_dir(t_shell *shell, char *path, char **new)
 	return (1);
 }
 
-int	cd_exec(t_shell *shell, t_exec_node **ex, char **home, char **tmp, char **new)
+int	handle_cd_result(int res, char *dir, t_shell *shell, char **home)
 {
-	int	res;
+	if (res == 0)
+	{
+		if (dir != NULL)
+			ft_error_msg(dir, NULL, "No such file or directory");
+		shell->ex_status = 1;
+		if (home != NULL)
+			free(*home);
+		return (0);
+	}
+	shell->ex_status = 0;
+	return (1);
+}
+
+int	cd_exec(t_shell *shell, t_exec_node **ex, char **tmp, char **new)
+{
+	int		res;
+	char	*home;
 
 	res = -1;
+	home = ft_strdup(ft_getenv(shell->env_l, "HOME"));
 	if ((*ex)->cmd[1] == NULL)
 	{
-		res = go_dir(shell, *home, new);
-		if (res == 0)
-		{
-			free(*home);
+		res = go_dir(shell, home, new);
+		if (!handle_cd_result(res, NULL, shell, &home))
 			return (0);
-		}
-		*tmp = *home;
+		*tmp = home;
 	}
 	else
 	{
 		res = go_dir(shell, (*ex)->cmd[1], new);
-		if (res == 0)
-		{
-			ft_error_msg((*ex)->cmd[1], NULL, "No such file or directory");
-			shell->ex_status = 1;
-			free(*home);
+		if (!handle_cd_result(res, (*ex)->cmd[1], shell, &home))
 			return (0);
-		}
-		shell->ex_status = 0;
 		*tmp = (*ex)->cmd[1];
 	}
 	return (1);
@@ -68,22 +74,19 @@ int	cd_exec(t_shell *shell, t_exec_node **ex, char **home, char **tmp, char **ne
 
 int	run_cd(t_shell *shell, t_exec_node *ex)
 {
-	char	*home;
 	char	*curr;
 	char	*tmp;
 	char	*new;
 	int		res;
 
 	res = -1;
-	home = ft_strdup(ft_getenv(shell->env_l ,"HOME"));
 	curr = ft_strdup(ft_getenv(shell->env_l, "PWD"));
-	res = cd_exec(shell, &ex, &home, &tmp, &new);
+	res = cd_exec(shell, &ex, &tmp, &new);
 	if (!res)
 		return (0);
 	add_environment(shell, "PWD", new);
 	add_environment(shell, "OLDPWD", curr);
 	free(new);
-	free(home);
 	free(curr);
 	return (1);
 }

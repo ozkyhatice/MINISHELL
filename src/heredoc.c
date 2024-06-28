@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:33 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 17:10:12 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 20:51:52 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	init_heredoc(t_shell *shell)
 					close(fd[0]);
 					signal(SIGINT, interrupt_here_document);
 					heredoc_read(p_head->next->word, fd[1]);
+					close(fd[1]);
 					exit(0);
 				}
 				else
@@ -90,7 +91,7 @@ void	init_heredoc(t_shell *shell)
 						if (e_head->heredoc)
 							free(e_head->heredoc);
 						e_head->heredoc = get_line(fd[0]);
-						close(fd[0]);
+						//close(fd[0]);
 						if (!e_head->heredoc)
 							exit(EXIT_FAILURE);
 					}
@@ -100,7 +101,6 @@ void	init_heredoc(t_shell *shell)
 						return ;
 					}
 				}
-				close(fd[1]);
 				g_sig = AFTER_HEREDOC;
 			}
 			p_head = p_head->next;

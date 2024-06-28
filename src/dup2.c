@@ -6,11 +6,18 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:09 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 13:05:17 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 19:49:16 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+int	ft_perform_dup(int fd, int std_stream)
+{
+	dup2(fd, std_stream);
+	close(fd);
+	return (-2);
+}
 
 void	ft_dup_rev(t_exec_node *ex)
 {

@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:39 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 18:34:19 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 21:55:21 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,36 +48,6 @@ void	delete_null_nodes(t_shell *shell)
 		tmp = get_next_node(tmp, &prev);
 	}
 }
-
-// void	delete_null_nodes(t_shell *shell)
-// {
-// 	t_parse_node	*tmp;
-// 	t_parse_node	*prev;
-
-// 	tmp = shell->parse_head;
-// 	prev = NULL;
-// 	while (tmp)
-// 	{
-// 		if (tmp->word == NULL)
-// 		{
-// 			if (prev)
-// 				prev->next = tmp->next;
-// 			else
-// 				shell->parse_head = tmp->next;
-// 			if (shell->parse_head == NULL)
-// 			{
-// 				shell->er_status = 1;
-// 				shell->ex_status = 0;
-// 				return ;
-// 			}
-// 			free(tmp);
-// 			tmp = prev;
-// 		}
-// 		prev = tmp;
-// 		if (tmp)
-// 			tmp = tmp->next;
-// 	}
-// }
 
 void	ft_parse(t_shell *shell)
 {
