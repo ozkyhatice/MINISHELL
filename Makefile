@@ -59,6 +59,7 @@ fclean: clean
 	rm -rf $(LIBFT)
 	rm -rf $(NAME)
 	@rm -rf readline readline-8.2 readline-8.2.tar.gz
+	
 test: all
 	cd minishell_tester/ && ./tester
 

@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:13:48 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 15:38:48 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 17:21:22 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,7 +261,5 @@ int				ft_check_syntax(char *str);
 void			is_path_ok(char *path, char *cmd, int *ex_status);
 void			is_dir(char *path);
 char			*ft_getenv(t_env *envc, char *env_var);
-void			free_if_not_null(void *ptr);
-void	trim_quote_extra(t_shell *shell, int i, char *word, char **tmp_str);
 
 #endif
