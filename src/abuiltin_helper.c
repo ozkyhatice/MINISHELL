@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   abuiltin_helper.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 02:17:34 by mkaragoz          #+#    #+#             */
-/*   Updated: 2024/06/28 11:39:55 by abkiraz          ###   ########.fr       */
+/*   Created: 2024/06/28 12:14:58 by akdemir           #+#    #+#             */
+/*   Updated: 2024/06/28 12:15:00 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
