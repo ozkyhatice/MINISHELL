@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   adup.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 10:12:55 by abkiraz           #+#    #+#             */
+/*   Updated: 2024/06/28 11:59:49 by abkiraz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 void	add_indx_to_exnd(t_exec_node *exnd)
@@ -26,21 +38,29 @@ void	wait_all(t_exec_node *exnd)
 
 void	wait_al(t_shell *shell)
 {
-	t_exec_node		*ex;
-	int				status;
+	t_exec_node	*ex;
+	int			status;
+	int			i;
+	t_exec_node		*cmd;
 
+	i = 0;
 	ex = shell->exec_head;
 	while (ex)
 	{
 		waitpid(ex->pid, &status, 0);
-		//shell->exit_code = status / 256;
+		// shell->exit_code = status / 256;
 		// if (ex->outfile == 2 || exec_head->infile == 2)
 		// 	shell->exit_code = 1;
 		ex = ex->next;
+		i++;
 	}
-	if(WIFEXITED(status))
-		shell->ex_status = WEXITSTATUS(status);
-	//g_signal = 0;
+	cmd = get_exec_node(shell->exec_head, i - 1);
+	if(is_builtin(cmd->cmd[0]) != 1)
+	{
+		if (WIFEXITED(status))
+			shell->ex_status = WEXITSTATUS(status);
+	}
+	// g_signal = 0;
 }
 
 void	set_dup(t_exec_node *exnd, int i, int count)
@@ -57,8 +77,6 @@ void	set_dup(t_exec_node *exnd, int i, int count)
 		dup2(ex->fd[0], STDIN_FILENO);
 		dup2(exnd->fd[1], STDOUT_FILENO);
 	}
-
-	
 }
 
 void	set_dup2(t_shell *shell, int i)

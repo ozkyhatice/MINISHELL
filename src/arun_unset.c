@@ -6,7 +6,7 @@
 /*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 23:42:26 by senyilma          #+#    #+#             */
-/*   Updated: 2024/06/24 23:48:51 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 11:37:09 by abkiraz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	env_arg_control(char *env)
 	if (env_name_control(env))
 		return (1);
 	printf("-not a valid identifier--\n");
-	//command_error(env, "export", "not a valid identifier", shell);
-	//shell->ex_status = 1;
+	// command_error(env, "export", "not a valid identifier", shell);
+	// shell->ex_status = 1;
 	return (0);
 }
 
@@ -68,10 +68,11 @@ void	delete_env(t_shell *shell, char *name)
 			if (env->content)
 				free(env->content);
 			free(env->name);
+			// env->name = NULL;
 			if (shell->env_l == env)
 				shell->env_l = shell->env_l->next;
 			else
-				temp_env->next = env->next;
+			temp_env->next = env->next;
 			free(env);
 			break ;
 		}
@@ -85,7 +86,7 @@ void	run_unset(t_shell *shell)
 	char	**temp_name;
 	int		array_len;
 
-	//shell->exit_code = 0;
+	// shell->exit_code = 0;
 	array_len = parameters_count(shell->exec_head->cmd);
 	if (array_len > 1)
 	{
@@ -95,7 +96,7 @@ void	run_unset(t_shell *shell)
 			if (!env_arg_control(*temp_name))
 			{
 				printf("not a valid identifier\n");
-				//command_error(0, "unset", "not a valid identifier", shell);
+				// command_error(0, "unset", "not a valid identifier", shell);
 				continue ;
 			}
 			else
@@ -103,4 +104,3 @@ void	run_unset(t_shell *shell)
 		}
 	}
 }
-

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   remove.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 10:13:52 by abkiraz           #+#    #+#             */
+/*   Updated: 2024/06/28 10:13:53 by abkiraz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 static void	onequote_trim(t_shell *shell, char *word, int *i)
@@ -22,7 +34,7 @@ static void	onequote_trim(t_shell *shell, char *word, int *i)
 		}
 	}
 	if (word[*i] == '\'')
-		*i +=1;
+		*i += 1;
 }
 
 static void	doublequote_trim(t_shell *shell, char *word, int *i)
@@ -47,9 +59,8 @@ static void	doublequote_trim(t_shell *shell, char *word, int *i)
 		}
 	}
 	if (word[*i] == '\"')
-		*i +=1;
+		*i += 1;
 }
-
 
 static char	*trim_quote(t_shell *shell, char *word)
 {
@@ -81,7 +92,6 @@ static char	*trim_quote(t_shell *shell, char *word)
 	ft_free_subnodes(shell);
 	return (tmp_str);
 }
-
 
 void	quote_remove(t_shell *shell)
 {

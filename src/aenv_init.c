@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aenv_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 19:48:42 by senyilma          #+#    #+#             */
-/*   Updated: 2024/06/27 12:20:21 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/28 10:12:57 by abkiraz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_env	*env_listnew(char *name, char *content)
 	return (new);
 }
 
-t_env	*env_lstlast(t_env	*lst)
+t_env	*env_lstlast(t_env *lst)
 {
 	t_env	*temp;
 
@@ -37,7 +37,7 @@ t_env	*env_lstlast(t_env	*lst)
 	return (temp);
 }
 
-void	env_lstadd_back(t_env	**lst, t_env	*new)
+void	env_lstadd_back(t_env **lst, t_env *new)
 {
 	if (new)
 	{
@@ -105,5 +105,5 @@ void	env_init(t_shell *shell, char **env)
 			env_lstadd_back(&shell->env_l, env_listnew(name, content));
 		}
 	}
-	//path_init(shell);// bak
+	// path_init(shell);// bak
 }

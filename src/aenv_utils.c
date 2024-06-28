@@ -6,11 +6,12 @@
 /*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 21:59:02 by senyilma          #+#    #+#             */
-/*   Updated: 2024/06/24 22:47:44 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 10:12:58 by abkiraz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h" //burda ne yapmış anlamadık ihtiyaç olmadığı kanaatindeyiz
+#include "../include/minishell.h"
+	//burda ne yapmış anlamadık ihtiyaç olmadığı kanaatindeyiz
 
 // char	**get_env_cpy(t_shell *shell) //incele sil
 // {

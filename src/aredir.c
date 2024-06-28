@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   aredir.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 10:13:04 by abkiraz           #+#    #+#             */
+/*   Updated: 2024/06/28 10:13:05 by abkiraz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 // void	ft_set_error_close(t_shell *shell, t_args *head)
@@ -44,7 +56,7 @@ void	ft_red_great(t_exec_node *head, t_red *head_redir, t_shell *shell)
 {
 	int	fd;
 
-    fd = open(head_redir->name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	fd = open(head_redir->name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd < 0)
 	{
 		if (access(head_redir->name, F_OK) == -1)
@@ -88,8 +100,9 @@ void	ft_red_dgreat(t_exec_node *head, t_red *head_redir, t_shell *shell)
 void	ft_heredoc(char *eof, int fd)
 {
 	char	*line;
+	int		g_sig;
 
-	int g_sig = IN_HEREDOC;
+	g_sig = IN_HEREDOC;
 	while (1 && g_sig != AFTER_HEREDOC)
 	{
 		line = readline(">");
@@ -140,16 +153,16 @@ void	ft_redir_dless(t_exec_node *head, t_red *head_redir, t_shell *shell)
 	}
 	head->here_path = ft_strdup(".tmpfile");
 }
-void	ft_redirection(t_shell	*shell)
+void	ft_redirection(t_shell *shell)
 {
-	t_exec_node	*ex;
-	t_red      	*ex_redir;
+	t_exec_node *ex;
+	t_red *ex_redir;
 
 	ex = shell->exec_head;
 	while (ex && shell->ex_status == 0)
 	{
 		ex_redir = ex->redirection_head;
-		while (ex_redir && shell->er_status != 1)// 
+		while (ex_redir && shell->er_status != 1) //
 		{
 			if (ex_redir->type == OUTPUT)
 				ft_red_great(ex, ex_redir, shell);
@@ -163,8 +176,8 @@ void	ft_redirection(t_shell	*shell)
 		}
 		if (shell->er_status == 1)
 			exit(1);
-		 	//shell->ex_status = 1;
+		// shell->ex_status = 1;
 		ex = ex->next;
 	}
-	//ft_check_heredoc_sig(shell);
+	// ft_check_heredoc_sig(shell);
 }

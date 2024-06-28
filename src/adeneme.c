@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   adeneme.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 10:12:54 by abkiraz           #+#    #+#             */
+/*   Updated: 2024/06/28 11:37:09 by abkiraz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 void	ft_free_arr(char **str)
@@ -21,6 +33,8 @@ char	*getcmdpath(char *cmd, char **path)
 	i = 0;
 	if (cmd[0] == '.' || cmd[0] == '/')
 		is_dir(cmd);
+	if (path == NULL)
+		return (NULL);
 	while (path[i])
 	{
 		tmp = ft_strjoin(path[i], "/");
@@ -45,10 +59,9 @@ void	define_rtype(t_parse_node *node, t_exec_node *exnode)
 	tmp = node;
 	ex = exnode;
 	(void)ex;
-
 	while (tmp)
 	{
-		if(tmp->type == R_REDIR)
+		if (tmp->type == R_REDIR)
 			tmp->next->type = OUTPUT;
 		else if (tmp->type == APPEND)
 			tmp->next->type = APPENDOUT;
@@ -84,7 +97,7 @@ t_parse_node	*get_parse_node(t_parse_node *node, int indx)
 
 	i = 0;
 	tmp = node;
-	while (tmp && i < indx)// ls > a
+	while (tmp && i < indx) // ls > a
 	{
 		tmp = tmp->next;
 		i++;
@@ -96,9 +109,9 @@ t_parse_node	*get_parse_node(t_parse_node *node, int indx)
 
 void	put_cmnds(t_shell *shell)
 {
-	int	i;
-	int	j;
-	int	arg_len;
+	int				i;
+	int				j;
+	int				arg_len;
 	t_parse_node	*head;
 	t_parse_node	*tmp;
 	t_exec_node		*cmnds;
@@ -113,10 +126,11 @@ void	put_cmnds(t_shell *shell)
 		arg_len = 0;
 		while (head && head->type != PIPE)
 		{
-			//printf("\nhead_type= %d head=%s\n", head->type, head->word);
+			// printf("\nhead_type= %d head=%s\n", head->type, head->word);
 			if (head->type == WORD)
 				arg_len++;
-			else if(head->type == INPUT || head->type == OUTPUT || head->type == APPENDOUT || head->type == HD)
+			else if (head->type == INPUT || head->type == OUTPUT
+				|| head->type == APPENDOUT || head->type == HD)
 			{
 				if (head->type == APPENDOUT)
 					add_redirection_node(shell, head->word, APPENDOUT);
@@ -125,17 +139,17 @@ void	put_cmnds(t_shell *shell)
 				else if (head->type == OUTPUT)
 					add_redirection_node(shell, head->word, OUTPUT);
 				else if (head->type == HD)
-					add_redirection_node(shell, head->word, HD);	
+					add_redirection_node(shell, head->word, HD);
 			}
 			head = head->next;
 		}
 		if (head != NULL)
 			head = head->next;
 		tmp = get_parse_node(shell->parse_head, j);
-		if (tmp != NULL && cmnds != NULL) //&& tmp->type == WORD 
+		if (tmp != NULL && cmnds != NULL) //&& tmp->type == WORD
 		{
 			cmnds->cmd = malloc(sizeof(char *) * (arg_len + 1));
-			if(!cmnds->cmd)
+			if (!cmnds->cmd)
 				return ;
 			while (i < arg_len)
 			{
@@ -151,5 +165,5 @@ void	put_cmnds(t_shell *shell)
 			cmnds = cmnds->next;
 		}
 	}
-	//print_redir_node(shell);
+	// print_redir_node(shell);
 }

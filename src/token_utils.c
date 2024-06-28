@@ -1,17 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 10:14:00 by abkiraz           #+#    #+#             */
+/*   Updated: 2024/06/28 10:14:01 by abkiraz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
-int same_str(const char *str1, char *str2)
+int	same_str(const char *str1, char *str2)
 {
-	int len1;
-	int len2;
-	int i;
+	int	len1;
+	int	len2;
+	int	i;
 
 	if (!str1 || !str2)
 		return (0);
 	len1 = ft_strlen(str1);
 	len2 = ft_strlen(str2);
 	i = 0;
-	if(len1 != len2)
+	if (len1 != len2)
 		return (0);
 	while (i < len1)
 	{
@@ -24,7 +36,7 @@ int same_str(const char *str1, char *str2)
 
 int	ft_strcmp(char *s1, char *s2)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	if (s2 == NULL)

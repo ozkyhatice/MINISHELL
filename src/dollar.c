@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dollar.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 10:13:13 by abkiraz           #+#    #+#             */
+/*   Updated: 2024/06/28 11:44:46 by abkiraz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 static void	quote_dollar(t_shell *shell, char *word, int *i)
@@ -7,7 +19,7 @@ static void	quote_dollar(t_shell *shell, char *word, int *i)
 
 	*i += 1;
 	str = NULL;
-	add_parse_subnode(shell, "\""); //FREELENİCEK 
+	add_parse_subnode(shell, "\""); // FREELENİCEK
 	while (word[*i] && word[*i] != '\"')
 	{
 		if (word[*i] == '$')
@@ -23,7 +35,7 @@ static void	quote_dollar(t_shell *shell, char *word, int *i)
 			if (str)
 			{
 				add_parse_subnode(shell, str);
-				//free(str);
+				// free(str);
 			}
 		}
 	}
@@ -39,7 +51,7 @@ static void	onequote_split(t_shell *shell, char *word, int *i)
 
 	*i += 1;
 	str = NULL;
-	add_parse_subnode(shell, "\'"); //FREELENİCEK 
+	add_parse_subnode(shell, "\'"); // FREELENİCEK
 	while (word[*i] && word[*i] != '\'')
 	{
 		s = *i;
@@ -55,10 +67,9 @@ static void	onequote_split(t_shell *shell, char *word, int *i)
 		}
 	}
 	if (word[*i] == '\'')
-		*i +=1;
-	add_parse_subnode(shell, "\'"); //FREELENİCEK 
+		*i += 1;
+	add_parse_subnode(shell, "\'"); // FREELENİCEK
 }
-
 
 static char	*parse_dollar(t_shell *shell, char *word)
 {
@@ -79,8 +90,8 @@ static char	*parse_dollar(t_shell *shell, char *word)
 		else
 		{
 			s = i;
-			while (word[i] && word[i] != '$'
-				&& word[i] != '\"' && word[i] != '\'')
+			while (word[i] && word[i] != '$' && word[i] != '\"'
+				&& word[i] != '\'')
 				i++;
 			if (tmp_str)
 				free(tmp_str);
@@ -94,7 +105,6 @@ static char	*parse_dollar(t_shell *shell, char *word)
 	return (tmp_str);
 }
 
-
 void	split_dollar(t_shell *shell)
 {
 	t_parse_node	*node;
@@ -104,7 +114,7 @@ void	split_dollar(t_shell *shell)
 	while (node)
 	{
 		if (ft_exist(node->word, '$'))
-		{	
+		{
 			mal = ft_strdup(node->word);
 			if (node->word)
 				free(node->word);

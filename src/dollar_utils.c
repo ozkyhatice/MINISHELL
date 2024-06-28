@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dollar_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 10:13:12 by abkiraz           #+#    #+#             */
+/*   Updated: 2024/06/28 11:49:35 by abkiraz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 void	env_dollar(t_shell *shell, char *str)
@@ -32,7 +44,6 @@ void	add_dollar(t_shell *shell, char *str)
 
 void	special_dodollar(t_shell *shell, char *str)
 {
-
 	if (str[0] == '0')
 	{
 		add_parse_subnode(shell, "minishell");
@@ -46,7 +57,7 @@ void	special_dodollar(t_shell *shell, char *str)
 		// 	g_signal = 0;
 		// }
 		// else
-			add_parse_subnode(shell, ft_itoa(shell->ex_status));
+		add_parse_subnode(shell, ft_itoa(shell->ex_status));
 		add_parse_subnode(shell, str + 1);
 	}
 }
@@ -62,8 +73,8 @@ void	do_dollar2(t_shell *shell, char *tmp)
 	{
 		if (env_value)
 			env_dollar(shell, env_value);
-		else if ((str[0] >= '1' && str[0] <= '9')
-			|| str[0] == '*' || str[0] == '@' || str[0] == '!')
+		else if ((str[0] >= '1' && str[0] <= '9') || str[0] == '*'
+			|| str[0] == '@' || str[0] == '!')
 			dollar_nullcontrol(shell, str);
 		else if (special_dollar(str[0]))
 			special_dodollar(shell, str);
@@ -88,9 +99,9 @@ void	do_dollar(t_shell *shell, char *str, int *i)
 	tmp = NULL;
 	*i = *i + 1;
 	s = *i;
-	while (word[*i] && word[*i] != ' ' && word[*i] != '$'
-		&& word[*i] != '\"' && word[*i] != '\'')
-			*i = *i + 1;
+	while (word[*i] && word[*i] != ' ' && word[*i] != '$' && word[*i] != '\"'
+		&& word[*i] != '\'')
+		*i = *i + 1;
 	if (tmp)
 		free(tmp);
 	tmp = ft_substr(word, s, *i - s);

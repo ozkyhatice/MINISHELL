@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_is_func.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 10:13:18 by abkiraz           #+#    #+#             */
+/*   Updated: 2024/06/28 10:13:37 by abkiraz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	ft_isspace(char c)
@@ -10,7 +22,7 @@ int	ft_isquote(char c)
 	return ((c == 34) || (c == 39));
 }
 
-int ft_istoken(char c)
+int	ft_istoken(char c)
 {
 	if (c == '|')
 		return (1);
@@ -26,10 +38,10 @@ int ft_istoken(char c)
 
 int	ft_exist(char *str, char c)
 {
-	int	i;
+	int i;
 
 	i = 0;
-	if(str)
+	if (str)
 	{
 		while (str[i])
 		{

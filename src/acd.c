@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   acd.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 10:12:47 by abkiraz           #+#    #+#             */
+/*   Updated: 2024/06/28 10:12:53 by abkiraz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
-//extern	t_shell	*shell;
+// extern	t_shell	*shell;
 
 int	go_dir(t_shell *shell, char *path, char **new)
 {
@@ -23,7 +35,8 @@ int	go_dir(t_shell *shell, char *path, char **new)
 	return (1);
 }
 
-int	cd_exec(t_shell *shell, t_exec_node **ex, char **home, char **tmp, char **new)
+int	cd_exec(t_shell *shell, t_exec_node **ex, char **home, char **tmp,
+		char **new)
 {
 	int	res;
 
@@ -56,11 +69,11 @@ int	cd_exec(t_shell *shell, t_exec_node **ex, char **home, char **tmp, char **ne
 
 int	run_cd(t_shell *shell, t_exec_node *ex)
 {
-	char	*home;
-	char	*curr;
-	char	*tmp;
-	char	*new;
-	int		res;
+	char *home;
+	char *curr;
+	char *tmp;
+	char *new;
+	int res;
 
 	res = -1;
 	home = ft_strdup(getenv("HOME"));

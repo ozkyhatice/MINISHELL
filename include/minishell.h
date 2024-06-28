@@ -223,7 +223,7 @@ int	is_full_space(char *rl);
 int	check_echo_n(char *keyword);
 void    builtin_run(t_exec_node *ex, t_shell *shell);
 int    is_builtin(char *cmd);
-void	run_echo(t_exec_node *ex);
+void	run_echo(t_exec_node *ex, int *extstat);
 void	run_pwd(void);
 
 //env
@@ -257,5 +257,6 @@ void	tilda_control(t_shell *shell);
 int	ft_check_syntax(char *str);
 void	is_path_ok(char *path, char *cmd, int *ex_status);
 void	is_dir(char *path);
+char	*ft_getenv(t_env *envc, char *env_var);
 #endif
 

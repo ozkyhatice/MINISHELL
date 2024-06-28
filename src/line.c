@@ -1,5 +1,16 @@
-#include "../include/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   line.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 10:13:44 by abkiraz           #+#    #+#             */
+/*   Updated: 2024/06/28 10:13:45 by abkiraz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../include/minishell.h"
 
 static char	*buffer(char *nextline, int fd)
 {
@@ -16,22 +27,22 @@ static char	*buffer(char *nextline, int fd)
 		if (countread == -1)
 		{
 			if (nextline)
-                free(nextline);
+				free(nextline);
 			if (buf)
-                free(buf);
+				free(buf);
 			return (0);
 		}
 		buf[countread] = '\0';
 		nextline = ft_strjoin(nextline, buf);
 	}
 	if (buf)
-        free(buf);
+		free(buf);
 	return (nextline);
 }
 
 char	*get_line(int fd)
 {
-	char		*outline;
+	char	*outline;
 
 	outline = NULL;
 	if (1 <= 0 || fd < 0)

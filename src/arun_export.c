@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arun_export.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 10:13:06 by abkiraz           #+#    #+#             */
+/*   Updated: 2024/06/28 10:23:06 by abkiraz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 static t_env	*create_env(char *name, char *content)
@@ -16,7 +28,6 @@ int	check_and_update(t_shell *shell, char *name, char *content)
 	t_env	*tmp;
 
 	tmp = shell->env_l;
-
 	while (tmp != NULL)
 	{
 		if (!ft_strncmp(tmp->name, name, ft_strlen(name) + 1))
@@ -62,7 +73,7 @@ void	add_export(t_shell *shell, char *arg)
 		ft_putendl_fd("': not a valid identifier", 2);
 		shell->ex_status = 1;
 		ft_free_arr(splitted);
-		return;
+		return ;
 	}
 	if (!splitted[1])
 		add_environment(shell, splitted[0], "");
@@ -124,7 +135,6 @@ int	run_export(t_exec_node *cmd, t_shell *shell)
 		}
 		return (1);
 	}
-
 	for (int i = 1; cmd->cmd[i]; i++)
 	{
 		arg = cmd->cmd[i];

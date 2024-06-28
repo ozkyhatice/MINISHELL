@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 10:14:01 by abkiraz           #+#    #+#             */
+/*   Updated: 2024/06/28 10:14:02 by abkiraz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
-enum e_token get_token(const char *str)
+enum e_token	get_token(const char *str)
 {
-	int len;
-	enum e_token token;
+	int				len;
+	enum e_token	token;
 
 	len = ft_strlen(str);
 	token = 0;
@@ -11,13 +23,13 @@ enum e_token get_token(const char *str)
 		token = char_token(str);
 	else
 		token = WORD;
-	return(token);
+	return (token);
 }
 
-enum e_token char_token(const char *str)
+enum e_token	char_token(const char *str)
 {
 	if (same_str(str, "||"))
-		return(OR);
+		return (OR);
 	else if (same_str(str, "&&"))
 		return (AND);
 	else if (same_str(str, "<<"))
@@ -39,5 +51,5 @@ enum e_token char_token(const char *str)
 	else if (same_str(str, "<<<"))
 		return (NEWLINE);
 	else
-		return(WORD);
+		return (WORD);
 }

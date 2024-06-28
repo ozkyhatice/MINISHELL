@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   syntax.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 10:13:57 by abkiraz           #+#    #+#             */
+/*   Updated: 2024/06/28 10:13:58 by abkiraz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 static int	control_rules(t_shell *shell, t_parse_node *tmp_node)
@@ -26,7 +38,7 @@ static int	control_rules(t_shell *shell, t_parse_node *tmp_node)
 		return (0);
 }
 
-int	control_rules2( t_parse_node *tmp_node)
+int	control_rules2(t_parse_node *tmp_node)
 {
 	if (tmp_node->next && tmp_node->next->next && tmp_node->next->type == PIPE
 		&& (tmp_node->next->next->type == L_REDIR
@@ -38,8 +50,7 @@ int	control_rules2( t_parse_node *tmp_node)
 		return (err_msg("|"));
 	else if ((tmp_node->type == L_REDIR || tmp_node->type == APPEND
 			|| tmp_node->type == R_REDIR || tmp_node->type == HEREDOC
-			|| tmp_node->type == NEWLINE)
-		&& !tmp_node->next)
+			|| tmp_node->type == NEWLINE) && !tmp_node->next)
 		return (err_msg("newline"));
 	else if ((tmp_node->type == NEWLINE_R) && !tmp_node->next)
 		return (err_msg(">"));
@@ -50,15 +61,11 @@ int	control_rules2( t_parse_node *tmp_node)
 int	control_rules3(t_shell *shell, t_parse_node *tmp_node)
 {
 	if (tmp_node->next && (tmp_node->next->type == R_REDIR
-			|| tmp_node->next->type == L_REDIR
-			|| tmp_node->next->type == APPEND
+			|| tmp_node->next->type == L_REDIR || tmp_node->next->type == APPEND
 			|| tmp_node->next->type == HEREDOC
-			|| tmp_node->next->type == NEWLINE)
-		&& (tmp_node->type == R_REDIR
-			|| tmp_node->type == L_REDIR
-			|| tmp_node->type == APPEND
-			|| tmp_node->type == HEREDOC
-			|| tmp_node->type == NEWLINE))
+			|| tmp_node->next->type == NEWLINE) && (tmp_node->type == R_REDIR
+			|| tmp_node->type == L_REDIR || tmp_node->type == APPEND
+			|| tmp_node->type == HEREDOC || tmp_node->type == NEWLINE))
 		return (err_msg(tmp_node->next->word));
 	else if (shell->l_br < shell->r_br)
 		return (err_msg(")"));
@@ -88,9 +95,9 @@ int	syntax_rules(t_shell *shell)
 			er_code = control_rules2(tmp_node);
 		if (er_code == 0)
 			er_code = control_rules3(shell, tmp_node);
-		tmp_node = tmp_node -> next;
+		tmp_node = tmp_node->next;
 	}
-	if(shell->l_br != shell->r_br && er_code == 0)
+	if (shell->l_br != shell->r_br && er_code == 0)
 		return (err_msg("("));
 	return (er_code);
 }

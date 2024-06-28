@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dollar_check.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 10:13:11 by abkiraz           #+#    #+#             */
+/*   Updated: 2024/06/28 10:13:12 by abkiraz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
+
 void	dollar_nullcontrol(t_shell *shell, char *str)
 {
 	char	*tmp;
@@ -10,9 +23,8 @@ void	dollar_nullcontrol(t_shell *shell, char *str)
 
 int	dollar_control(char c)
 {
-	if (c == '%' || c == '+' || c == ',' || c == '.' || c == '/'
-		|| c == ':' || c == '=' || c == ']' || c == '^' || c == '}'
-		|| c == '~' || c == ' ')
+	if (c == '%' || c == '+' || c == ',' || c == '.' || c == '/' || c == ':'
+		|| c == '=' || c == ']' || c == '^' || c == '}' || c == '~' || c == ' ')
 	{
 		return (1);
 	}
@@ -23,8 +35,7 @@ int	dollar_control(char c)
 
 int	dollar_control2(char c, t_shell *shell, char *tmp)
 {
-	if (c == '(' || c == '[' || c == 92 || c == '{' || c == ')'
-		|| c == ';')
+	if (c == '(' || c == '[' || c == 92 || c == '{' || c == ')' || c == ';')
 		return (1);
 	else if (c == '#' || c == '-')
 	{

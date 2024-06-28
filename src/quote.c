@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quote.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 10:13:51 by abkiraz           #+#    #+#             */
+/*   Updated: 2024/06/28 10:13:52 by abkiraz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	ft_strtoken(char *str)
@@ -66,7 +78,7 @@ void	split2_quote(t_shell *shell, int *first, int *i)
 	int	quote;
 
 	while (shell->cmd_line[*i] && ft_isspace(shell->cmd_line[*i]))
-			(*i)++;
+		(*i)++;
 	*first = *i;
 	while (shell->cmd_line[*i] && !ft_isspace(shell->cmd_line[*i]))
 	{
@@ -83,9 +95,9 @@ void	split2_quote(t_shell *shell, int *first, int *i)
 
 void	split_quote(t_shell *shell)
 {
-	int		i;
-	int		first;
-	char	*str;
+	int i;
+	int first;
+	char *str;
 
 	i = 0;
 	while (shell->cmd_line && shell->cmd_line[i])

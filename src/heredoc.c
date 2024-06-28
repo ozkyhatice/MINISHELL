@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 10:12:33 by abkiraz           #+#    #+#             */
+/*   Updated: 2024/06/28 10:13:38 by abkiraz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 void	interrupt_here_document(int signal)
@@ -34,27 +46,27 @@ static void	heredoc_read(char *end, int write_fd)
 	}
 }
 
-void    init_heredoc(t_shell *shell)
+void	init_heredoc(t_shell *shell)
 {
-    t_parse_node	*p_head;
-    t_exec_node		*e_head;
-    int				fd[2];
-	int				pid;
-	int				stat;
+	t_parse_node *p_head;
+	t_exec_node *e_head;
+	int fd[2];
+	int pid;
+	int stat;
 
-    p_head = shell->parse_head;
-    e_head = shell->exec_head;
+	p_head = shell->parse_head;
+	e_head = shell->exec_head;
 	stat = 0;
 	print_exec_node(shell);
-    while (p_head)
-    {
+	while (p_head)
+	{
 		printf("0\n");
-        while (p_head && p_head->type != PIPE)
-        {
-		printf("1\n");
+		while (p_head && p_head->type != PIPE)
+		{
+			printf("1\n");
 
-            if (p_head->type == 5)
-            {
+			if (p_head->type == 5)
+			{
 				printf("bura\n");
 				pipe(fd);
 				pid = fork();
@@ -84,13 +96,13 @@ void    init_heredoc(t_shell *shell)
 						return ;
 					}
 				}
-				
-					close(fd[1]);
-            }
+
+				close(fd[1]);
+			}
 			p_head = p_head->next;
-        }
+		}
 		if (p_head)
 			p_head = p_head->next;
 		e_head = e_head->next;
-    }
+	}
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 10:13:39 by abkiraz           #+#    #+#             */
+/*   Updated: 2024/06/28 11:37:09 by abkiraz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 char	**copyenv(char **env)
@@ -19,15 +31,14 @@ char	**copyenv(char **env)
 void	initalizer(t_shell *shell, char **env)
 {
 	env_init(shell, env);
-	shell->path = ft_split(getenv("PATH"), ':');
 	shell->env_p = copyenv(env);
 	shell->std_out = 1;
-	//printwelcome();
+	// printwelcome();
 	start_program(shell);
-    ft_free_arr(shell->path);
-    shell->path = NULL;
-    ft_free_arr(shell->env_p);
-    shell->env_p = NULL;
+	ft_free_arr(shell->path);
+	shell->path = NULL;
+	ft_free_arr(shell->env_p);
+	shell->env_p = NULL;
 }
 
 void	shell_readline(t_shell *shell)
@@ -43,7 +54,7 @@ void	shell_readline(t_shell *shell)
 	{
 		shell->er_status = 1;
 		shell->ex_status = 0;
-		//free(shell->cmd_line); double free olabilir
+		// free(shell->cmd_line); double free olabilir
 		return ;
 	}
 	if (ft_strcmp(shell->cmd_line, ""))
@@ -60,7 +71,7 @@ void	shell_readline(t_shell *shell)
 		shell->er_status = 1;
 	}
 }
-void delete_null_nodes(t_shell *shell)
+void	delete_null_nodes(t_shell *shell)
 {
 	t_parse_node	*tmp;
 	t_parse_node	*prev;
@@ -85,7 +96,7 @@ void delete_null_nodes(t_shell *shell)
 			tmp = prev;
 		}
 		prev = tmp;
-		if(tmp)
+		if (tmp)
 			tmp = tmp->next;
 	}
 }
@@ -99,7 +110,7 @@ void	start_program(t_shell *shell)
 		{
 			split_quote(shell);
 			shell->er_status = syntax_rules(shell);
-			if(shell->er_status != 0)
+			if (shell->er_status != 0)
 				shell->ex_status = 258;
 			shell->l_br = 0;
 			shell->r_br = 0;
@@ -109,9 +120,9 @@ void	start_program(t_shell *shell)
 			split_dollar(shell);
 			tilda_control(shell);
 			quote_remove(shell);
-			//print_parse_node(shell);
+			// print_parse_node(shell);
 			delete_null_nodes(shell);
-			//print_parse_node(shell);
+			// print_parse_node(shell);
 		}
 		if (shell->er_status == 0)
 		{
@@ -124,14 +135,12 @@ void	start_program(t_shell *shell)
 		{
 			exec_handler(shell);
 		}
-		if(shell->er_status != 2)
+		if (shell->er_status != 2)
 		{
 			if (ft_strlen(shell->cmd_line) != 0)
-		 		free(shell->cmd_line);
+				free(shell->cmd_line);
 		}
 		ft_free_nodes(shell);
 		ft_free_execnodes(shell);
-
 	}
 }
-

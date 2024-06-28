@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   signal.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 10:13:53 by abkiraz           #+#    #+#             */
+/*   Updated: 2024/06/28 10:13:54 by abkiraz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 // void	ft_sigint(int sig)
@@ -26,6 +38,6 @@
 
 void	ft_init_signals(void)
 {
-	//signal(SIGINT, ft_sigint);
+	// signal(SIGINT, ft_sigint);
 	signal(SIGQUIT, SIG_IGN);
 }

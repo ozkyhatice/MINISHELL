@@ -6,13 +6,13 @@
 /*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 02:28:12 by mkaragoz          #+#    #+#             */
-/*   Updated: 2024/06/25 00:36:53 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/28 10:12:38 by abkiraz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//extern t_data	g_data;
+// extern t_data	g_data;
 
 int	check_echo_n(char *keyword)
 {
