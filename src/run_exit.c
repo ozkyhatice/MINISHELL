@@ -1,16 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arun_exit.c                                        :+:      :+:    :+:   */
+/*   run_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:05 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 19:45:37 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 03:46:13 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+void	ft_error_exit_msg(char *str, char *str2)
+{
+	ft_putstr_fd("exit\n", 2);
+	ft_putstr_fd("minishell: exit: ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(":", 2);
+	ft_putstr_fd(str2, 2);
+}
 
 int	ft_is_all_digit(char *str)
 {
@@ -65,23 +74,23 @@ void	run_exit(t_shell *shell, char *str, char *s2)
 
 	if (!str)
 	{
-		write(1, "exit\n", 5);
+		ft_putstr_fd("exit\n", 2);
 		exit(shell->ex_status);
+	}
+	else if (ft_is_all_alpha(str))
+	{
+		ft_error_exit_msg(str, " numeric argument required");
+		exit(255);
 	}
 	else if (s2)
 	{
-		ft_putstr_fd("exit\n", 1);
-		ft_putstr_fd(" too many arguments\n", 2);
+		ft_error_exit_msg(str, " too many arguments");
 		exit(1);
 	}
 	else if (ft_is_all_digit(str) || ft_atoi(str) != 0)
 	{
 		code = get_exit_code(str);
+		printf("exit\n");
 		exit(code);
-	}
-	else if (ft_is_all_alpha(str))
-	{
-		ft_putstr_fd(" numeric argument required", 2);
-		exit(255);
 	}
 }

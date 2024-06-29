@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:13:48 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 21:56:12 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 14:47:12 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ typedef struct s_exec_node
 	pid_t				pid;
 	enum e_token		type;
 	int					id;
+	int					ex_flag;
 	struct s_red		*redirection_head;
 	struct s_red		*redirection_tail;
 	struct s_exec_node	*next;
@@ -138,6 +139,7 @@ typedef struct s_shell
 	int				r_br;
 	int				br_type;
 	int				c_pipe;
+	int				redir_flag;
 	int				**fd;
 	t_parse_node	*parse_head;
 	t_parse_node	*parse_tail;
@@ -215,7 +217,7 @@ char			*get_line(int fd);
 void			put_cmnds(t_shell *shell);
 void			ft_free_arr(char **str);
 t_exec_node		*get_exec_node(t_exec_node *exnode, int indx);
-char			*getcmdpath(char *cmd, char **path);
+char			*getcmdpath(char *cmd, char **path, t_env *env);
 int				exec_handler(t_shell *shell);
 int				ft_execve(t_shell *shell, t_exec_node *ex, int i);
 
@@ -236,7 +238,7 @@ int				is_full_space(char *rl);
 int				check_echo_n(char *keyword);
 void			builtin_run(t_exec_node *ex, t_shell *shell);
 int				is_builtin(char *cmd);
-void			run_echo(t_exec_node *ex, int *extstat);
+void	run_echo(t_exec_node *ex, t_shell *shell);
 void			run_pwd(void);
 
 //env
@@ -249,7 +251,7 @@ t_env			*env_lstlast(t_env	*lst);
 void			run_exit(t_shell *shell, char *str, char *s2);
 void			add_environment(t_shell *shell, char *name, char *content);
 int				run_cd(t_shell *shell, t_exec_node *cmd);
-void			add_redirection_node(t_shell *shell, char *str, int type);
+void			add_redirection_node(t_exec_node *exec, char *str, int type);
 t_red			*create_redirection_node(char *str, int type);
 
 void			print_redir_node(t_shell *shell);
@@ -297,12 +299,17 @@ void			shell_readline(t_shell *shell);
 
 //dnm.c funcs
 void			ft_free_arr(char **str);
-char			*getcmdpath(char *cmd, char **path);
 void			define_rtype(t_parse_node *node, t_exec_node *exnode);
 t_exec_node		*get_exec_node(t_exec_node *exnode, int indx);
 t_parse_node	*get_parse_node(t_parse_node *node, int indx);
 void			put_cmnds(t_shell *shell);
 int				ft_is_all_space(char *str);
 int				ft_isspace(char c);
+void	ft_heredoc(char *eof, int fd);
+void    ft_redir_dless(t_exec_node *head, t_red *head_redir, t_shell *shell);
+void	ft_red_dgreat(t_exec_node *head, t_red *head_redir, t_shell *shell);
+void	ft_red_less(t_exec_node *ex, t_red *head_redir, t_shell *shell);
+void	ft_red_great(t_exec_node *head, t_red *head_redir, t_shell *shell);
+
 
 #endif

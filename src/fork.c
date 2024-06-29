@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:02 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 22:19:46 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 13:23:17 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_single_exec(t_shell *shell, int i)
 	char		*path;
 
 	exnd = get_exec_node(shell->exec_head, i);
-	path = getcmdpath(exnd->cmd[i], shell->path);
+	path = getcmdpath(exnd->cmd[i], shell->path, shell->env_l);
 	exnd = get_exec_node(shell->exec_head, i);
 	set_io(exnd);
 	if (execve(path, exnd->cmd, NULL) == -1)
@@ -33,8 +33,10 @@ void	ft_multi_exec(t_shell *shell, int i)
 	t_exec_node	*exnd;
 	char		*path;
 
+	g_sig = IN_CMD;
 	set_dup2(shell, i);
 	exnd = get_exec_node(shell->exec_head, i);
+	set_io(exnd);
 	if (is_builtin(exnd->cmd[0]))
 	{
 		builtin_run(exnd, shell);
@@ -42,7 +44,7 @@ void	ft_multi_exec(t_shell *shell, int i)
 	}
 	else
 	{
-		path = getcmdpath(exnd->cmd[0], shell->path);
+		path = getcmdpath(exnd->cmd[0], shell->path, shell->env_l);
 		if (execve(path, exnd->cmd, NULL) == -1)
 		{
 			is_path_ok(path, exnd->cmd[0], &shell->ex_status);
@@ -78,6 +80,11 @@ int	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 		ex->pid = fork();
 		if (ex->pid == 0)
 		{
+			if (ex->ex_flag == 0)
+			{
+				shell->ex_status = 1;
+				exit (1);
+			}
 			ft_ft_split(shell);
 			if (shell->c_pipe - 1 == 0)
 				ft_single_exec(shell, i);
@@ -98,6 +105,7 @@ int	exec_handler(t_shell *shell)
 
 	i = 0;
 	exnd = shell->exec_head;
+	g_sig = IN_CMD;
 	print_exec_node(shell);
 	if (shell->c_pipe > 1)
 		open_pipes(shell);
@@ -110,5 +118,6 @@ int	exec_handler(t_shell *shell)
 	}
 	fd_closer(shell);
 	wait_al(shell);
+	g_sig = AFTER_CMD;
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:57 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 14:46:35 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/29 04:34:53 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	control_rules2(t_parse_node *tmp_node)
 	else if ((tmp_node->type == L_REDIR || tmp_node->type == APPEND
 			|| tmp_node->type == R_REDIR || tmp_node->type == HEREDOC
 			|| tmp_node->type == NEWLINE_N) && !tmp_node->next)
-		return (err_msg("NEWLINE_N"));
+		return (err_msg("newline"));
 	else if ((tmp_node->type == NEWLINE_N_R) && !tmp_node->next)
 		return (err_msg(">"));
 	else

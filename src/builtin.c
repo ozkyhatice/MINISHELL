@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   abuiltin.c                                         :+:      :+:    :+:   */
+/*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:50 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 20:07:28 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 05:10:19 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	is_builtin(char *cmd)
 void	builtin_run(t_exec_node *ex, t_shell *shell)
 {
 	if (ft_strncmp(ex->cmd[0], "echo", 5) == 0)
-		run_echo(ex, &shell->ex_status);
+		run_echo(ex, shell);
 	else if (ft_strncmp(ex->cmd[0], "pwd", 4) == 0)
 		run_pwd();
 	else if (ft_strncmp(ex->cmd[0], "env", 4) == 0)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   adup.c                                             :+:      :+:    :+:   */
+/*   dup.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:55 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 19:53:20 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 05:55:24 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,28 +59,17 @@ void	wait_al(t_shell *shell)
 	}
 }
 
-void	set_dup(t_exec_node *exnd, int i, int count)
-{
-	t_exec_node	*ex;
-
-	ex = get_exec_node(exnd, i - 1);
-	if (i == 0)
-		dup2(exnd->fd[1], STDOUT_FILENO);
-	else if (i == count - 1)
-		dup2(ex->fd[0], STDIN_FILENO);
-	else if (exnd->id == i)
-	{
-		dup2(ex->fd[0], STDIN_FILENO);
-		dup2(exnd->fd[1], STDOUT_FILENO);
-	}
-}
-
 void	set_dup2(t_shell *shell, int i)
 {
 	t_exec_node	*ex;
 
 	ex = get_exec_node(shell->exec_head, i);
-	if (i == 0)
+	if (shell->redir_flag)
+	{
+		dup2(shell->fd[i - 1][0], STDIN_FILENO);
+		dup2(shell->fd[i][1], STDOUT_FILENO);
+	}
+	else if (i == 0)
 		dup2(shell->fd[i][1], STDOUT_FILENO);
 	else if (i == shell->c_pipe - 1)
 		dup2(shell->fd[i - 1][0], STDIN_FILENO);
@@ -89,6 +78,5 @@ void	set_dup2(t_shell *shell, int i)
 		dup2(shell->fd[i - 1][0], STDIN_FILENO);
 		dup2(shell->fd[i][1], STDOUT_FILENO);
 	}
-	set_io(ex);
 	fd_closer(shell);
 }

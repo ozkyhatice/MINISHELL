@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   acreate_redir.c                                    :+:      :+:    :+:   */
+/*   red_create.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:53 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 20:18:14 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 05:34:59 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,22 @@ t_red	*create_redirection_node(char *str, int type)
 	return (new);
 }
 
-void	add_redirection_node(t_shell *shell, char *str, int type)
+
+void	add_redirection_node(t_exec_node *ex, char *str, int type)
 {
 	t_red	*new;
 
 	new = create_redirection_node(str, type);
-	if (shell->exec_head->redirection_head == NULL && new)
+	if (ex->redirection_head == NULL && new)
 	{
 		new->prev = NULL;
-		shell->exec_head->redirection_head = new;
-		shell->exec_head->redirection_tail = new;
+		ex->redirection_head = new;
+		ex->redirection_tail = new;
 	}
 	else
 	{
-		new->prev = shell->exec_head->redirection_tail;
-		shell->exec_head->redirection_tail->next = new;
-		shell->exec_head->redirection_tail = new;
+		new->prev = ex->redirection_tail;
+		ex->redirection_tail->next = new;
+		ex->redirection_tail = new;
 	}
 }

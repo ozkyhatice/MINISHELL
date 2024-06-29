@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   abuiltin_helper.c                                  :+:      :+:    :+:   */
+/*   pwd_echo_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:14:58 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 19:54:33 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 05:09:52 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	run_pwd(void)
 	write(1, "\n", 1);
 }
 
-void	run_echo(t_exec_node *ex, int *extstat)
+void	run_echo(t_exec_node *ex, t_shell *shell)
 {
 	bool	n;
 	int		i;
@@ -44,7 +44,7 @@ void	run_echo(t_exec_node *ex, int *extstat)
 	}
 	if (!n)
 		printf("\n");
-	*extstat = 0;
+	shell->ex_status = 0;
 }
 
 void	run_env(t_shell *shell)

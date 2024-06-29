@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:54 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 22:04:11 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 00:06:36 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_parse_node	*get_parse_node(t_parse_node *node, int indx)
 	return (NULL);
 }
 
-void	node_init(t_shell *shell, t_put_cmd *local)
+void	node_init(t_put_cmd *local)
 {
 	while (local->head && local->head->type != PIPE)
 	{
@@ -54,7 +54,7 @@ void	node_init(t_shell *shell, t_put_cmd *local)
 			local->arg_len++;
 		else if (local->head->type == INPUT || local->head->type == OUTPUT
 			|| local->head->type == APPENDOUT || local->head->type == HD)
-			add_redirection_node(shell, local->head->word, local->head->type);
+			add_redirection_node(local->cmnds, local->head->word, local->head->type);
 		local->head = local->head->next;
 	}
 }
@@ -82,7 +82,7 @@ void	put_cmnds(t_shell *shell)
 	{
 		local.i = 0;
 		local.arg_len = 0;
-		node_init(shell, &local);
+		node_init(&local);
 		if (local.head != NULL)
 			local.head = local.head->next;
 		local.tmp = get_parse_node(shell->parse_head, local.j);

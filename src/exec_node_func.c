@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:17 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 22:20:54 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 09:53:42 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ static t_exec_node	*create_exec_node(void)
 		new->heredoc = NULL;
 		new->next = NULL;
 		new->pid = -1;
-		new->in = 0;
-		new->out = 1;
+		new->in = -3;
+		new->out = -3;
+		new->ex_flag = 1;
 		new->redirection_head = NULL;
 		new->redirection_tail = NULL;
 	}
@@ -66,10 +67,10 @@ void	print_exec_node(t_shell *shell)
 		i = 0;
 		while (current->cmd[i] != NULL)
 		{
-			dprintf(2, "node#%d	komut#%s\n", j, current->cmd[i]);
+			//dprintf(2, "node#%d	komut#%s\n", j, current->cmd[i]);
 			while (redir)
 			{
-				dprintf(2, "ex id%d--DOSYA ADI:%s", current->id, redir->name);
+				//dprintf(2, "ex id%d--DOSYA ADI:%s", current->id, redir->name);
 				redir = redir->next;
 			}
 			i++;
