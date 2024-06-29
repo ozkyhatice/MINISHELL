@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:53:39 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/29 16:56:50 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 19:52:41 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	ft_heredoc(char *eof, int fd)
 {
 	char	*line;
 
+	g_sig = IN_HEREDOC;
 	while (1)
 	{
 		line = readline(">");
@@ -59,5 +60,4 @@ void	ft_heredoc(char *eof, int fd)
 		free(line);
 	}
 	close(fd);
-	g_sig = AFTER_HEREDOC;
 }

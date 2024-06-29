@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_export3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 20:59:29 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/29 17:19:42 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 18:52:07 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	print_exported_variable(t_env *env)
 {
-	ft_sort_env(env);
 	printf("declare -x %s", env->name);
 	if (env->content && !is_full_space(env->content))
 		printf("=\"%s\"", env->content);
@@ -46,7 +45,7 @@ int	run_export(t_exec_node *cmd, t_shell *shell)
 
 	if (!cmd->cmd[1])
 	{
-		tmp = shell->env_l;
+		tmp = shell->env_p;
 		while (tmp)
 		{
 			print_exported_variable(tmp);

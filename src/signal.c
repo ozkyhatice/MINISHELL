@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:53 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/29 08:38:43 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 20:07:25 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ft_sigint(int sig)
 	{
 		write(1, "\033[A", 3);
 		ioctl(0, TIOCSTI, "\n");
-		g_sig = AFTER_HEREDOC;
 	}
 	else if (g_sig == IN_CMD)
 	{
@@ -33,8 +32,8 @@ void	ft_sigint(int sig)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-		g_sig = 1;
 	}
+	g_sig = 1;
 }
 
 void	ft_init_signals(void)

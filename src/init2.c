@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 18:12:40 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 21:55:21 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 19:25:53 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,31 @@ char	**copyenv(char **env)
 	return (return_env);
 }
 
+void free_env_list(t_env **head)
+{
+    t_env *current;
+    t_env *next_node;
+
+    current = *head;
+    while (current)
+    {
+        next_node = current->next;
+        free(current->name);
+        free(current->content);
+        free(current);
+        current = next_node;
+    }
+    *head = NULL;
+}
+
 void	initalizer(t_shell *shell, char **env)
 {
+	env_p_init(shell, env);
+	sort_env_list(&shell->env_p);
 	env_init(shell, env);
-	shell->env_p = copyenv(env);
 	shell->std_out = 1;
 	start_program(shell);
 	ft_free_arr(shell->path);
 	shell->path = NULL;
-	ft_free_arr(shell->env_p);
-	shell->env_p = NULL;
+	free_env_list(&shell->env_p);
 }

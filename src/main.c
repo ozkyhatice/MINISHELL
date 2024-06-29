@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:46 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 17:42:46 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 19:47:38 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv, char **env)
 		return (127);
 	}
 	shell = ft_calloc(1, sizeof(t_shell));
+	g_sig = 0;
 	if (!shell)
 		exit(0);
 	ft_init_signals();

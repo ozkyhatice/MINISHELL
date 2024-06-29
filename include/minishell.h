@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:13:48 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/29 17:02:52 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 19:46:18 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,6 @@ typedef struct s_exec_node
 typedef struct s_shell
 {
 	char			**path;
-	char			**env_p;
 	char			*cmd_line;
 	char			*skip32;
 	char			**commands;
@@ -148,6 +147,7 @@ typedef struct s_shell
 	t_exec_node		*exec_head;
 	t_exec_node		*exec_tail;
 	t_env			*env_l;
+	t_env			*env_p;
 	bool			arg_mode;
 	int				std_in;
 	int				std_out;
@@ -312,5 +312,8 @@ void			ft_red_less(t_exec_node *ex, t_red *h_red, t_shell *shell);
 void			ft_red_great(t_exec_node *head, t_red *h_red, t_shell *shell);
 void			is_first_builtin(t_shell *shell, t_exec_node *ex);
 void			ft_heredoc(char *eof, int fd);
+
+void	env_p_init(t_shell *shell, char **env);
+void sort_env_list(t_env **head);
 
 #endif

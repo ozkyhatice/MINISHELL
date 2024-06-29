@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 20:51:32 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 20:51:33 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 21:57:20 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	shell_readline(t_shell *shell)
 	{
 		shell->er_status = 1;
 		shell->ex_status = 0;
+		free(shell->cmd_line);
 		return ;
 	}
 	shell_readline2(shell);

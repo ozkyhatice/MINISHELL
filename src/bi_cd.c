@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   acd.c                                              :+:      :+:    :+:   */
+/*   bi_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:47 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 20:57:57 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 19:19:06 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	run_cd(t_shell *shell, t_exec_node *ex)
 	int		res;
 
 	res = -1;
-	curr = ft_strdup(ft_getenv(shell->env_l, "PWD"));
+	curr = ft_strdup(getcwd(NULL, 0));
 	res = cd_exec(shell, &ex, &tmp, &new);
 	if (!res)
 		return (0);

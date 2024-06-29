@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:15:25 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/29 17:20:47 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 18:51:24 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,72 +78,68 @@ void	env_init(t_shell *shell, char **env)
 		}
 	}
 }
-t_env	*env_copy(t_env *env)
+void swap_env_nodes(t_env *a, t_env *b)
 {
-	t_env	*new_list = NULL;
-	t_env	*current;
-
-	while (env)
-	{
-		current = env_listnew(ft_strdup(env->name), ft_strdup(env->content));
-		if (!current)
-		{
-			// Handle memory allocation failure
-			// Free previously allocated nodes
-			while (new_list)
-			{
-				current = new_list->next;
-				free(new_list->name);
-				free(new_list->content);
-				free(new_list);
-				new_list = current;
-			}
-			return (NULL);
-		}
-		env_lstadd_back(&new_list, current);
-		env = env->next;
-	}
-	return (new_list);
+    char *temp_name = a->name;
+    char *temp_content = a->content;
+    a->name = b->name;
+    a->content = b->content;
+    b->name = temp_name;
+    b->content = temp_content;
 }
 
-void	env_sort(t_env **env)
+void sort_env_list(t_env **head)
 {
-	t_env	*current;
-	t_env	*next;
-	char	*tmp_name;
-	char	*tmp_content;
-	int		sorted;
+    if (!head || !*head)
+        return;
 
-	if (!env || !(*env))
-		return ;
-	sorted = 0;
-	while (!sorted)
-	{
-		sorted = 1;
-		current = *env;
-		while (current->next)
-		{
-			next = current->next;
-			if (ft_strcmp(current->name, next->name) > 0)
-			{
-				tmp_name = current->name;
-				tmp_content = current->content;
-				current->name = next->name;
-				current->content = next->content;
-				next->name = tmp_name;
-				next->content = tmp_content;
-				sorted = 0;
-			}
-			current = next;
-		}
-	}
+    int sorted;
+    t_env *current;
+    t_env *next_node;
+
+    sorted = 0;
+    while (!sorted)
+    {
+        sorted = 1;
+        current = *head;
+
+        while (current->next)
+        {
+            next_node = current->next;
+            if (ft_strcmp(current->name, next_node->name) > 0)
+            {
+                swap_env_nodes(current, next_node);
+                sorted = 0;
+            }
+            current = current->next;
+        }
+    }
 }
 
-t_env	*env_sorted_copy(t_env *env)
+void	env_p_init(t_shell *shell, char **env)
 {
-	t_env	*sorted_copy = env_copy(env);
+	int		i;
+	int		start;
+	int		end;
+	char	*name;
+	char	*content;
 
-	if (sorted_copy)
-		env_sort(&sorted_copy);
-	return (sorted_copy);
+	i = -1;
+	while (env && env[++i])
+	{
+		end = 0;
+		while (env[i][end])
+		{
+			start = end;
+			while (env[i][end] && env[i][end] != '=')
+				end++;
+			name = ft_substr(env[i], start, end);
+			end++;
+			start = end;
+			while (env[i][end])
+				end++;
+			content = ft_substr(env[i], start, end);
+			env_lstadd_back(&shell->env_p, env_listnew(name, content));
+		}
+	}
 }

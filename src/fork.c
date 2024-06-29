@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:02 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/29 16:39:56 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 20:24:56 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,12 @@ void	ft_ft_split(t_shell *shell)
 
 int	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 {
+
 	if (shell->c_pipe == 1 && is_builtin(ex->cmd[0]))
+	{
 		is_first_builtin(shell, ex);
+		
+	}
 	else
 	{
 		ex->pid = fork();
@@ -102,7 +106,6 @@ int	exec_handler(t_shell *shell)
 	i = 0;
 	exnd = shell->exec_head;
 	g_sig = IN_CMD;
-	print_exec_node(shell);
 	if (shell->c_pipe > 1)
 		open_pipes(shell);
 	while (i < shell->c_pipe)
