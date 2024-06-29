@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:13:48 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/29 14:47:12 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 17:02:52 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,7 @@ int				is_full_space(char *rl);
 int				check_echo_n(char *keyword);
 void			builtin_run(t_exec_node *ex, t_shell *shell);
 int				is_builtin(char *cmd);
-void	run_echo(t_exec_node *ex, t_shell *shell);
+void			run_echo(t_exec_node *ex, t_shell *shell);
 void			run_pwd(void);
 
 //env
@@ -305,11 +305,12 @@ t_parse_node	*get_parse_node(t_parse_node *node, int indx);
 void			put_cmnds(t_shell *shell);
 int				ft_is_all_space(char *str);
 int				ft_isspace(char c);
-void	ft_heredoc(char *eof, int fd);
-void    ft_redir_dless(t_exec_node *head, t_red *head_redir, t_shell *shell);
-void	ft_red_dgreat(t_exec_node *head, t_red *head_redir, t_shell *shell);
-void	ft_red_less(t_exec_node *ex, t_red *head_redir, t_shell *shell);
-void	ft_red_great(t_exec_node *head, t_red *head_redir, t_shell *shell);
-
+void			ft_heredoc(char *eof, int fd);
+void			ft_redir_dless(t_exec_node *head, t_red *h_red, t_shell *shell);
+void			ft_red_dgreat(t_exec_node *head, t_red *h_red, t_shell *shell);
+void			ft_red_less(t_exec_node *ex, t_red *h_red, t_shell *shell);
+void			ft_red_great(t_exec_node *head, t_red *h_red, t_shell *shell);
+void			is_first_builtin(t_shell *shell, t_exec_node *ex);
+void			ft_heredoc(char *eof, int fd);
 
 #endif

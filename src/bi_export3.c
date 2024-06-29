@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_export3.c                                  :+:      :+:    :+:   */
+/*   bi_export3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 20:59:29 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 20:59:30 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 17:19:42 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	print_exported_variable(t_env *env)
 {
+	ft_sort_env(env);
 	printf("declare -x %s", env->name);
 	if (env->content && !is_full_space(env->content))
 		printf("=\"%s\"", env->content);

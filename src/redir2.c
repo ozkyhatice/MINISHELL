@@ -6,11 +6,23 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 23:45:07 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/29 14:59:25 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 16:41:51 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+static void	ft_red(t_exec_node *ex, t_red *ex_redir, t_shell *shell)
+{
+	if (ex_redir->type == OUTPUT)
+		ft_red_great(ex, ex_redir, shell);
+	else if (ex_redir->type == APPENDOUT)
+		ft_red_dgreat(ex, ex_redir, shell);
+	else if (ex_redir->type == INPUT)
+		ft_red_less(ex, ex_redir, shell);
+	else if (ex_redir->type == HD)
+		ft_redir_dless(ex, ex_redir, shell);
+}
 
 void	ft_redirection(t_shell *shell)
 {
@@ -23,14 +35,7 @@ void	ft_redirection(t_shell *shell)
 		ex_redir = ex->redirection_head;
 		while (ex_redir && shell->ex_status != 1)
 		{
-			if (ex_redir->type == OUTPUT)
-				ft_red_great(ex, ex_redir, shell);
-			else if (ex_redir->type == APPENDOUT)
-				ft_red_dgreat(ex, ex_redir, shell);
-			else if (ex_redir->type == INPUT)
-				ft_red_less(ex, ex_redir, shell);
-			else if (ex_redir->type == HD)
-				ft_redir_dless(ex, ex_redir, shell);
+			ft_red(ex, ex_redir, shell);
 			if (shell->ex_status == 1)
 			{
 				if (ex->next)

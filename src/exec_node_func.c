@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:17 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/29 09:53:42 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 16:35:49 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,8 @@ void	print_exec_node(t_shell *shell)
 		i = 0;
 		while (current->cmd[i] != NULL)
 		{
-			//dprintf(2, "node#%d	komut#%s\n", j, current->cmd[i]);
 			while (redir)
-			{
-				//dprintf(2, "ex id%d--DOSYA ADI:%s", current->id, redir->name);
 				redir = redir->next;
-			}
 			i++;
 		}
 		current = current->next;

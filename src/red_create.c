@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:53 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/29 05:34:59 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 16:36:15 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_red	*create_redirection_node(char *str, int type)
 	}
 	return (new);
 }
-
 
 void	add_redirection_node(t_exec_node *ex, char *str, int type)
 {

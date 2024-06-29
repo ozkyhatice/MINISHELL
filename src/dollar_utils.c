@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:12 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/29 04:28:32 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 16:30:31 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	special_dodollar(t_shell *shell, char *str)
 			add_parse_subnode(shell, "1");
 			g_sig = 0;
 		}
-		else if(g_sig == IN_CMD)
+		else if (g_sig == IN_CMD)
 		{
 			add_parse_subnode(shell, "130");
 			g_sig = 0;

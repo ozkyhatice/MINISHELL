@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aenv_init.c                                        :+:      :+:    :+:   */
+/*   env_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:15:25 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 19:51:52 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 17:20:47 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,73 @@ void	env_init(t_shell *shell, char **env)
 			env_lstadd_back(&shell->env_l, env_listnew(name, content));
 		}
 	}
+}
+t_env	*env_copy(t_env *env)
+{
+	t_env	*new_list = NULL;
+	t_env	*current;
+
+	while (env)
+	{
+		current = env_listnew(ft_strdup(env->name), ft_strdup(env->content));
+		if (!current)
+		{
+			// Handle memory allocation failure
+			// Free previously allocated nodes
+			while (new_list)
+			{
+				current = new_list->next;
+				free(new_list->name);
+				free(new_list->content);
+				free(new_list);
+				new_list = current;
+			}
+			return (NULL);
+		}
+		env_lstadd_back(&new_list, current);
+		env = env->next;
+	}
+	return (new_list);
+}
+
+void	env_sort(t_env **env)
+{
+	t_env	*current;
+	t_env	*next;
+	char	*tmp_name;
+	char	*tmp_content;
+	int		sorted;
+
+	if (!env || !(*env))
+		return ;
+	sorted = 0;
+	while (!sorted)
+	{
+		sorted = 1;
+		current = *env;
+		while (current->next)
+		{
+			next = current->next;
+			if (ft_strcmp(current->name, next->name) > 0)
+			{
+				tmp_name = current->name;
+				tmp_content = current->content;
+				current->name = next->name;
+				current->content = next->content;
+				next->name = tmp_name;
+				next->content = tmp_content;
+				sorted = 0;
+			}
+			current = next;
+		}
+	}
+}
+
+t_env	*env_sorted_copy(t_env *env)
+{
+	t_env	*sorted_copy = env_copy(env);
+
+	if (sorted_copy)
+		env_sort(&sorted_copy);
+	return (sorted_copy);
 }

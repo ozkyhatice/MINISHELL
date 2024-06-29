@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 20:51:48 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/29 14:18:34 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 16:35:07 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ char	*is_dir3(char *cmd, t_env *env)
 	return (cmd);
 }
 
+void	ft_free_cmdpath(char *cmdpath, char *tmp)
+{
+	free(tmp);
+	free(cmdpath);
+}
+
 char	*getcmdpath(char *cmd, char **path, t_env *env)
 {
 	int		i;
@@ -67,8 +73,7 @@ char	*getcmdpath(char *cmd, char **path, t_env *env)
 			free(tmp);
 			return (cmdpath);
 		}
-		free(tmp);
-		free(cmdpath);
+		ft_free_cmdpath(cmdpath, tmp);
 	}
 	return (NULL);
 }

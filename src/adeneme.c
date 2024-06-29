@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:54 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/29 00:06:36 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 16:29:22 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	node_init(t_put_cmd *local)
 			local->arg_len++;
 		else if (local->head->type == INPUT || local->head->type == OUTPUT
 			|| local->head->type == APPENDOUT || local->head->type == HD)
-			add_redirection_node(local->cmnds, local->head->word, local->head->type);
+			add_redirection_node(local->cmnds, local->head->word,
+				local->head->type);
 		local->head = local->head->next;
 	}
 }

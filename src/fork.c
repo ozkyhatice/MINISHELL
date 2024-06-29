@@ -6,7 +6,7 @@
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:02 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/29 13:23:17 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/29 16:39:56 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,7 @@ void	ft_ft_split(t_shell *shell)
 int	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 {
 	if (shell->c_pipe == 1 && is_builtin(ex->cmd[0]))
-	{
-		set_io(ex);
-		builtin_run(ex, shell);
-		ft_dup_rev(ex);
-	}
+		is_first_builtin(shell, ex);
 	else
 	{
 		ex->pid = fork();
