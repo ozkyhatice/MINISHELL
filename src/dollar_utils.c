@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:12 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/30 02:54:54 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 08:47:10 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	do_dollar2(t_shell *shell, char *tmp)
 			if (dollar_control2(str[0], shell, str))
 				add_parse_subnode(shell, "");
 		}
-		free(str);
 	}
 }
 
