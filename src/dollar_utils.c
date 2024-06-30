@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:12 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/30 08:47:10 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/29 16:30:31 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	do_dollar2(t_shell *shell, char *tmp)
 			if (dollar_control2(str[0], shell, str))
 				add_parse_subnode(shell, "");
 		}
+		free(str);
 	}
 }
 

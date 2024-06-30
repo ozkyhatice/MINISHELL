@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subnode_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:54 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 10:13:55 by abkiraz          ###   ########.fr       */
+/*   Updated: 2024/06/30 14:06:16 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	ft_free_subnodes(t_shell *shell)
 	while (current != NULL)
 	{
 		next = current->next;
+		if (current->word)
+			free(current->word);
 		free(current);
 		current = next;
 	}
@@ -88,7 +90,7 @@ char	*ft_strjoin_subnode(t_subnode *node)
 	while (current)
 	{
 		if (!str)
-			str = current->word;
+			str = ft_strdup(current->word);
 		else
 		{
 			copy = ft_strdup(current->word);

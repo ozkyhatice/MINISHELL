@@ -1,6 +1,6 @@
 CC		= gcc
 NAME	= minishell
-CFLAGS	= -g -Wall -Werror -Wextra -I $(READLINE_INC_LOC) #-fsanitize=address
+CFLAGS	= -g -Wall -Werror -Wextra -I $(READLINE_INC_LOC)
 
 SRC_DIR = ./src/
 LIB_DIR = ./lib/

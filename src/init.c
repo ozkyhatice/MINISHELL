@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:39 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/30 03:31:07 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 14:00:09 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	start_program(t_shell *shell)
 			exec_handler(shell);
 		if (shell->er_status != 2)
 		{
+			
 			if (ft_strlen(shell->cmd_line) != 0)
 				free(shell->cmd_line);
 		}

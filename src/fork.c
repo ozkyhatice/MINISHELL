@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:02 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/30 04:31:37 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 14:40:47 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ void	ft_single_exec(t_shell *shell, int i)
 
 	exnd = get_exec_node(shell->exec_head, i);
 	path = getcmdpath(exnd->cmd[i], shell->path, shell->env_l);
+	printf("path: %s\n", path);
 	exnd = get_exec_node(shell->exec_head, i);
 	set_io(exnd);
-	if (execve(path, exnd->cmd, NULL) == -1)
+	if (execve(path, exnd->cmd, shell->env) == -1)
 	{
 		is_path_ok(path, exnd->cmd[0], &shell->ex_status);
 		exit(shell->ex_status);
@@ -45,7 +46,7 @@ void	ft_multi_exec(t_shell *shell, int i)
 	else
 	{
 		path = getcmdpath(exnd->cmd[0], shell->path, shell->env_l);
-		if (execve(path, exnd->cmd, NULL) == -1)
+		if (execve(path, exnd->cmd, shell->env) == -1)
 		{
 			is_path_ok(path, exnd->cmd[0], &shell->ex_status);
 			exit(shell->ex_status);
@@ -70,9 +71,7 @@ void	ft_ft_split(t_shell *shell)
 int	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 {
 	if (shell->c_pipe == 1 && is_builtin(ex->cmd[0]))
-	{
 		is_first_builtin(shell, ex);
-	}
 	else
 	{
 		ex->pid = fork();
@@ -104,6 +103,7 @@ int	exec_handler(t_shell *shell)
 	i = 0;
 	exnd = shell->exec_head;
 	g_sig = IN_CMD;
+	print_exec_node(shell);
 	if (shell->c_pipe > 1)
 		open_pipes(shell);
 	while (i < shell->c_pipe)
