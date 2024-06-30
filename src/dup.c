@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dup.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:55 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/29 05:55:24 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/07/01 00:22:08 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,6 @@ void	wait_al(t_shell *shell)
 
 void	set_dup2(t_shell *shell, int i)
 {
-	t_exec_node	*ex;
-
-	ex = get_exec_node(shell->exec_head, i);
 	if (shell->redir_flag)
 	{
 		dup2(shell->fd[i - 1][0], STDIN_FILENO);
