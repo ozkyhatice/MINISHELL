@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 20:59:29 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/29 18:52:07 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 04:32:40 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	run_export(t_exec_node *cmd, t_shell *shell)
 
 	if (!cmd->cmd[1])
 	{
-		tmp = shell->env_p;
+		tmp = shell->env_l;
+		sort_env_list(&shell->env_l);
 		while (tmp)
 		{
 			print_exported_variable(tmp);

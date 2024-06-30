@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:13:48 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/29 19:46:18 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 04:39:46 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -313,7 +313,11 @@ void			ft_red_great(t_exec_node *head, t_red *h_red, t_shell *shell);
 void			is_first_builtin(t_shell *shell, t_exec_node *ex);
 void			ft_heredoc(char *eof, int fd);
 
-void	env_p_init(t_shell *shell, char **env);
-void sort_env_list(t_env **head);
+void			env_p_init(t_shell *shell, char **env);
+void			sort_env_list(t_env **head);
+void			free_redirections(t_shell *shell);
+void			free_env_list(t_env **head);
+void			swap_env_nodes(t_env *a, t_env *b);
+void			sort_env_list(t_env **head);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:58 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/29 20:11:44 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 04:32:03 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	open_fd(t_exec_node *exnd)
 	}
 }
 
-void	open_pipes(t_shell *shell) 
+void	open_pipes(t_shell *shell)
 {
 	int	**fd;
 	int	i;

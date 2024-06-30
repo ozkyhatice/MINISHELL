@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:02 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/29 20:24:56 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 04:31:37 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,9 @@ void	ft_ft_split(t_shell *shell)
 
 int	ft_execve(t_shell *shell, t_exec_node *ex, int i)
 {
-
 	if (shell->c_pipe == 1 && is_builtin(ex->cmd[0]))
 	{
 		is_first_builtin(shell, ex);
-		
 	}
 	else
 	{

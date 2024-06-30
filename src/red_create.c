@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   red_create.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:53 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/29 16:36:15 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/30 04:29:44 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,28 @@ void	add_redirection_node(t_exec_node *ex, char *str, int type)
 		new->prev = ex->redirection_tail;
 		ex->redirection_tail->next = new;
 		ex->redirection_tail = new;
+	}
+}
+
+void	free_redirections(t_shell *shell)
+{
+	t_exec_node	*current_exec;
+	t_red		*current_red;
+	t_red		*next_red;
+
+	current_exec = shell->exec_head;
+	while (current_exec)
+	{
+		current_red = current_exec->redirection_head;
+		while (current_red)
+		{
+			next_red = current_red->next;
+			free(current_red->name);
+			free(current_red);
+			current_red = next_red;
+		}
+		current_exec->redirection_head = NULL;
+		current_exec->redirection_tail = NULL;
+		current_exec = current_exec->next;
 	}
 }

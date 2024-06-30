@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 18:12:40 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/29 19:25:53 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 04:30:33 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_freeallnodes(t_shell *shell)
 {
 	ft_free_nodes(shell);
+	free_redirections(shell);
 	ft_free_execnodes(shell);
 }
 
@@ -34,21 +35,21 @@ char	**copyenv(char **env)
 	return (return_env);
 }
 
-void free_env_list(t_env **head)
+void	free_env_list(t_env **head)
 {
-    t_env *current;
-    t_env *next_node;
+	t_env	*current;
+	t_env	*next_node;
 
-    current = *head;
-    while (current)
-    {
-        next_node = current->next;
-        free(current->name);
-        free(current->content);
-        free(current);
-        current = next_node;
-    }
-    *head = NULL;
+	current = *head;
+	while (current)
+	{
+		next_node = current->next;
+		free(current->name);
+		free(current->content);
+		free(current);
+		current = next_node;
+	}
+	*head = NULL;
 }
 
 void	initalizer(t_shell *shell, char **env)

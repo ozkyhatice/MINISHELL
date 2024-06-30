@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:13 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 19:26:27 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/30 03:54:09 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,18 +109,18 @@ static char	*parse_dollar(t_shell *shell, char *word)
 void	split_dollar(t_shell *shell)
 {
 	t_parse_node	*node;
-	char			*mal;
+	char			*tmp;
 
 	node = shell->parse_head;
 	while (node)
 	{
 		if (ft_exist(node->word, '$'))
 		{
-			mal = ft_strdup(node->word);
+			tmp = ft_strdup(node->word);
 			if (node->word)
 				free(node->word);
-			node->word = parse_dollar(shell, mal);
-			free(mal);
+			node->word = parse_dollar(shell, tmp);
+			free(tmp);
 		}
 		node = node->next;
 	}

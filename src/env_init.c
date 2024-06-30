@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:15:25 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/29 18:51:24 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 04:38:22 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,43 +77,6 @@ void	env_init(t_shell *shell, char **env)
 			env_lstadd_back(&shell->env_l, env_listnew(name, content));
 		}
 	}
-}
-void swap_env_nodes(t_env *a, t_env *b)
-{
-    char *temp_name = a->name;
-    char *temp_content = a->content;
-    a->name = b->name;
-    a->content = b->content;
-    b->name = temp_name;
-    b->content = temp_content;
-}
-
-void sort_env_list(t_env **head)
-{
-    if (!head || !*head)
-        return;
-
-    int sorted;
-    t_env *current;
-    t_env *next_node;
-
-    sorted = 0;
-    while (!sorted)
-    {
-        sorted = 1;
-        current = *head;
-
-        while (current->next)
-        {
-            next_node = current->next;
-            if (ft_strcmp(current->name, next_node->name) > 0)
-            {
-                swap_env_nodes(current, next_node);
-                sorted = 0;
-            }
-            current = current->next;
-        }
-    }
 }
 
 void	env_p_init(t_shell *shell, char **env)
