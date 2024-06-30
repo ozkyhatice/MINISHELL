@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:57 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/29 04:34:53 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/30 22:13:29 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int	control_rules(t_shell *shell, t_parse_node *tmp_node)
 	else if (shell->parse_head->word[0] == '|'
 		&& shell->parse_head->word[1] == '|')
 		return (err_msg("||"));
+	else if (shell->parse_tail->type == PIPE)
+		return (err_msg("|"));
 	else if (tmp_node->next && tmp_node->type == L_BRACKET
 		&& tmp_node->next->type == R_BRACKET)
 		return (err_msg("("));

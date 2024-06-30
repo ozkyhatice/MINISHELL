@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 20:51:32 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/30 21:40:48 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 22:10:47 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	shell_readline2(t_shell *shell)
 	{
 		add_history(shell->cmd_line);
 		shell->er_status = 1;
-		shell->c_pipe = 0;
 		return ;
 	}
 	else
@@ -42,6 +41,7 @@ void	shell_readline2(t_shell *shell)
 void	shell_readline(t_shell *shell)
 {
 	shell->cmd_line = readline("minishell ~ ");
+	shell->c_pipe = 0;
 	if (shell->cmd_line == NULL && g_sig != IN_HEREDOC)
 	{
 		printf("exit\n");
@@ -52,7 +52,6 @@ void	shell_readline(t_shell *shell)
 	{
 		shell->er_status = 1;
 		shell->ex_status = 0;
-		free(shell->cmd_line);
 		return ;
 	}
 	shell_readline2(shell);
