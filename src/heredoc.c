@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:53:39 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/30 05:34:00 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 08:55:37 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	ft_heredoc(char *eof, int fd)
 			&& ft_strlen(line) == ft_strlen(eof))
 		{
 			free(line);
+			write(1, "\033[A", 3);
 			break ;
 		}
 		ft_putstr_fd(line, fd);

@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:53 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/29 20:07:25 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 08:51:44 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_sigint(int sig)
 	{
 		write(1, "\033[A", 3);
 		ioctl(0, TIOCSTI, "\n");
+		write(1, "\033[A", 3);
 	}
 	else if (g_sig == IN_CMD)
 	{
