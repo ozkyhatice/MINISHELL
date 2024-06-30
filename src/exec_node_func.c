@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:17 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/30 14:03:25 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 20:41:08 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static t_exec_node	*create_exec_node(void)
 		new->in = -3;
 		new->out = -3;
 		new->ex_flag = 1;
+		new->here_path = NULL;
 		new->redirection_head = NULL;
 		new->redirection_tail = NULL;
 	}
@@ -86,10 +87,18 @@ void	ft_free_execnodes(t_shell *shell)
 	{
 		next = current->next;
 		free(current->heredoc);
-		ft_free_arr(current->cmd);
+		if(current->here_path)
+			free(current->here_path);
+		if (current->cmd)
+			ft_free_arr(current->cmd);
 		free(current);
 		current = next;
 	}
 	shell->exec_head = NULL;
 	shell->exec_tail = NULL;
+	if (shell->c_pipe > 1)
+	{
+		ft_free_intarr(shell->fd, shell);
+		shell->fd = NULL;
+	}
 }

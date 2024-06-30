@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:02 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/30 14:40:47 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 21:17:53 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ft_single_exec(t_shell *shell, int i)
 
 	exnd = get_exec_node(shell->exec_head, i);
 	path = getcmdpath(exnd->cmd[i], shell->path, shell->env_l);
-	printf("path: %s\n", path);
 	exnd = get_exec_node(shell->exec_head, i);
 	set_io(exnd);
 	if (execve(path, exnd->cmd, shell->env) == -1)
@@ -102,8 +101,9 @@ int	exec_handler(t_shell *shell)
 
 	i = 0;
 	exnd = shell->exec_head;
+	if (shell->exec_head->ex_flag == 3)
+		return(1);
 	g_sig = IN_CMD;
-	print_exec_node(shell);
 	if (shell->c_pipe > 1)
 		open_pipes(shell);
 	while (i < shell->c_pipe)

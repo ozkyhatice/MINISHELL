@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   adeneme.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:54 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/29 16:29:22 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/30 19:39:18 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,16 @@ void	put_cmnds(t_shell *shell)
 		local.i = 0;
 		local.arg_len = 0;
 		node_init(&local);
+		if(local.arg_len == 0)
+		{
+			if (local.cmnds != NULL)
+				local.cmnds->cmd = NULL;
+			if (local.head != NULL)
+				local.head = local.head->next;
+			local.tmp = get_parse_node(shell->parse_head, local.j);
+			local.cmnds->ex_flag = 3;
+			continue ;
+		}
 		if (local.head != NULL)
 			local.head = local.head->next;
 		local.tmp = get_parse_node(shell->parse_head, local.j);
@@ -98,3 +108,4 @@ void	put_cmnds(t_shell *shell)
 		}
 	}
 }
+

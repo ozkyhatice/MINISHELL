@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   abuiltin_utils.c                                   :+:      :+:    :+:   */
+/*   echo_n.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:15:08 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 20:51:12 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/30 17:33:18 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../include/minishell.h"
 
 int	check_echo_n(char *keyword)
 {

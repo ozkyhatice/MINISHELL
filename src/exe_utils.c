@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 20:51:48 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/29 16:35:07 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/30 21:01:19 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,19 @@ void	ft_free_arr(char **str)
 		i++;
 	}
 	free(str);
+}
+
+void	ft_free_intarr(int **num, t_shell *shell)
+{
+	int	i;
+
+	i = 0;
+	while (i < shell->c_pipe - 1)
+	{
+		free(num[i]);
+		i++;
+	}
+	free(num);
 }
 
 char	*is_dir3(char *cmd, t_env *env)

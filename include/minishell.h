@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:13:48 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/30 14:33:46 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 20:41:22 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -314,5 +314,5 @@ void			ft_red_great(t_exec_node *head, t_red *h_red, t_shell *shell);
 void			is_first_builtin(t_shell *shell, t_exec_node *ex);
 void			ft_heredoc(char *eof, int fd);
 void			free_redirections(t_shell *shell);
-
+void			ft_free_intarr(int **num, t_shell *shell);
 #endif

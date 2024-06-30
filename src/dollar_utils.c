@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:12 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/29 16:30:31 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/30 17:23:03 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	add_dollar(t_shell *shell, char *str)
 
 void	special_dodollar(t_shell *shell, char *str)
 {
+	char	*tmp;
+
 	if (str[0] == '0')
 	{
 		add_parse_subnode(shell, "minishell");
@@ -62,7 +64,11 @@ void	special_dodollar(t_shell *shell, char *str)
 			g_sig = 0;
 		}
 		else
-			add_parse_subnode(shell, ft_itoa(shell->ex_status));
+		{
+			tmp = ft_itoa(shell->ex_status);
+			add_parse_subnode(shell, tmp);
+			free(tmp);
+		}
 		add_parse_subnode(shell, str + 1);
 	}
 }

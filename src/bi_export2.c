@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_export2.c                                  :+:      :+:    :+:   */
+/*   bi_export2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 20:59:26 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/28 20:59:27 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/30 17:15:14 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	add_environment(t_shell *shell, char *name, char *content)
 	if (!check_and_update(shell, name, content))
 	{
 		new = create_env(name, content);
+		if (new == NULL)
+			return ;
 		lst = env_lstlast(shell->env_l);
 		if (lst == NULL)
 		{

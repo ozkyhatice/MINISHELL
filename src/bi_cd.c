@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:47 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/30 13:12:24 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 19:00:14 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,18 @@ int	cd_exec(t_shell *shell, t_exec_node **ex, char **tmp, char **new)
 {
 	int		res;
 	char	*home;
+	char	*tmp_env;
 
 	res = -1;
-	home = ft_strdup(ft_getenv(shell->env_l, "HOME"));
+	tmp_env = ft_getenv(shell->env_l, "HOME");
+	home = ft_strdup(tmp_env);
 	if ((*ex)->cmd[1] == NULL)
 	{
 		res = go_dir(shell, home, new);
 		if (!handle_cd_result(res, NULL, shell, &home))
 			return (0);
 		*tmp = home;
+		free(home);
 	}
 	else
 	{
@@ -68,6 +71,7 @@ int	cd_exec(t_shell *shell, t_exec_node **ex, char **tmp, char **new)
 		if (!handle_cd_result(res, (*ex)->cmd[1], shell, &home))
 			return (0);
 		*tmp = (*ex)->cmd[1];
+		free(home);
 	}
 	return (1);
 }
@@ -77,16 +81,23 @@ int	run_cd(t_shell *shell, t_exec_node *ex)
 	char	*curr;
 	char	*tmp;
 	char	*new;
+	char	*home;
 	int		res;
 
 	res = -1;
-	curr = ft_strdup(getcwd(NULL, 0));
+	home = getcwd(NULL, 0);
+	curr = ft_strdup(home);
 	res = cd_exec(shell, &ex, &tmp, &new);
 	if (!res)
+	{
+		free(curr);
+		free(home);
 		return (0);
+	}
 	add_environment(shell, "PWD", new);
 	add_environment(shell, "OLDPWD", curr);
 	free(new);
 	free(curr);
+	free(home);
 	return (1);
 }

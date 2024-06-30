@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tilda.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:59 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/29 09:08:15 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/30 17:01:34 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	tilda_control(t_shell *shell)
 				free(node->word);
 			str = ft_split(ft_getenv(shell->env_l, "HOME"), ':');
 			node->word = str[0];
+			free(str);
 		}
 		node = node->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:53:39 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/30 13:30:14 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 18:09:38 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_heredoc(char *eof, int fd)
 {
 	char	*line;
 
+	g_sig = IN_HEREDOC;
 	while (1 && g_sig == IN_HEREDOC)
 	{
 		line = readline(">");
@@ -53,8 +54,8 @@ void	ft_heredoc(char *eof, int fd)
 		if ((ft_strncmp(line, eof, ft_strlen(eof)) == 0)
 			&& ft_strlen(line) == ft_strlen(eof))
 		{
-			free(line);
 			write(1, "\033[A", 3);
+			free(line);
 			break ;
 		}
 		ft_putstr_fd(line, fd);
