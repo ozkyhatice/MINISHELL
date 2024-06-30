@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 20:51:32 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/30 14:04:44 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 21:40:48 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	shell_readline2(t_shell *shell)
 	{
 		add_history(shell->cmd_line);
 		shell->er_status = 1;
+		shell->c_pipe = 0;
 		return ;
 	}
 	else

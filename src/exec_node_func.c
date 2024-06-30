@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:17 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/30 20:41:08 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 21:33:31 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,4 @@ void	ft_free_execnodes(t_shell *shell)
 	}
 	shell->exec_head = NULL;
 	shell->exec_tail = NULL;
-	if (shell->c_pipe > 1)
-	{
-		ft_free_intarr(shell->fd, shell);
-		shell->fd = NULL;
-	}
 }
