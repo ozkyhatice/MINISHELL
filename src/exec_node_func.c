@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_node_func.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:17 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/29 16:35:49 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/30 05:31:03 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ void	ft_free_execnodes(t_shell *shell)
 	{
 		next = current->next;
 		free(current->heredoc);
+		if (current->here_path)
+			free(current->here_path);
 		ft_free_arr(current->cmd);
 		free(current);
 		current = next;

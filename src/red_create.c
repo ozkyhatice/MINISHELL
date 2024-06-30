@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:53 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/30 04:29:44 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 05:29:12 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	free_redirections(t_shell *shell)
 		while (current_red)
 		{
 			next_red = current_red->next;
-			free(current_red->name);
+			if (current_red->name)
+				free(current_red->name);
 			free(current_red);
 			current_red = next_red;
 		}

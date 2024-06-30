@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:53:39 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/29 19:52:41 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 05:34:00 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_redir_dless(t_exec_node *head, t_red *head_redir, t_shell *shell)
 {
-	int	fd;
+	int		fd;
+	char	*str;
 
 	if (head->in != 0)
 		close(head->in);
@@ -36,7 +37,8 @@ void	ft_redir_dless(t_exec_node *head, t_red *head_redir, t_shell *shell)
 		unlink("tmpfile");
 		head->here_path = NULL;
 	}
-	head->here_path = ft_strdup("tmpfile");
+	str = "tmpfile";
+	head->here_path = ft_strdup(str);
 }
 
 void	ft_heredoc(char *eof, int fd)
@@ -44,7 +46,7 @@ void	ft_heredoc(char *eof, int fd)
 	char	*line;
 
 	g_sig = IN_HEREDOC;
-	while (1)
+	while (1 && g_sig == IN_HEREDOC)
 	{
 		line = readline(">");
 		if (line == NULL)
