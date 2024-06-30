@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_echo_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:14:58 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/29 05:09:52 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/30 23:10:01 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	run_env(t_shell *shell)
 	{
 		if (env->content[0] != '\0')
 			printf("%s=%s\n", env->name, env->content);
+		else if (!env->content)
+			printf("%s=\n", env->name);
 		env = env->next;
 	}
 }

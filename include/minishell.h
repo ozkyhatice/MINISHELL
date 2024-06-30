@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:13:48 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/30 20:41:22 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 23:12:26 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,4 +315,15 @@ void			is_first_builtin(t_shell *shell, t_exec_node *ex);
 void			ft_heredoc(char *eof, int fd);
 void			free_redirections(t_shell *shell);
 void			ft_free_intarr(int **num, t_shell *shell);
+t_env			*copy_env_list(t_env *env_l);
+void			handle_argument(char *arg, t_shell *shell);
+void			sort_env_list(t_env *env_l);
+void			print_exported_variable(t_env *env);
+void			print_invalid_identifier_error(char *arg, t_shell *shell);
+t_env			*env_copy(t_env *env);
+void			env_sort(t_env **env);
+t_env			*env_sorted_copy(t_env *env);
+t_env			*env_listnew(char *name, char *content);
+t_env			*env_lstlast(t_env *lst);
+void			env_lstadd_back(t_env **lst, t_env *new);
 #endif

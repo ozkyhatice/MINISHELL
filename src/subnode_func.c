@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:54 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/30 14:06:16 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 22:58:00 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ char	*ft_strjoin_subnode(t_subnode *node)
 	t_subnode	*current;
 	char		*str;
 	char		*copy;
+	char		*tmp;
 
 	current = node;
 	str = NULL;
@@ -96,8 +97,10 @@ char	*ft_strjoin_subnode(t_subnode *node)
 			copy = ft_strdup(current->word);
 			if (copy)
 			{
+				tmp = str;
 				str = ft_strjoin(str, copy);
 				free(copy);
+				free(tmp);
 			}
 		}
 		current = current->next;

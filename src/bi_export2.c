@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 20:59:26 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/30 17:15:14 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 23:11:36 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	add_environment(t_shell *shell, char *name, char *content)
 	if (!check_and_update(shell, name, content))
 	{
 		new = create_env(name, content);
-		if (new == NULL)
+		if (!new)
 			return ;
 		lst = env_lstlast(shell->env_l);
 		if (lst == NULL)

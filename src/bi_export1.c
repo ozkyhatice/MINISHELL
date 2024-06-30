@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_export1.c                                  :+:      :+:    :+:   */
+/*   bi_export1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:06 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 20:17:02 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/06/30 23:11:22 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,28 @@ int	ft_check_syntax(char *str)
 		i++;
 	}
 	return (0);
+}
+
+int	run_export(t_exec_node *cmd, t_shell *shell)
+{
+	t_env	*tmp;
+	int		i;
+
+	if (!cmd->cmd[1])
+	{
+		tmp = copy_env_list(shell->env_l);
+		while (tmp)
+		{
+			print_exported_variable(tmp);
+			tmp = tmp->next;
+		}
+		return (1);
+	}
+	i = 1;
+	while (cmd->cmd[i])
+	{
+		handle_argument(cmd->cmd[i], shell);
+		i++;
+	}
+	return (1);
 }

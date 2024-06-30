@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:15:25 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/30 14:42:31 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 23:14:44 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,33 +51,6 @@ void	env_lstadd_back(t_env **lst, t_env *new)
 	}
 }
 
-// char	**double_strjoin(char **oldlist, char *str)
-// {
-// 	char	**newlist;
-// 	size_t	size;
-
-// 	size = 0;
-// 	while (oldlist && oldlist[size])
-// 		size++;
-// 	newlist = malloc(sizeof(char *) * (size + 2));
-// 	size = 0;
-// 	while (oldlist && oldlist[size])
-// 	{
-// 		newlist[size] = oldlist[size];
-// 		size++;
-// 	}
-// 	newlist[size] = str;
-// 	newlist[++size] = 0;
-// 	free (oldlist);
-// 	return (newlist);
-// }
-
-
-// void	env_pointer_init(t_shell *shell, char *str)
-// {
-// 	shell->env = double_strjoin(shell->env, str);
-// }
-
 void	env_init(t_shell *shell, char **env)
 {
 	int		i;
@@ -102,76 +75,6 @@ void	env_init(t_shell *shell, char **env)
 				end++;
 			content = ft_substr(env[i], start, end);
 			env_lstadd_back(&shell->env_l, env_listnew(name, content));
-
 		}
 	}
-}
-t_env	*env_copy(t_env *env)
-{
-	t_env	*new_list = NULL;
-	t_env	*current;
-
-	while (env)
-	{
-		current = env_listnew(ft_strdup(env->name), ft_strdup(env->content));
-		if (!current)
-		{
-			// Handle memory allocation failure
-			// Free previously allocated nodes
-			while (new_list)
-			{
-				current = new_list->next;
-				free(new_list->name);
-				free(new_list->content);
-				free(new_list);
-				new_list = current;
-			}
-			return (NULL);
-		}
-		env_lstadd_back(&new_list, current);
-		env = env->next;
-	}
-	return (new_list);
-}
-
-void	env_sort(t_env **env)
-{
-	t_env	*current;
-	t_env	*next;
-	char	*tmp_name;
-	char	*tmp_content;
-	int		sorted;
-
-	if (!env || !(*env))
-		return ;
-	sorted = 0;
-	while (!sorted)
-	{
-		sorted = 1;
-		current = *env;
-		while (current->next)
-		{
-			next = current->next;
-			if (ft_strcmp(current->name, next->name) > 0)
-			{
-				tmp_name = current->name;
-				tmp_content = current->content;
-				current->name = next->name;
-				current->content = next->content;
-				next->name = tmp_name;
-				next->content = tmp_content;
-				sorted = 0;
-			}
-			current = next;
-		}
-	}
-}
-
-t_env	*env_sorted_copy(t_env *env)
-{
-	t_env	*sorted_copy = env_copy(env);
-
-	if (sorted_copy)
-		env_sort(&sorted_copy);
-	return (sorted_copy);
 }
