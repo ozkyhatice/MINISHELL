@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:06 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/30 23:11:22 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/01 00:12:11 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,25 @@ int	ft_check_syntax(char *str)
 int	run_export(t_exec_node *cmd, t_shell *shell)
 {
 	t_env	*tmp;
+	t_env	*tmp2;
 	int		i;
 
 	if (!cmd->cmd[1])
 	{
 		tmp = copy_env_list(shell->env_l);
-		while (tmp)
+		tmp2 = tmp;
+		while (tmp2)
 		{
-			print_exported_variable(tmp);
-			tmp = tmp->next;
+			print_exported_variable(tmp2);
+			tmp2 = tmp2->next;
+		}
+		while(tmp)
+		{
+			tmp2 = tmp->next;
+			free(tmp->content);
+			free(tmp->name);
+			free(tmp);
+			tmp = tmp2;
 		}
 		return (1);
 	}

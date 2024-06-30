@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:13 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/30 23:14:57 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 23:39:57 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ static void	onequote_split(t_shell *shell, char *word, int *i)
 		s = *i;
 		while (word[*i] && word[*i] != '\'')
 			*i += 1;
-		if (str)
-			free(str);
 		str = ft_substr(word, s, *i - s);
 		if (str)
 		{
