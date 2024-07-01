@@ -6,16 +6,17 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:12 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/07/01 04:40:06 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/01 04:45:47 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	mark_expand(t_shell *shell, char *str)
+void	mark_expand(t_shell *shell)
 {
 	char	*tmp;
 
+	tmp = NULL;
 	if (g_sig == 1 || g_sig == AFTER_HEREDOC)
 	{
 		add_parse_subnode(shell, "1");
@@ -36,8 +37,6 @@ void	mark_expand(t_shell *shell, char *str)
 
 void	special_dodollar(t_shell *shell, char *str)
 {
-	char	*tmp;
-
 	if (str[0] == '0')
 	{
 		add_parse_subnode(shell, "minishell");
@@ -45,7 +44,7 @@ void	special_dodollar(t_shell *shell, char *str)
 	}
 	if (str[0] == '?')
 	{
-		mark_expand(shell, str);
+		mark_expand(shell);
 		add_parse_subnode(shell, str + 1);
 	}
 }
