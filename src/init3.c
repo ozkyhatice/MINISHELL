@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 20:51:32 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/30 22:26:32 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/01 02:00:29 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	shell_readline(t_shell *shell)
 	{
 		shell->er_status = 1;
 		shell->ex_status = 0;
+		free(shell->cmd_line);
 		return ;
 	}
 	shell_readline2(shell);

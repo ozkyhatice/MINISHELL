@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:39 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/30 23:09:09 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/01 01:27:47 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,34 +20,32 @@ t_parse_node	*get_next_node(t_parse_node *current, t_parse_node **prev)
 		return (current->next);
 	return (NULL);
 }
-
 void	delete_null_nodes(t_shell *shell)
 {
-	t_parse_node	*tmp;
-	t_parse_node	*prev;
+	t_parse_node	*current;
+	t_parse_node	*next;
 
-	tmp = shell->parse_head;
-	prev = NULL;
-	while (tmp)
+	current = shell->parse_head;
+	while (current != NULL)
 	{
-		if (tmp->word == NULL)
+		next = current->next;
+		if (current->word == NULL)
 		{
-			if (prev)
-				prev->next = tmp->next;
-			else
-				shell->parse_head = tmp->next;
-			if (shell->parse_head == NULL)
-			{
-				shell->er_status = 1;
-				shell->ex_status = 0;
-				return ;
-			}
-			free(tmp);
-			tmp = prev;
+			if (current->prev)
+				current->prev->next = current->next;
+			if (current->next)
+				current->next->prev = current->prev;
+			if (current == shell->parse_head)
+				shell->parse_head = current->next;
+			if (current == shell->parse_tail)
+				shell->parse_tail = current->prev;
+			free(current->heredoc);
+			free(current);
 		}
-		tmp = get_next_node(tmp, &prev);
+		current = next;
 	}
 }
+
 
 void	ft_parse(t_shell *shell)
 {
@@ -55,6 +53,7 @@ void	ft_parse(t_shell *shell)
 	tilda_control(shell);
 	quote_remove(shell);
 	delete_null_nodes(shell);
+	node_control(shell);
 }
 
 void	ft_execpre(t_shell *shell)
@@ -63,6 +62,20 @@ void	ft_execpre(t_shell *shell)
 	put_cmnds(shell);
 	add_indx_to_exnd(shell->exec_head);
 	ft_redirection(shell);
+}
+
+void	node_control(t_shell *shell)
+{
+	t_parse_node	*tmp;
+
+	tmp = shell->parse_head;
+	while (tmp)
+	{
+		if (tmp->word != NULL)
+			return ;
+		tmp = tmp->next;
+	}
+	shell->er_status = 1;
 }
 
 void	start_program(t_shell *shell)
@@ -87,7 +100,7 @@ void	start_program(t_shell *shell)
 			exec_handler(shell);
 		if (shell->er_status != 2)
 		{
-			if (ft_strlen(shell->cmd_line) != 0)
+			if (ft_strlen(shell->cmd_line) != 0 && !(*shell->cmd_line == '\0'))
 				free(shell->cmd_line);
 		}
 		ft_freeallnodes(shell);

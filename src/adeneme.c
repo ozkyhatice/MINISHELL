@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:54 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/30 19:39:18 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/01 00:36:16 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	secondloop(t_put_cmd *local)
 {
 	while (local->i < local->arg_len)
 	{
-		if (local->tmp->type == WORD)
+		if (local->tmp->type == WORD && local->tmp->word != NULL)
 			local->cmnds->cmd[local->i++] = ft_strdup(local->tmp->word);
 		local->j++;
 		local->tmp = local->tmp->next;

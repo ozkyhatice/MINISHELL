@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:52 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 17:41:48 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/07/01 01:30:59 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ int	trim_quote_plus(t_shell *shell, char *w, int i, char *tmp_str)
 		free(tmp_str);
 	tmp_str = ft_substr(w, s, i - s);
 	if (tmp_str)
+	{
 		add_parse_subnode(shell, tmp_str);
+		free(tmp_str);
+	}
 	return (i);
 }
 
