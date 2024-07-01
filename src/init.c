@@ -6,34 +6,11 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:39 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/07/01 07:09:58 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/01 07:45:06 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-void	ft_parse(t_shell *shell)
-{
-	split_dollar(shell);
-	tilda_control(shell);
-	quote_remove(shell);
-	delete_null_nodes(shell);
-	node_control(shell);
-}
-
-void	ft_execpre(t_shell *shell)
-{
-	counter_pipe(shell);
-	put_cmnds(shell);
-	add_indx_to_exnd(shell->exec_head);
-	ft_redirection(shell);
-}
-
-void	ft_all_free(t_shell *shell)
-{
-	ft_freeallnodes(shell);
-	ft_free_shellfd(shell);
-}
 
 void	node_control(t_shell *shell)
 {
@@ -47,6 +24,16 @@ void	node_control(t_shell *shell)
 		tmp = tmp->next;
 	}
 	shell->er_status = 1;
+}
+
+void	start_control(t_shell *shell)
+{
+	if (shell->er_status == 0)
+		ft_parse(shell);
+	if (shell->er_status == 0)
+		ft_execpre(shell);
+	if (shell->er_status == 0)
+		exec_handler(shell);
 }
 
 void	start_program(t_shell *shell)
@@ -63,17 +50,17 @@ void	start_program(t_shell *shell)
 			shell->l_br = 0;
 			shell->r_br = 0;
 		}
-		if (shell->er_status == 0)
-			ft_parse(shell);
-		if (shell->er_status == 0)
-			ft_execpre(shell);
-		if (shell->er_status == 0)
-			exec_handler(shell);
+		start_control(shell);
 		if (shell->er_status != 2)
 		{
 			if (ft_strlen(shell->cmd_line) != 0 && !(*shell->cmd_line == '\0'))
 				free(shell->cmd_line);
 		}
-		ft_all_free(shell);
+		ft_freeallnodes(shell);
+		if (shell->fd)
+		{
+			ft_free_intarr(shell->fd, shell);
+			shell->fd = NULL;
+		}
 	}
 }

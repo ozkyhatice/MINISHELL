@@ -1,43 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dolar_init.c                                       :+:      :+:    :+:   */
+/*   adenem2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 04:40:22 by relvan            #+#    #+#             */
-/*   Updated: 2024/07/01 04:40:43 by relvan           ###   ########.fr       */
+/*   Created: 2024/07/01 07:46:21 by relvan            #+#    #+#             */
+/*   Updated: 2024/07/01 07:50:56 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	env_dollar(t_shell *shell, char *str)
+void	cont_comnd(t_put_cmd	*local, t_shell *shell)
 {
-	char	*tmp;
-
-	tmp = ft_strdup(str);
-	if (tmp)
+	local->tmp = get_parse_node(shell->parse_head, local->j);
+	if (local->tmp != NULL && local->cmnds != NULL)
 	{
-		add_parse_subnode(shell, tmp);
-		free(tmp);
-	}
-}
-
-void	add_dollar(t_shell *shell, char *str)
-{
-	char	*tmp;
-	char	*dollar;
-	char	*join;
-
-	tmp = ft_strdup(str);
-	dollar = ft_strdup("$");
-	if (tmp)
-	{
-		join = ft_strjoin(dollar, tmp);
-		add_parse_subnode(shell, join);
-		free(tmp);
-		free(dollar);
-		free(join);
+		local->cmnds->cmd = malloc(sizeof(char *) * (local->arg_len + 1));
+		if (!local->cmnds->cmd)
+			return ;
+		secondloop(local);
+		local->cmnds->cmd[local->i] = NULL;
+		local->cmnds = local->cmnds->next;
 	}
 }

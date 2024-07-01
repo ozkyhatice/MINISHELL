@@ -6,20 +6,11 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:59 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/07/01 03:45:30 by relvan           ###   ########.fr       */
+/*   Updated: 2024/06/30 17:01:34 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-t_parse_node	*get_next_node(t_parse_node *current, t_parse_node **prev)
-{
-	if (*prev)
-		*prev = current;
-	if (current)
-		return (current->next);
-	return (NULL);
-}
 
 void	tilda_control(t_shell *shell)
 {

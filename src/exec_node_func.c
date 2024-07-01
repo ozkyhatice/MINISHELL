@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:17 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/07/01 03:48:26 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/01 07:39:55 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,22 @@ void	ft_free_execnodes(t_shell *shell)
 	}
 	shell->exec_head = NULL;
 	shell->exec_tail = NULL;
+}
+
+char	*is_dir3(char *cmd, t_env *env)
+{
+	char	**str;
+
+	if (cmd[0] == '~')
+	{
+		str = ft_split(ft_getenv(env, "HOME"), ':');
+		if (str[0] == NULL)
+		{
+			ft_free_arr(str);
+			return (NULL);
+		}
+		cmd = ft_strjoin(str[0], cmd + 1);
+		ft_free_arr(str);
+	}
+	return (cmd);
 }

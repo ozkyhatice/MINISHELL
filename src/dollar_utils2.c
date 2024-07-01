@@ -1,47 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_node.c                                         :+:      :+:    :+:   */
+/*   dollar_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 04:33:02 by relvan            #+#    #+#             */
-/*   Updated: 2024/07/01 04:33:17 by relvan           ###   ########.fr       */
+/*   Created: 2024/07/01 07:38:07 by relvan            #+#    #+#             */
+/*   Updated: 2024/07/01 07:39:15 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-t_exec_node	*get_exec_node(t_exec_node *exnode, int indx)
+void	spec_dol(t_shell *shell, char *str)
 {
-	t_exec_node	*tmp;
-	int			i;
-
-	i = 0;
-	tmp = exnode;
-	while (tmp && i < indx)
-	{
-		tmp = tmp->next;
-		i++;
-	}
-	if (i == indx)
-		return (tmp);
-	return (NULL);
-}
-
-t_parse_node	*get_parse_node(t_parse_node *node, int indx)
-{
-	t_parse_node	*tmp;
-	int				i;
-
-	i = 0;
-	tmp = node;
-	while (tmp && i < indx)
-	{
-		tmp = tmp->next;
-		i++;
-	}
-	if (i == indx)
-		return (tmp);
-	return (NULL);
+	add_parse_subnode(shell, "minishell");
+	add_parse_subnode(shell, str + 1);
 }

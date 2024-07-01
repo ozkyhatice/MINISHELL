@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 23:12:13 by relvan            #+#    #+#             */
-/*   Updated: 2024/06/30 23:12:15 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/01 07:35:47 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,16 @@ void	print_invalid_identifier_error(char *arg, t_shell *shell)
 	ft_putstr_fd(arg, 2);
 	ft_putendl_fd("': not a valid identifier", 2);
 	shell->ex_status = 1;
+}
+
+void	free_export_utils(t_env *tmp, t_env *tmp2)
+{
+	while (tmp)
+	{
+		tmp2 = tmp->next;
+		free(tmp->content);
+		free(tmp->name);
+		free(tmp);
+		tmp = tmp2;
+	}
 }

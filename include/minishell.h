@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:13:48 by akdemir           #+#    #+#             */
-/*   Updated: 2024/07/01 04:44:08 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/01 07:51:36 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -327,8 +327,14 @@ t_env			*env_listnew(char *name, char *content);
 t_env			*env_lstlast(t_env *lst);
 void			env_lstadd_back(t_env **lst, t_env *new);
 void			node_control(t_shell *shell);
-void			ft_free_shellfd(t_shell *shell);
-void			env_dollar(t_shell *shell, char *str);
+void			free_export_utils(t_env *tmp, t_env *tmp2);
+char			*is_dir3(char *cmd, t_env *env);
+void			spec_dol(t_shell *shell, char *str);
+t_parse_node	*get_next_node(t_parse_node *current, t_parse_node **prev);
 void			delete_null_nodes(t_shell *shell);
-void			add_dollar(t_shell *shell, char *str);
+void			ft_parse(t_shell *shell);
+void			ft_execpre(t_shell *shell);
+void			cont_comnd(t_put_cmd	*local, t_shell *shell);
+void			secondloop(t_put_cmd *local);
+
 #endif
