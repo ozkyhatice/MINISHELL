@@ -6,39 +6,31 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:12 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/30 17:23:03 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/01 04:40:06 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	env_dollar(t_shell *shell, char *str)
+void	mark_expand(t_shell *shell, char *str)
 {
 	char	*tmp;
 
-	tmp = ft_strdup(str);
-	if (tmp)
+	if (g_sig == 1 || g_sig == AFTER_HEREDOC)
 	{
+		add_parse_subnode(shell, "1");
+		g_sig = 0;
+	}
+	else if (g_sig == IN_CMD)
+	{
+		add_parse_subnode(shell, "130");
+		g_sig = 0;
+	}
+	else
+	{
+		tmp = ft_itoa(shell->ex_status);
 		add_parse_subnode(shell, tmp);
 		free(tmp);
-	}
-}
-
-void	add_dollar(t_shell *shell, char *str)
-{
-	char	*tmp;
-	char	*dollar;
-	char	*join;
-
-	tmp = ft_strdup(str);
-	dollar = ft_strdup("$");
-	if (tmp)
-	{
-		join = ft_strjoin(dollar, tmp);
-		add_parse_subnode(shell, join);
-		free(tmp);
-		free(dollar);
-		free(join);
 	}
 }
 
@@ -53,22 +45,7 @@ void	special_dodollar(t_shell *shell, char *str)
 	}
 	if (str[0] == '?')
 	{
-		if (g_sig == 1 || g_sig == AFTER_HEREDOC)
-		{
-			add_parse_subnode(shell, "1");
-			g_sig = 0;
-		}
-		else if (g_sig == IN_CMD)
-		{
-			add_parse_subnode(shell, "130");
-			g_sig = 0;
-		}
-		else
-		{
-			tmp = ft_itoa(shell->ex_status);
-			add_parse_subnode(shell, tmp);
-			free(tmp);
-		}
+		mark_expand(shell, str);
 		add_parse_subnode(shell, str + 1);
 	}
 }

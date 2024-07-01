@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 18:12:40 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/30 21:36:24 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/01 03:42:20 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,41 @@ void	ft_freeallnodes(t_shell *shell)
 	ft_free_nodes(shell);
 	free_redirections(shell);
 	ft_free_execnodes(shell);
+}
+
+void	ft_free_shellfd(t_shell *shell)
+{
+	if (shell->fd)
+	{
+		ft_free_intarr(shell->fd, shell);
+		shell->fd = NULL;
+	}
+}
+
+void	delete_null_nodes(t_shell *shell)
+{
+	t_parse_node	*current;
+	t_parse_node	*next;
+
+	current = shell->parse_head;
+	while (current != NULL)
+	{
+		next = current->next;
+		if (current->word == NULL)
+		{
+			if (current->prev)
+				current->prev->next = current->next;
+			if (current->next)
+				current->next->prev = current->prev;
+			if (current == shell->parse_head)
+				shell->parse_head = current->next;
+			if (current == shell->parse_tail)
+				shell->parse_tail = current->prev;
+			free(current->heredoc);
+			free(current);
+		}
+		current = next;
+	}
 }
 
 char	**copyenv(char **env)

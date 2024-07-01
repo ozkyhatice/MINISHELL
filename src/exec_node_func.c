@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:17 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/30 21:33:31 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/01 03:48:26 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_free_execnodes(t_shell *shell)
 	{
 		next = current->next;
 		free(current->heredoc);
-		if(current->here_path)
+		if (current->here_path)
 			free(current->here_path);
 		if (current->cmd)
 			ft_free_arr(current->cmd);

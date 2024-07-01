@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:06 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/07/01 00:12:11 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/01 04:38:09 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,18 @@ int	ft_check_syntax(char *str)
 	return (0);
 }
 
+void	free_exported_variable(t_env *tmp, t_env *tmp2)
+{
+	while (tmp)
+	{
+		tmp2 = tmp->next;
+		free(tmp->content);
+		free(tmp->name);
+		free(tmp);
+		tmp = tmp2;
+	}
+}
+
 int	run_export(t_exec_node *cmd, t_shell *shell)
 {
 	t_env	*tmp;
@@ -64,14 +76,7 @@ int	run_export(t_exec_node *cmd, t_shell *shell)
 			print_exported_variable(tmp2);
 			tmp2 = tmp2->next;
 		}
-		while(tmp)
-		{
-			tmp2 = tmp->next;
-			free(tmp->content);
-			free(tmp->name);
-			free(tmp);
-			tmp = tmp2;
-		}
+		free_exported_variable(tmp, tmp2);
 		return (1);
 	}
 	i = 1;

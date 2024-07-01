@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 20:51:48 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/30 21:01:19 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/01 04:33:31 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,26 +89,4 @@ char	*getcmdpath(char *cmd, char **path, t_env *env)
 		ft_free_cmdpath(cmdpath, tmp);
 	}
 	return (NULL);
-}
-
-void	define_rtype(t_parse_node *node, t_exec_node *exnode)
-{
-	t_parse_node	*tmp;
-	t_exec_node		*ex;
-
-	tmp = node;
-	ex = exnode;
-	(void)ex;
-	while (tmp)
-	{
-		if (tmp->type == R_REDIR)
-			tmp->next->type = OUTPUT;
-		else if (tmp->type == APPEND)
-			tmp->next->type = APPENDOUT;
-		else if (tmp->type == L_REDIR)
-			tmp->next->type = INPUT;
-		else if (tmp->type == HEREDOC)
-			tmp->next->type = HD;
-		tmp = tmp->next;
-	}
 }

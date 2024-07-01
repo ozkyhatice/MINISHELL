@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:13:48 by akdemir           #+#    #+#             */
-/*   Updated: 2024/07/01 01:01:41 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/01 03:46:02 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -327,4 +327,6 @@ t_env			*env_listnew(char *name, char *content);
 t_env			*env_lstlast(t_env *lst);
 void			env_lstadd_back(t_env **lst, t_env *new);
 void			node_control(t_shell *shell);
+void			ft_free_shellfd(t_shell *shell);
+void			delete_null_nodes(t_shell *shell);
 #endif

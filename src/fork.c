@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:02 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/30 21:17:53 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/01 03:47:07 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	exec_handler(t_shell *shell)
 	i = 0;
 	exnd = shell->exec_head;
 	if (shell->exec_head->ex_flag == 3)
-		return(1);
+		return (1);
 	g_sig = IN_CMD;
 	if (shell->c_pipe > 1)
 		open_pipes(shell);

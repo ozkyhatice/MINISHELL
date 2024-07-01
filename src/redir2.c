@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/28 23:45:07 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/30 18:49:42 by relvan           ###   ########.fr       */
+/*   Created: 2024/07/01 03:39:00 by relvan            #+#    #+#             */
+/*   Updated: 2024/07/01 03:46:33 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_redirection(t_shell *shell)
 			{
 				if (ex->next)
 					shell->ex_status = 0;
-				if(ex->ex_flag == 1)
+				if (ex->ex_flag == 1)
 					ex->ex_flag = 0;
 			}
 			ex_redir = ex_redir->next;
