@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 07:43:47 by relvan            #+#    #+#             */
-/*   Updated: 2024/07/01 07:45:31 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/03 09:44:10 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_parse(t_shell *shell)
 	quote_remove(shell);
 	delete_null_nodes(shell);
 	node_control(shell);
+	pipe_control(shell);
 }
 
 void	ft_execpre(t_shell *shell)

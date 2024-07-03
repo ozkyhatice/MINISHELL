@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:39 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/07/01 07:45:06 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/03 09:46:58 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,30 @@ void	node_control(t_shell *shell)
 		tmp = tmp->next;
 	}
 	shell->er_status = 1;
+}
+
+void	pipe_control(t_shell *shell)
+{
+	t_parse_node	*tmp;
+	t_parse_node	*tmp2;
+
+	tmp = shell->parse_head;
+	while (tmp)
+	{
+		if (tmp->type == PIPE && tmp->next == NULL)
+			shell->er_status = 1;
+		if (tmp->type == PIPE && tmp->next && tmp->next->type == PIPE)
+		{
+			tmp2 = tmp;
+			if (tmp->prev)
+				tmp->prev->next = tmp->next;
+			tmp->next->prev = tmp->prev;
+			tmp = tmp->next;
+			free(tmp2);
+		}
+		else
+			tmp = tmp->next;
+	}
 }
 
 void	start_control(t_shell *shell)

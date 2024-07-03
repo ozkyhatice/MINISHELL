@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:13:12 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/07/01 07:38:04 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/03 09:43:13 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	special_dodollar(t_shell *shell, char *str)
 		}
 		else
 		{
-			tmp = ft_itoa(shell->ex_status);
+			tmp = ft_itoa(shell->ex_ex_status);
 			add_parse_subnode(shell, tmp);
 			free(tmp);
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dup.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 10:12:55 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/07/01 16:49:14 by akdemir          ###   ########.fr       */
+/*   Updated: 2024/07/03 09:41:31 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	wait_al(t_shell *shell)
 		i++;
 	}
 	cmd = get_exec_node(shell->exec_head, i - 1);
-	if (is_builtin(cmd->cmd[0]) != 1) // seg yediği yer
+	if (is_builtin(cmd->cmd[0]) != 1)
 	{
 		if (WIFEXITED(status))
 			shell->ex_status = WEXITSTATUS(status);

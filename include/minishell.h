@@ -6,7 +6,7 @@
 /*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:13:48 by akdemir           #+#    #+#             */
-/*   Updated: 2024/07/01 07:51:36 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/03 09:42:31 by relvan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ typedef struct s_shell
 	char			**env;
 	int				er_status;
 	int				ex_status;
+	int				ex_ex_status;
 	int				l_br;
 	int				r_br;
 	int				br_type;
@@ -336,5 +337,6 @@ void			ft_parse(t_shell *shell);
 void			ft_execpre(t_shell *shell);
 void			cont_comnd(t_put_cmd	*local, t_shell *shell);
 void			secondloop(t_put_cmd *local);
+void			pipe_control(t_shell *shell);
 
 #endif
