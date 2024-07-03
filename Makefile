@@ -53,7 +53,6 @@ run:
 clean:
 	make clean -C libft/
 	rm -rf $(OBJ)
-	rm -rf $(NAME)
 
 fclean: clean
 	rm -rf $(LIBFT)
@@ -66,4 +65,4 @@ test: all
 re: fclean all
 re2: clean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re re2 run test
