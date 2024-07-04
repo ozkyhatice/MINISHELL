@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/15 12:41:34 by abkiraz           #+#    #+#             */
-/*   Updated: 2023/07/15 14:03:55 by abkiraz          ###   ########.fr       */
+/*   Created: 2024/07/04 13:50:36 by akdemir           #+#    #+#             */
+/*   Updated: 2024/07/04 13:50:37 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

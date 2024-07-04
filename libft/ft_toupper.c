@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 22:22:30 by abkiraz           #+#    #+#             */
-/*   Updated: 2023/07/22 14:50:05 by abkiraz          ###   ########.fr       */
+/*   Created: 2024/07/04 13:52:07 by akdemir           #+#    #+#             */
+/*   Updated: 2024/07/04 13:52:08 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

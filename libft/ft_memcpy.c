@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 23:12:51 by abkiraz           #+#    #+#             */
-/*   Updated: 2023/07/24 20:16:20 by abkiraz          ###   ########.fr       */
+/*   Created: 2024/07/04 13:50:32 by akdemir           #+#    #+#             */
+/*   Updated: 2024/07/04 13:50:33 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

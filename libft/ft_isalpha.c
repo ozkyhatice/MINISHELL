@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 17:21:38 by abkiraz           #+#    #+#             */
-/*   Updated: 2023/07/07 16:50:50 by abkiraz          ###   ########.fr       */
+/*   Created: 2024/07/04 13:50:03 by akdemir           #+#    #+#             */
+/*   Updated: 2024/07/04 13:50:04 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

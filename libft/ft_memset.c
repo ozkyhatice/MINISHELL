@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/06 15:22:32 by abkiraz           #+#    #+#             */
-/*   Updated: 2023/07/22 14:53:49 by abkiraz          ###   ########.fr       */
+/*   Created: 2024/07/04 13:50:39 by akdemir           #+#    #+#             */
+/*   Updated: 2024/07/04 13:50:40 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

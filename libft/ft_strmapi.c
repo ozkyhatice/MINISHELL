@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/22 14:29:29 by abkiraz           #+#    #+#             */
-/*   Updated: 2023/07/22 15:20:42 by abkiraz          ###   ########.fr       */
+/*   Created: 2024/07/04 13:51:36 by akdemir           #+#    #+#             */
+/*   Updated: 2024/07/04 13:51:37 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/22 13:30:03 by abkiraz           #+#    #+#             */
-/*   Updated: 2023/07/24 15:07:30 by abkiraz          ###   ########.fr       */
+/*   Created: 2024/07/04 13:50:56 by akdemir           #+#    #+#             */
+/*   Updated: 2024/07/04 13:50:57 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

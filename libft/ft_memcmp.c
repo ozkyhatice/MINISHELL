@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 18:17:55 by abkiraz           #+#    #+#             */
-/*   Updated: 2023/07/24 14:50:56 by abkiraz          ###   ########.fr       */
+/*   Created: 2024/07/04 13:50:28 by akdemir           #+#    #+#             */
+/*   Updated: 2024/07/04 13:50:29 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

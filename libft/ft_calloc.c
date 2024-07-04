@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/15 15:03:47 by abkiraz           #+#    #+#             */
-/*   Updated: 2023/07/15 15:38:56 by abkiraz          ###   ########.fr       */
+/*   Created: 2024/07/04 13:49:55 by akdemir           #+#    #+#             */
+/*   Updated: 2024/07/04 13:49:56 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/22 14:13:25 by abkiraz           #+#    #+#             */
-/*   Updated: 2023/07/22 14:13:26 by abkiraz          ###   ########.fr       */
+/*   Created: 2024/07/04 13:51:14 by akdemir           #+#    #+#             */
+/*   Updated: 2024/07/04 13:51:15 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkiraz <abkiraz@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 17:32:56 by abkiraz           #+#    #+#             */
-/*   Updated: 2023/07/06 14:23:28 by abkiraz          ###   ########.fr       */
+/*   Created: 2024/07/04 13:49:59 by akdemir           #+#    #+#             */
+/*   Updated: 2024/07/04 13:50:00 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/28 10:13:49 by abkiraz           #+#    #+#             */
-/*   Updated: 2024/06/28 13:37:24 by akdemir          ###   ########.fr       */
+/*   Created: 2024/07/04 13:47:37 by akdemir           #+#    #+#             */
+/*   Updated: 2024/07/04 13:48:03 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	printwelcome(void)
 {
 	printf("\033[32m/* ************************************************ */\n");
 	printf("/*                                                  */\n");
-	printf("/*          Welcome to our Miniroot Shell           */\n");
-	printf("/*          hozkaya      <--->      relvan          */\n");
+	printf("/*          Welcome                                 */\n");
+	printf("/*                                                  */\n");
 	printf("/*                                                  */\n");
 	printf("/* ************************************************ */\n\n\033[0m");
 }
