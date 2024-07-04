@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: relvan <relvan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: akdemir <akdemir@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:53:39 by akdemir           #+#    #+#             */
-/*   Updated: 2024/06/30 18:09:38 by relvan           ###   ########.fr       */
+/*   Updated: 2024/07/04 11:38:52 by akdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	ft_heredoc(char *eof, int fd)
 		if ((ft_strncmp(line, eof, ft_strlen(eof)) == 0)
 			&& ft_strlen(line) == ft_strlen(eof))
 		{
-			write(1, "\033[A", 3);
 			free(line);
 			break ;
 		}
